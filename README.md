@@ -6,3 +6,5 @@ required packages: numpy, matplotlib, scipy, netcdf4, jplephem, pyside2(currentl
 run:
 python GASV_GUI.py
 or python run.py /path/to/cnt_file
+
+the software will optimize performance-critical functions by rewriting them in Cython, to further improve the single session analysis speed
