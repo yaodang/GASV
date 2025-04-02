@@ -325,7 +325,7 @@ class CONSTRAINTS:
                 if 'NUTATION' in line:
                     self.nut = float(temp[1])
                 if 'STATIONS' in line:
-                    self.sta[0] = temp[1:]
+                    self.sta[0] = temp[1]
                     sigma = self.getSigma(temp[1:])
                     if sigma != 0:
                         self.sta[1] = sigma
