@@ -11,8 +11,11 @@ def read_SNX(filePath,flag):
     if '.gz' in filePath:
         fid = gzip.open(filePath, 'rt')
     else:
-        #fid = open(filePath+'.snx','r')
-        fid = open(filePath, 'r')
+        if '.snx' in filePath:
+            fid = open(filePath, 'r')
+        else:
+            fid = open(filePath+'.snx','r')
+        
     lines = fid.readlines()
     fid.close()
     
