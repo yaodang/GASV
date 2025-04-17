@@ -143,6 +143,26 @@ def writeSFF(param, scanInfo, eopApri, result, out):
         else:
             fid.writelines('%2d/%02d/%02d %02d:%02d %14.4f %13.4f %14.4f %13.2f %13.2f %12.2f\n'\
                            %(year-2000,mon,day,hour,int(minute),0,0,out.aprioriValue[0][0]+out.estValue[0][0],0,0,out.formalErr[0][0]*1E3))
+    
+    nutPosit = [out.param.index('nutx'),out.param.index('nuty')]
+    if sum(out.estFlag[nutPosit]) != 0:
+        fid.writelines('\n EOP epoch (TT)   MJD:                   NUT epoch (TT)    MJD:\n')
+        fid.writelines('       Nutation offset around X-axis       (dX)%12.3f mas %10.1f microasec           0.0 microasec\n'%(out.estValue[nutPosit[0]][0],out.formalErr[nutPosit[0]][0]*1E3))
+        fid.writelines('       Nutation offset around Y-axis       (dY)%12.3f mas %10.1f microasec           0.0 microasec\n'%(out.estValue[nutPosit[1]][0],out.formalErr[nutPosit[1]][0]*1E3))
+
+
+    if param.Flags.blClk == 'IN':
+        index = result.paramName.index('blclk')
+        if result.paramNum[index] > 0:
+            fid.writelines('\n')
+            paramStartPosit = sum(result.paramNum[:index])
+            blclkEstValue = result.para[paramStartPosit:paramStartPosit + result.paramNum[index]]/3E8*1E12 # m to ps
+            blclkErrValue = result.err[paramStartPosit:paramStartPosit + result.paramNum[index]]/3E8*1E12 # m to ps
+            for i in range(result.paramNum[index]):
+                sta1 = scanInfo.stationAll[scanInfo.blClkList[i][0] - 1]
+                sta2 = scanInfo.stationAll[scanInfo.blClkList[i][1] - 1]
+                fid.writelines('       %8s-%8s Clock offset %34.3f ps %18.3f ps %18.3f ps\n'%(sta1,sta2,blclkEstValue[i],blclkErrValue[i],blclkErrValue[i]))
+    
     fid.close()
     
     
@@ -151,19 +171,24 @@ def xyzBlock(out):
     xyzLines = ''
     
     xyzP = out.param.index('xyz') - len(out.param)
-    flag = ['X Comp', 'Y Comp', 'Z Comp']
+    flag = ['X Comp', 'Y Comp', 'Z Comp', 'U comp', 'E Comp', 'N Comp']
     
     for i in range(len(out.nscode)):
         xyzLines += 'Station positions are for epoch: %4d.%02d.%02d-%02d:%02d:%02d\n'%(out.mjd[xyzP][i][6],out.mjd[xyzP][i][9],\
                                                                                       out.mjd[xyzP][i][10],out.mjd[xyzP][i][11],\
                                                                                       out.mjd[xyzP][i][12],out.mjd[xyzP][i][13])
-            
-        for j in range(3):
-            # xyzLines += '%15s -001 YAO   %s %19.2f mm %14.3f mm %18.3f mm\n'%(out.nscode[i][2], flag[j], out.aprioriValue[xyzP][i,j]*1000+out.estValue[xyzP][j,i]*10,\
-            #                                                         out.estValue[xyzP][j,i]*10, out.formalErr[xyzP][j,i]*10)
-            xyzLines += '%15s -001 %4s  %s %19.2f mm %14.3f mm %18.3f mm\n'%(out.nscode[i][2], out.nscode[i][3], flag[j], out.aprioriValue[xyzP][i,j]*1000+out.estValue[xyzP][i,j]*1000,\
-                                                                    out.estValue[xyzP][i,j]*1000, out.formalErr[xyzP][i,j]*1000)
-        xyzLines += '\n'
+        [lat, lon, h] = xyz2ell(out.aprioriValue[xyzP][i])
+        dren = xyz2ren(out.estValue[xyzP][i], lat, lon)
+
+        for j in range(6):
+            if j < 3:
+                xyzLines += '%15s %4s %4s  %s %19.2f mm %14.3f mm %18.3f mm\n'%(out.nscode[i][2], out.nscode[i][0], out.nscode[i][3], flag[j], out.aprioriValue[xyzP][i,j]*1000+out.estValue[xyzP][i,j]*1000,\
+                                                                        out.estValue[xyzP][i,j]*1000, out.formalErr[xyzP][i,j]*1000)
+            else:
+                xyzLines += '%15s %4s       %s %19.2f mm %14.3f mm %18.3f mm\n' % (
+                out.nscode[i][2], out.nscode[i][0],flag[j],dren[j-3] * 1000, \
+                dren[j-3] * 1000, 0)
+
     return xyzLines
 
 def souBlock(out):
