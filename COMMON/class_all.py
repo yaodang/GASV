@@ -171,7 +171,10 @@ class FLAGS:
                         try:
                             self.segConstr[0] = float(inList[4])
                         except ValueError:
-                            errFlag = 1
+                            if inList[4] == '-':
+                                self.pm[0] = 'NO'
+                            else:
+                                errFlag = 1
                     else:
                         errFlag = 1
                         
@@ -179,7 +182,10 @@ class FLAGS:
                         try:
                             self.segConstr[1] = float(inList[6])
                         except ValueError:
-                            errFlag = 1
+                            if inList[4] == '-':
+                                self.ut1[0] = 'NO'
+                            else:
+                                errFlag = 1
                     else:
                         errFlag = 1
                     
