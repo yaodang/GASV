@@ -96,9 +96,10 @@ def staPositCorr(args):
         
         # GPT3 mapping function for dry, wet, and gradient
         mfh,mfw = GPT3(scanMJD[i],phi,lam,hell,0,GPT3Data,zd)
-            
-        mge = np.sin(az)/np.tan(np.pi/2-zd)*mfh
-        mgn = np.cos(az)/np.tan(np.pi/2-zd)*mfh
+
+        ell = np.pi / 2 - zd
+        mge = np.sin(az) / (np.tan(ell) * np.sin(ell) + 0.0032)
+        mgn = np.cos(az) / (np.tan(ell) * np.sin(ell) + 0.0032)
         
         trp = ((zdry+aoalt)*mfh+zwet*mfw)/const.c
         
