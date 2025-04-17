@@ -271,12 +271,25 @@ def gradMatrix(scanInfo, ista, staObs, nobs, mjdSta, mjd0, Param, minute, A, H, 
             obs_per_stat, n_unk, n_all, T_ = staWise(mjdSta, mjd0, Param, minute, 'grad')
             Angr,Aegr = apw_gradient(obs_per_stat, T_, n_unk, n_all, minute, ista, staObs, nobs)
             
-            mat_grad = sparse.eye(n_unk+1) - sparse.eye(n_unk+1, k=1)
-            mat_h = sparse.vstack((mat_grad[0:n_unk,0:n_unk+1],sparse.eye(n_unk+1)))
+            #mat_grad = sparse.eye(n_unk+1) - sparse.eye(n_unk+1, k=1)
+            #mat_h = sparse.vstack((mat_grad[0:n_unk,0:n_unk+1],sparse.eye(n_unk+1)))
             
-            matRelP = sparse.eye(n_unk)*1/Param.Const.grad[0]**2
-            matAbsP = sparse.eye(n_unk+1)*1/Param.Const.grad[1]**2
-            mat_p = sparse.block_diag((matRelP,matAbsP))
+            #matRelP = sparse.eye(n_unk)*1/Param.Const.grad[0]**2
+            #matAbsP = sparse.eye(n_unk+1)*1/Param.Const.grad[1]**2
+            #mat_p = sparse.block_diag((matRelP,matAbsP))
+        
+            mat_rel = sparse.eye(n_unk + 1) - sparse.eye(n_unk + 1, k=1)
+            mat_abs = np.eye(n_unk + 1)[:n_unk]
+            matRelP = sparse.eye(n_unk) * 1 / (Param.Const.grad[0]*1E-2) ** 2
+            matAbsP = sparse.eye(n_unk) * 1 / (Param.Const.grad[1]*1E-2) ** 2
+
+            # east gradient
+            mat_egr_h = sparse.vstack((mat_rel[:n_unk], mat_abs))
+            mat_egr_p = sparse.block_diag((matRelP,matAbsP))
+
+            # north gradient
+            mat_ngr_h = sparse.vstack((mat_rel[:n_unk], mat_abs))
+            mat_ngr_p = sparse.block_diag((matRelP, matAbsP))
             
             if flag == 0:
                 A.ngr = Angr
@@ -690,7 +703,10 @@ def eopMatrix(pEOP, scanMJD, scanObsNum, Param, mjd0, paramName, estParam):
         Param       : the class type, see cntparameter.py
     ---------------------
     """
-    rad2mas = (180/np.pi)*3600*1000
+    if paramName == 'ut1':
+        rad2mas = (180/np.pi)*3600*1000/15 #rad to ms
+    else:
+        rad2mas = (180/np.pi)*3600*1000
     mjd1 = min(scanMJD)
     mjd2 = max(scanMJD)
     
