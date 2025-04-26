@@ -294,18 +294,18 @@ def gradMatrix(scanInfo, ista, staObs, nobs, mjdSta, mjd0, Param, minute, A, H, 
             if flag == 0:
                 A.ngr = Angr
                 A.egr = Aegr
-                H.ngr = mat_h
-                H.egr = mat_h
-                P.ngr = mat_p
-                P.egr = mat_p               
+                H.ngr = mat_ngr_h
+                H.egr = mat_egr_h
+                P.ngr = mat_ngr_p
+                P.egr = mat_egr_p               
             else:
                 A.ngr = sparse.hstack((A.ngr, Angr))
-                H.ngr = sparse.block_diag((H.ngr, mat_h))
-                P.ngr = sparse.block_diag((P.ngr, mat_p))
+                H.ngr = sparse.block_diag((H.ngr, mat_ngr_h))
+                P.ngr = sparse.block_diag((P.ngr, mat_ngr_p))
                 
                 A.egr = sparse.hstack((A.egr, Aegr))
-                H.egr = sparse.block_diag((H.egr, mat_h))
-                P.egr = sparse.block_diag((P.egr, mat_p))
+                H.egr = sparse.block_diag((H.egr, mat_egr_h))
+                P.egr = sparse.block_diag((P.egr, mat_egr_p))
             
             temp = estParam.param.index('ngr')
             estParam.num[temp] += Angr.shape[1]
