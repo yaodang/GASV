@@ -1,4 +1,4 @@
-from PySide2.QtCore import Signal, QThread
+from PyQt5.QtCore import pyqtSignal as Signal, QThread
 import numpy as np
 from COMMON import *
 import os,re
