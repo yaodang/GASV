@@ -4,7 +4,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.ticker as ticker
 from matplotlib.pyplot import MultipleLocator
-from PySide2.QtCore import Signal
+from PyQt5.QtCore import pyqtSignal as Signal
 import numpy as np
 from COMMON import *
 
