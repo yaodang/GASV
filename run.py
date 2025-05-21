@@ -17,7 +17,7 @@ from MAKE import *
 
 def check():
     if len(sys.argv) == 1:
-        print('\nUsage: VIPSR [OPTION]\n'+\
+        print('\nUsage: GASVR [OPTION]\n'+\
               "Try 'GASVR --help' for more information\n")
         sys.exit()
         
@@ -74,7 +74,7 @@ def check():
         return runFlag,runInfo
              
 def printHelp():
-    print("VIPSR is a program that process VLBI data and estimate the parameter.\n"+\
+    print("GASVR is a program that process VLBI data and estimate the parameter.\n"+\
           '\nUsage: GASVR [OPTION]\n'+\
           "The OPTION can be:\n"+\
           "           --help: print help information\n\n"+\
