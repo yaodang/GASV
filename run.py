@@ -18,7 +18,7 @@ from MAKE import *
 def check():
     if len(sys.argv) == 1:
         print('\nUsage: VIPSR [OPTION]\n'+\
-              "Try 'VIPSR --help' for more information\n")
+              "Try 'GASVR --help' for more information\n")
         sys.exit()
         
     elif sys.argv[1] == '--help':
@@ -32,7 +32,7 @@ def check():
         runInfo = {'ac':'','dbName':'','outPath':'','inPath':''}
         
         if len(sys.argv) != 9:
-            print('Please input like: VIPSR makedb -a IVS -d 23MAR03XA -o /home/work /data/corr/i23001\n')
+            print('Please input like: GASVR makedb -a IVS -d 23MAR03XA -o /home/work /data/corr/i23001\n')
             sys.exit()
         
         index1 = sys.argv.index('-a')
@@ -57,7 +57,7 @@ def check():
         runInfo = {'inPath':'','type':'','outPath':''}
         
         if len(sys.argv) != 7:
-            print('Please input like: VIPSR plog -p /data/session -k log /data/21DEC20XA\n')
+            print('Please input like: GASVR plog -p /data/session -k log /data/21DEC20XA\n')
             sys.exit()
         index1 = sys.argv.index('-p')
         index2 = sys.argv.index('-k')
@@ -75,7 +75,7 @@ def check():
              
 def printHelp():
     print("VIPSR is a program that process VLBI data and estimate the parameter.\n"+\
-          '\nUsage: VIPSR [OPTION]\n'+\
+          '\nUsage: GASVR [OPTION]\n'+\
           "The OPTION can be:\n"+\
           "           --help: print help information\n\n"+\
           "             init: create the work path\n\n"+\
