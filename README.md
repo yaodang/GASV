@@ -7,4 +7,4 @@ run:
 python GASV_GUI.py
 or python run.py /path/to/cnt_file
 
-the software will optimize performance-critical functions by rewriting them in Cython, to further improve the single session analysis speed
+for single session analysis, it can using some IERS modules write in Fortran by Ctype to improve the compute speed.
