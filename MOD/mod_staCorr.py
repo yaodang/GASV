@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import sys,bisect
+import sys,bisect,ctypes,os
 import numpy as np
 np.set_printoptions(precision=15)
 
@@ -44,9 +44,15 @@ def staPositCorr(args):
         
         psd_phi = cart2phigd(sta_xgeo)
         psd_lam = np.arctan2(sta_xgeo[1],sta_xgeo[0])
+
+        if tidalFlag != 'IERS':
+            cts = soild_tidal_corr(mjd, t2c[i], sta_xgeo, moon_xgeo, sun_xgeo)
+            cto = ocean_tidal_corr(mjd, stationInfo.cto[p_sta], lam, phi)
+        else:
+            cts = soild_tidal_corr_iers(date, t2c[i], sta_xgeo, moon_xgeo, sun_xgeo)
+            DZ,DW,DS = ocean_tidal_corr_iers(tim, stationInfo.cto[p_sta])
+            cto = ren2xyz(np.array([DZ, DW, DS]), phi, lam)
         
-        cts = soild_tidal_corr(mjd, t2c[i], sta_xgeo, moon_xgeo, sun_xgeo)
-        cto = ocean_tidal_corr(mjd, stationInfo.cto[p_sta], lam, phi)
         ctp = pole_tidal(tim, lam, phi, xp, yp, stationInfo.opp[p_sta])
         # print(p_sta,stationInfo.opp[p_sta])
         cta = atmosphere_tidal_corr(mjd, lam, phi, stationInfo.ap[p_sta])
@@ -312,6 +318,37 @@ def soild_tidal_corr(mjd, t2c, sta_xgeo, moon_xgeo, sun_xgeo):
     
     return cts
 
+def soild_tidal_corr_iers(date, t2c, sta_xgeo, moon_xgeo, sun_xgeo):
+    filePath = os.path.abspath(__file__)
+    runPath = filePath[0:filePath.rfind('/') + 1]
+    platform = sys.platform
+    if platform == "win32":
+        libPath = os.path.join(runPath[:-4],'EXTERNAL/IERS/solid_tidal/libstc.dll')
+    else:
+        libPath = os.path.join(runPath[:-4],'EXTERNAL/IERS/solid_tidal/libstc.so')
+
+    lib = ctypes.CDLL(libPath)
+    lib.dehanttideinel_.argtypes = [np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS'), \
+                                    ctypes.POINTER(ctypes.c_int), \
+                                    ctypes.POINTER(ctypes.c_int), \
+                                    ctypes.POINTER(ctypes.c_int), \
+                                    ctypes.POINTER(ctypes.c_double), \
+                                    np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS'), \
+                                    np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS'), \
+                                    np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS')]
+    lib.dehanttideinel_.restype = None
+
+    moon_xcrf = t2c.T @ moon_xgeo
+    sun_xcrf = t2c.T @ sun_xgeo
+    YR = ctypes.c_int(int(date[0]))
+    MONTH = ctypes.c_int(int(date[1]))
+    DAY = ctypes.c_int(int(date[2]))
+    FHR = ctypes.c_double(date[3]+date[4]/60+date[5]/3600)
+
+    DXTIDE = np.zeros(3, dtype=np.float64)
+    lib.dehanttideinel_(sta_xgeo, YR, MONTH, DAY, FHR, sun_xcrf, moon_xcrf, DXTIDE)
+
+    return DXTIDE
 
 def pole_tidal(tim, lam, phi, xp, yp, opp):
     """
@@ -431,6 +468,38 @@ def atmosphere_tidal_corr(mjd, lam, phi, ap):
     cta = ren2xyz(np.array([dr,de,dn])/1000, phi, lam)
     
     return cta
+
+def ocean_tidal_corr_iers(scanTime, cto):
+    filePath = os.path.abspath(__file__)
+    runPath = filePath[0:filePath.rfind('/') + 1]
+    platform = sys.platform
+    if  platform == "win32":
+        libPath = os.path.join(runPath[:-4], 'EXTERNAL/IERS/ocean_tidal/libhardsip.dll')
+    else:
+        libPath = os.path.join(runPath[:-4], 'EXTERNAL/IERS/ocean_tidal/libhardsip.so')
+    
+    lib = ctypes.CDLL(libPath)
+    lib.otc_.argtypes = [np.ctypeslib.ndpointer(dtype=np.int32, flags='F_CONTIGUOUS'), \
+                         np.ctypeslib.ndpointer(dtype=np.float32, flags='F_CONTIGUOUS'), \
+                         np.ctypeslib.ndpointer(dtype=np.float32, flags='F_CONTIGUOUS'), \
+                         ctypes.POINTER(ctypes.c_int), \
+                         ctypes.POINTER(ctypes.c_float), \
+                         np.ctypeslib.ndpointer(dtype=np.float32, flags='F_CONTIGUOUS'), \
+                         np.ctypeslib.ndpointer(dtype=np.float32, flags='F_CONTIGUOUS'), \
+                         np.ctypeslib.ndpointer(dtype=np.float32, flags='F_CONTIGUOUS')]
+    lib.otc_.restype = None
+
+    DZ = np.zeros((1), dtype=np.float32)
+    DW = np.zeros((1), dtype=np.float32)
+    DS = np.zeros((1), dtype=np.float32)
+    lib.otc_(np.array(scanTime,dtype=np.int32,order='F'),
+             np.array(cto[:3,:],dtype=np.float32,order='F'),
+             np.array(cto[3:,:],dtype=np.float32,order='F'),
+             ctypes.c_int(1),
+             ctypes.c_float(1),
+             DZ,DS,DW)
+
+    return DZ[0],-DW[0],-DS[0]
 
 def ocean_tidal_corr(mjd, cto, lam, phi):
     """
