@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import pyqtSlot as Slot
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
-import sys,datetime,os
+import sys,datetime,os,multiprocessing
 import numpy as np
 from itertools import *
 from COMMON import *
@@ -2229,7 +2229,7 @@ def read_initdir():
             
         
 if __name__ == "__main__":
-
+    multiprocessing.freeze_support()
     app = QApplication([]) 
     screen = app.primaryScreen()
     size = screen.size()
@@ -2238,5 +2238,5 @@ if __name__ == "__main__":
     
     myapp = MyForm() 
     myapp.show() 
-    myapp.resize(width*0.7, height*0.8)
+    myapp.resize(int(width*0.7), int(height*0.8))
     sys.exit(app.exec_()) 

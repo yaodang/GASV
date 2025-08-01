@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CONDAENV="geoas"
+CONDAENV="gasv"
 CONDAINIT="$HOME/Software/miniconda3/etc/profile.d/conda.sh"
 NAMER="GASVR"
 NAMEG="GASVGUI"
@@ -23,10 +23,11 @@ source "$CONDAINIT"
 echo "Activate conda environment: $CONDAENV"
 conda activate $CONDAENV
 
-pyinstaller -n $NAMER -w ../source/GASV.py
+pyinstaller -n $NAMER -w ../source/GASVR.py
 cp -r ../source/EXTERNAL dist/$NAMER/_internal/
-pyinstaller -n $NAMEG ../source/run.py
+pyinstaller -n $NAMEG ../source/GASVGUI.py
 cp -r ../source/EXTERNAL dist/$NAMEG/_internal/
+cp ../source/directory.ini dist/$NAMEG/_internal/
 
 if grep -qxF "export PATH=\"\$PATH:$SOFTRPATH\"" ~/.bashrc; then
     echo "The path '$SOFTRPATH' already in .bashrc"
