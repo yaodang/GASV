@@ -36,7 +36,7 @@ def writeCRFResult(sitAll,souAll,result):
     '''
     startNum = sum(sitAll['estNum'])*3
     souNum = len(souAll['name'])
-    fid = open('CRF.txt', 'w')
+    fid = open('CRF_1.txt', 'w')
 
     fid.writelines('%name       obsNum      type     dRa(mas)     dDe(mas)\n')
     for i in range(souNum):

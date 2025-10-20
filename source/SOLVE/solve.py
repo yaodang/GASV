@@ -39,7 +39,7 @@ def solve(Param, scanInfo, stationInfo, sourceInfo, result, bandIndex, *args):
         result.preal = P_obs
         result.nObs = nobs
         
-        ocObs = firstSolution(scanInfo, stationInfo, P_obs, oc_obs, staObs)
+        ocObs,firstClk = firstSolution(scanInfo, stationInfo, P_obs, oc_obs, staObs)
         result.o_creal = ocObs
         
         # ambiguity remove
@@ -101,7 +101,18 @@ def solve(Param, scanInfo, stationInfo, sourceInfo, result, bandIndex, *args):
         result.VReal[bandIndex] = ocObs
         result.SReal[bandIndex] = np.array(scanInfo.pObs[bandIndex])*const.c-0.005 # [m]
         result.flag[bandIndex] = 1
-    
+
+    '''
+    fid = open('/home/GeoAS/Work/Tools/20250828_clkout/clk_aips_jlkm.txt', 'a')
+    fid.writelines('%11.5f %20.12e %20.12e %20.12e ' % (scanInfo.scanMJD[0], firstClk[0], firstClk[1], firstClk[2]))
+    #fid.writelines(
+    #    '%6.1f %6.1f %6.1f %20.12e %20.12e %20.12e\n' % (estPara.tmjd[0][0], estPara.tmjd[0][1], estPara.tmjd[0][2],
+    #                                               result.para[0], result.para[1], result.para[2]))
+    fid.writelines(
+        '%6.1f %6.1f %20.12e %20.12e \n' % (estPara.tmjd[0][0], estPara.tmjd[0][1],
+                                                         result.para[0], result.para[1]))
+    fid.close()
+    #'''
     return staObs
 
 

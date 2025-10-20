@@ -10,6 +10,8 @@ def check(Param):
     estFlag = 0
     if Param.Flags.clk != 'NO':
         estFlag += 1
+    if Param.Flags.blClk != 'NO':
+        estFlag += 1
     if Param.Flags.zwd != 'NO':
         estFlag += 1
     if Param.Flags.gradient[0] != 'NO':
@@ -133,7 +135,7 @@ def sta_bl_sou_ResInfo(scanInfo):
     souResPosit = []
     souMJD = []
     for isou in scanInfo.souUsed:
-        souPosit = np.where(Obs2Sou == isou)
+        souPosit = np.where(Obs2Sou == isou+1)
         if len(souPosit) == 0:
             print('    sta_bl_sou_ResInfo error: the source not match!')
             sys.exit()

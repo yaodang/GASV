@@ -2,6 +2,9 @@
 
 import os,sys
 import numpy as np
+
+from source.COMMON.other import changeBlank
+
 sys.path.append("..//")
 from scipy import interpolate
 from COMMON import *
@@ -78,9 +81,10 @@ def read_station(stationFile, scanInfo):
     path = stationFile[0:stationFile.rfind('/')+1]
     read_antennaInfo(path,'antenna-info',stationInfo)
     read_gravity(path, 'gravity_deform_model.txt',stationInfo,scanInfo.scanMJD[0])
-    read_ocean_tidal(path,'TPXO72',stationInfo)
+    read_ocean_tidal(path + 'ocean_loading_TPXO72.TXT',stationInfo)
     read_ocean_pole_tidal(path,stationInfo)
     read_psd(path, stationInfo, scanInfo.stationCode)
+    read_ecc(os.path.join(path,'ECCDAT.ecc'),stationInfo)
 
     return stationInfo    
     
@@ -210,7 +214,7 @@ def getData(lines):
 
     return epoch,data
 
-def read_ecc(filename):
+def read_ecc(filename, stationInfo):
     """
     Read station eccentricity file
     ---------------------
@@ -223,25 +227,69 @@ def read_ecc(filename):
     """
     eccStation = []
     ecc = []
+    if not os.path.exists(filename):
+        print(f'    error: {filename} not esists.')
+        sys.exit()
+    eccSta = {'station':[],
+              'mjd':[],
+              'ecc':[]}
+    fid = open(filename,'r')
+    lines = fid.readlines()
+    fid.close()
 
-def read_ocean_tidal(path,filename,stationInfo):
+    for line in lines:
+        if line[0] == '$' or line[0] == '#':
+            continue
+        else:
+            station = changeBlank(line[2:10])
+            temp = list(filter(None,line[17:].split(" ")))
+            mjd1 = modjuldatNew(int(temp[0][:4]), int(temp[0][5:7]), int(temp[0][8:10]),
+                                int(temp[0][11:13]), int(temp[0][14:16]), 0)
+            mjd2 = modjuldatNew(int(temp[1][:4]), int(temp[1][5:7]), int(temp[1][8:10]),
+                                int(temp[1][11:13]), int(temp[1][14:16]), 0)
+            ecc = [float(temp[2]),float(temp[3]),float(temp[4])]
+            if station not in eccSta['station']:
+                eccSta['station'].append(station)
+                eccSta['mjd'].append([[mjd1,mjd2]])
+                eccSta['ecc'].append([ecc])
+            else:
+                index = eccSta['station'].index(station)
+                eccSta['mjd'][index].append([mjd1, mjd2])
+                eccSta['ecc'][index].append(ecc)
+
+    for i in range(len(stationInfo.stationName)):
+        sta = stationInfo.stationName[i]
+        if sta in eccSta['station']:
+            index = eccSta['station'].index(sta)
+            obsMJD = stationInfo.obsMJDRange[i]
+
+            flag = 0
+            for j in range(len(eccSta['mjd'][index])):
+                if obsMJD[0] >= eccSta['mjd'][index][j][0] and obsMJD[0] <= eccSta['mjd'][index][j][1]:
+                    flag = 1
+                    stationInfo.ecc.append(eccSta['ecc'][index][j])
+                    break
+            if flag == 0:
+                stationInfo.ecc.append([0, 0, 0])
+        else:
+            stationInfo.ecc.append([0,0,0])
+
+def read_ocean_tidal(filename,stationInfo):
     """
     Read and add ocean tidal loading parameter
     ---------------------
-    input: 
-        path              : the apriori file path
+    input:
         filename          : the ocean tidal loading file name
-        stationInfo       : the station information struct
+        stationInfo       : the station information struct or stationName
     output: 
         stationInfo       : the station information struct
     ---------------------
     """
     oceanStation = []
     oceanCto = []
-    
-    oceanPath = path+'ocean_loading_'+filename+'.TXT'
-    if os.path.exists(oceanPath):
-        fid = open(oceanPath,'r')
+
+    if os.path.exists(filename):
+        fid = open(filename,'r')
         lines = fid.readlines()
         fid.close()
         
@@ -257,7 +305,7 @@ def read_ocean_tidal(path,filename,stationInfo):
             oceanStation.append(nlines[i*7][2:10])
             oceanCto.append(strSplit(nlines[i*7+1:i*7+7]))
     else:
-        print('The %s file not exists!\n'%oceanPath)
+        print('The %s file not exists!\n'%filename)
         sys.exit()
             
     if len(oceanStation) != nL/7:
@@ -268,12 +316,19 @@ def read_ocean_tidal(path,filename,stationInfo):
         print('The ocean tidal read wrong!\n')
         sys.exit()
 
-    for name in stationInfo.stationName:
-        if name in oceanStation:
-            index = oceanStation.index(name)
-            stationInfo.cto.append(oceanCto[index])
+    if isinstance(stationInfo,STATION):
+        for name in stationInfo.stationName:
+            if name in oceanStation:
+                index = oceanStation.index(name)
+                stationInfo.cto.append(oceanCto[index])
+            else:
+                stationInfo.cto.append(np.zeros((6,11)))
+    else:
+        if stationInfo in oceanStation:
+            index = oceanStation.index(stationInfo)
+            return oceanCto[index]
         else:
-            stationInfo.cto.append(np.zeros((6,11)))
+            return np.zeros((6,11))
 
 def read_ocean_pole_tidal(path,stationInfo):
     """

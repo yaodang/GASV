@@ -25,7 +25,8 @@ def mod_trs2crsn(eop, scanList, parallelFlag):
     era = np.mod(era, 2*np.pi)
     
     #precession and nutation (IAU2006A)
-    [X,Y,S] = mod_iau2006a(T)
+    [X, Y, S] = mod_iau2006a(T)
+    #[X, Y, S] = mod_iau2006a_iers(eop.MJD)
     
     X = X + eop.DX
     Y = Y + eop.DY

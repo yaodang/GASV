@@ -22,14 +22,21 @@ def create_result(vgosDBPath, scanInfo, wrpInfo, Arcs):
         pass
     
     # Solve directory
-    solvePath = vgosDBPath + '/Solve'
+    solvePath = os.path.join(vgosDBPath, 'Solve')
     createClockSetup(solvePath, scanInfo.refclk, wrpInfo.Solve)
     createBaselineClockSetup(solvePath, scanInfo.stationAll, \
                              scanInfo.blClkList, wrpInfo.Solve)
+
     
     # ObseDerived directory
     ionPath = vgosDBPath + '/ObsDerived'
-    createSlantPathIonoGroup(ionPath, scanInfo.iondl, scanInfo.iondlSig, wrpInfo.Observe)
+    if hasattr(scanInfo, "iondl"):
+        # two band observe
+        createSlantPathIonoGroup(ionPath, scanInfo.iondl, scanInfo.iondlSig, wrpInfo.Observe)
+    else:
+        # single band observe
+        createSlantPathIonoGroup(ionPath, 0, len(scanInfo.Obs2Scan), wrpInfo.Observe)
+        
 
     # ObsEdit directory
     editPath = vgosDBPath + '/ObsEdit'
@@ -85,7 +92,7 @@ def create_result(vgosDBPath, scanInfo, wrpInfo, Arcs):
     for file in wrpInfo.Solve:
         nlines.append(file+'\n')
     nlines.append('End Program Solve\n!\n')
-    
+
     version = searchWrp(vgosDBPath) + 1
     newFile = Arcs.session[0] + '_V' + '%03d'%version + '_iNTSC_kall.wrp'
     

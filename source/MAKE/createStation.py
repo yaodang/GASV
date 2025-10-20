@@ -3,6 +3,7 @@
 import netCDF4 as nc
 import numpy as np
 import os
+from MOD.mod_staCorr import *
 
 def createAzEl(path, session, station, StatScan, scanState):
     """
@@ -382,16 +383,90 @@ def createPartHorizonGrd(path, session, station, StatScan, mfGE, mfGN):
     data.variables['Part-HorizonGrad'][:] = np.reshape(temp, (numStatScan,2,2))
     
     data.close()
-    
-def makeFile(ncFile):
-    
-    if os.path.exists(ncFile):
-        os.system('rm '+ncFile)
-        
-    fid = open(ncFile,'w')
-    fid.close()
-    
-    os.system('chmod 777 '+ncFile)
+
+def createOceanTidal(path, scanTime, Scan2Station, cto):
+    '''
+    Create the Dis-OceanLoad.nc file in Station dir.
+
+    Parameters
+    ----------
+    path : The path of Scan file.
+    scanTime : the Y/DOY/H/M/S of scan.
+    Scan2Station : the station scan.
+    cto : the ocean tidal parameter.
+
+    Returns
+    -------
+    The Dis-OceanLoad.nc is created.
+
+    '''
+    posit = np.where(Scan2Station!=0)
+    scanStaNum = len(posit[0])
+
+    DZWS = np.zeros((scanStaNum,2,3))
+    for i in range(scanStaNum):
+        DZ,DW,DS = ocean_tidal_corr_iers(scanTime[posit[0][i]], cto)
+        DZWS[i, 0, 0] = DZ
+        DZWS[i, 0, 1] = DW
+        DZWS[i, 0, 2] = DS
+
+    if not os.path.exists(path):
+        os.mkdir(path)
+
+    ncFile = path + '/Dis-OceanLoad.nc'
+    makeFile(ncFile)
+
+    data = nc.Dataset(ncFile, 'w', format='NETCDF4')
+
+    data.createDimension('NumStatScan', scanStaNum)
+    data.createDimension('DimX000002', 2)
+    data.createDimension('DimX000003', 3)
+
+    data.createVariable("Dis-OceanLoad", np.float64, ("NumStatScan", "DimX000002", "DimX000003"))
+    data.variables['Dis-OceanLoad'][:] = DZWS
+    data.close()
+
+def createStaTimeUTC(path, scanTime, Scan2Station):
+    '''
+    Create the TimeUTC.nc file in Station dir.
+
+    Parameters
+    ----------
+    path : The path of Scan file.
+    scanTime : the Y/DOY/H/M/S of scan.
+    Scan2Station : the station scan.
+
+    Returns
+    -------
+    The TimeUTC.nc is created.
+
+    '''
+    posit = np.where(Scan2Station != 0)
+    scanStaNum = len(posit[0])
+    YMDHM = np.zeros((scanStaNum, 5), dtype=np.int16)
+    Second = np.zeros(scanStaNum, dtype=np.float64)
+    for i in range(scanStaNum):
+        YMDHM[i] = [scanTime[posit[0][i]][0],
+                    scanTime[posit[0][i]][5],
+                    scanTime[posit[0][i]][6],
+                    scanTime[posit[0][i]][2],
+                    scanTime[posit[0][i]][3]]
+        Second[i] = scanTime[posit[0][i]][4]
+
+    ncFile = path + '/TimeUTC.nc'
+    makeFile(ncFile)
+
+    data = nc.Dataset(ncFile, 'w', format='NETCDF4')
+
+    data.createDimension('NumStatScan', scanStaNum)
+    data.createDimension('DimX000005', 5)
+
+    data.createVariable("Second", np.float64, ("NumStatScan"))
+    data.createVariable("YMDHM", np.int16, ("NumStatScan", "DimX000005"))
+
+    data.variables['Second'][:] = Second
+    data.variables['YMDHM'][:] = YMDHM
+    data.close()
     
 def initCabSign():
 

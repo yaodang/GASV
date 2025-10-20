@@ -217,7 +217,7 @@ def writeSNX(param, scanInfo, sourceInfo, stationInfo, eopApri, result, out):
     for sta in range(len(scanInfo.stationAll)):
         # if (not scanInfo.stationAll[sta] in scanInfo.refSta) and (not scanInfo.stationAll[sta] in scanInfo.rmSta):
         if not scanInfo.stationAll[sta] in scanInfo.noEstSta:
-            fid.writelines(' %s  A %s R %-8s\n'%(ns_code[sta][3],ns_code[sta][2],ns_code[sta][1]))
+            fid.writelines(' %s  A %s R %-8s \n'%(ns_code[sta][3],ns_code[sta][2],ns_code[sta][1]))
             nsCode.append([ns_code[sta][3],ns_code[sta][2],ns_code[sta][1]])
         
     # SOURCE/ID    

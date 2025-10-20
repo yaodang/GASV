@@ -5,7 +5,6 @@ from PyQt5.QtCore import pyqtSlot as Slot
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 import sys,datetime,os,multiprocessing
-import numpy as np
 from itertools import *
 from COMMON import *
 from GUI import mysource_rc
@@ -18,7 +17,6 @@ from matplotlib.backends.backend_qt5 import NavigationToolbar2QT as NavigationTo
 import matplotlib.pyplot as plt
 
 from GUI.Figure import Ui_GASV
-from GUI.file_note import Ui_Form
 
 
 class MyForm(QMainWindow):
@@ -51,7 +49,11 @@ class MyForm(QMainWindow):
         toolbar2 = NavigationToolbar(self.plot_glob, self)
         self.ui.verticalLayout_plot_glob.addWidget(toolbar2)
         self.ui.verticalLayout_plot_glob.addWidget(self.plot_glob)
-        
+
+        font = QFont('Consolas', 12)
+        self.ui.textEdit_glob.setFont(font)
+        self.ui.textBrowser_information.setFont(font)
+
         self.init_gui()
         self.init_param()
         
@@ -121,9 +123,16 @@ class MyForm(QMainWindow):
         self.ui.pushButton_browse_snx.clicked.connect(lambda:self.onBottonClick_browsePath(9))
         self.ui.pushButton_browse_eopo.clicked.connect(lambda:self.onBottonClick_browsePath(10))
         self.ui.pushButton_browse_arcpath.clicked.connect(lambda:self.onBottonClick_browsePath(11))
+        self.ui.pushButton_est_clearblclk.clicked.connect(self.onBottonClick_clearBlClk)
         self.ui.pushButton_autoset_source.clicked.connect(self.onBottonClick_setSouEst)
         self.ui.pushButton_autoset_station.clicked.connect(self.onBottonClick_setStaEst)
         self.ui.pushButton_process.clicked.connect(self.onBottonClick_process)
+        self.ui.pushButton_glob_edit_trf.clicked.connect(self.onBottonClick_modify_nnrt_trf)
+        self.ui.pushButton_glob_edit_crf.clicked.connect(self.onBottonClick_modify_nnr_crf)
+        self.ui.pushButton_glob_edit_crf.clicked.connect(self.onBottonClick_modify_nnr_crf)
+        self.ui.pushButton_glob_edit_globexsta.clicked.connect(self.onBottonClick_modify_exsta)
+        self.ui.pushButton_glob_edit_globexsou.clicked.connect(self.onBottonClick_modify_exsou)
+        self.ui.pushButton_glob_save.clicked.connect(self.onBottonClick_modify_save)
         self.ui.pushButton_glob_run.clicked.connect(self.onBottonClick_globrun)
         self.ui.pushButton_plot_save.clicked.connect(self.onBottonClick_saveOut)
         self.ui.pushButton_plot_reload.clicked.connect(lambda:self.signal_showLoadData('plot',''))
@@ -175,6 +184,7 @@ class MyForm(QMainWindow):
         self.ui.comboBox_plot_result_y.currentIndexChanged.connect(self.signal_plotResult)
 
         self.ui.checkBox_est_clk.stateChanged.connect(self.checkBox_setClock)
+        self.ui.checkBox_est_blclk.stateChanged.connect(self.checkBox_setBlClock)
         self.ui.checkBox_est_grad.stateChanged.connect(self.checkBox_setGrad)
         self.ui.checkBox_est_nutxy.stateChanged.connect(self.checkBox_setNuation)
         self.ui.checkBox_est_pmxy.stateChanged.connect(self.checkBox_setPmxy)
@@ -260,6 +270,7 @@ class MyForm(QMainWindow):
         self.runFlag = 0
         self.globFlag = 0
         self.bandNum = 2
+        self.globModifyFile = ''
 
     def updatePreference(self):
         self.ui.lineEdit_path_vgosDb.setText(self.dirpath[0])
@@ -284,12 +295,13 @@ class MyForm(QMainWindow):
         self.ui.checkBox_est_lod.setChecked(False)
         self.ui.checkBox_est_nutxy.setChecked(False)
         self.ui.checkBox_est_clk.setChecked(False)
+        self.ui.checkBox_est_blclk.setChecked(False)
         self.ui.checkBox_est_wet.setChecked(False)
         self.ui.checkBox_est_grad.setChecked(False)
         self.ui.checkBox_est_station.setChecked(False)
-        self.Param.Flags.xyzEstFlag = 'NO'
         self.ui.checkBox_est_source.setChecked(False)
         self.Param.Flags.sou = ['NO']
+        self.Param.Flags.xyz = ['NO']
         self.ui.pushButton_plot_modeUT1.setChecked(False)
         self.ui.pushButton_plot_modeEOP.setChecked(False)
         self.ui.table_data_station.setRowCount(0)
@@ -479,6 +491,12 @@ class MyForm(QMainWindow):
             self.Param.Const.clk = float(self.ui.lineEdit_clk_constr.text())
         else:
             self.Param.Flags.clk = 'NO'
+
+    def checkBox_setBlClock(self):
+        if self.ui.checkBox_est_blclk.isChecked():
+            self.Param.Flags.blClk = 'IN'
+        else:
+            self.Param.Flags.blClk = 'NO'
 
     def checkBox_setGrad(self):
         if self.ui.checkBox_est_grad.isChecked():
@@ -905,6 +923,15 @@ class MyForm(QMainWindow):
             elif flag == 11:
                 self.ui.lineEdit_path_arcpath.setText(selectPath+'/')
 
+    def onBottonClick_clearBlClk(self):
+        if self.runFlag == 1:
+            self.scanInfo.blClkList = []
+            rowNum = self.ui.table_data_bl.rowCount()
+            for i in range(rowNum - 1):
+                item = QTableWidgetItem('')
+                item.setTextAlignment(Qt.AlignCenter)
+                self.ui.table_data_bl.setItem(i, 4, item)
+
     def onBottonClick_clkbkMode(self):
         if self.ui.radioButton_plot_station.isChecked():
             self.ui.pushButton_plot_outlier.setChecked(False)
@@ -943,22 +970,22 @@ class MyForm(QMainWindow):
             
     def onBottonClick_globrun(self):
         
-        print(self.globFlag)
-        if self.globFlag == 0:
-            arcFile = self.ui.lineEdit_glob_arc.text()
-            arcPath = self.ui.lineEdit_path_arcpath.text()
-            self.Param.Map.stationFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_Station.text()
-            self.Param.Map.sourceFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_Source.text()
-            
-            fid = open(arcPath+arcFile,'r')
-            lines = fid.readlines()
-            fid.close()
-            
-            for line in lines:
-                if line[0] == '$':
-                    temp = list(filter(None,line.split(" ")))
-                    self.Param.Arcs.session.append(temp[0][1:])
-                #self.Param.Arcs.session.append(line[1:26])
+        #print(self.globFlag)
+        #if self.globFlag == 0:
+        arcFile = self.ui.lineEdit_glob_arc.text()
+        arcPath = self.ui.lineEdit_path_arcpath.text()
+        self.Param.Map.stationFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_Station.text()
+        self.Param.Map.sourceFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_Source.text()
+
+        fid = open(arcPath+arcFile,'r')
+        lines = fid.readlines()
+        fid.close()
+
+        for line in lines:
+            if line[0] == '$':
+                temp = list(filter(None,line.split(" ")))
+                self.Param.Arcs.session.append(temp[0][1:])
+            #self.Param.Arcs.session.append(line[1:26])
         
         # glob include set
         if self.ui.checkBox_glob_station_velocity_yes.isChecked():
@@ -989,16 +1016,45 @@ class MyForm(QMainWindow):
         
         trfConstFile = os.path.join(self.ui.lineEdit_path_Apriori.text(),self.ui.lineEdit_glob_trf_nnrnnt.text())
         crfConstFile = os.path.join(self.ui.lineEdit_path_Apriori.text(),self.ui.lineEdit_glob_crf_nnr.text())
+        stationRemoveFile = os.path.join(self.ui.lineEdit_path_Apriori.text(),
+                                         self.ui.lineEdit_glob_station_exclude.text())
+        sourceRemoveFile = os.path.join(self.ui.lineEdit_path_Apriori.text(),
+                                        self.ui.lineEdit_glob_source_exclude.text())
+        velTieFile = os.path.join(self.ui.lineEdit_path_Apriori.text(),
+                                        self.ui.lineEdit_glob_veltie.text())
+
         fid = open(trfConstFile,'r')
         trfLines = fid.readlines()
         fid.close()
         fid = open(crfConstFile,'r')
         crfLines = fid.readlines()
         fid.close()
-        
+
+        fid = open(stationRemoveFile, 'r')
+        rmStaLines = fid.readlines()
+        fid.close()
+        fid = open(sourceRemoveFile, 'r')
+        rmSouLines = fid.readlines()
+        fid.close()
+        fid = open(velTieFile, 'r')
+        vlTieLine = fid.readlines()
+        fid.close()
+
+        velTie = []
+        for line in vlTieLine:
+            temp = list(filter(None, line.split(" ")))
+
+            if '\\\n' in line:
+                velTie.append(temp[:-1])
+            else:
+                velTie.append(temp)
+
+        self.Param.Tie.velTie = velTie
         self.Param.Const.nnr_nnt_sta[0].extend(getLine(True, trfLines, -1, 0))
         self.Param.Const.nnr_nnt_sta[1].extend(getLine(True, trfLines, -1, 0))
         self.Param.Const.nnr_sou.extend(getLine(True, crfLines, -1, 0))
+        self.Param.Global.station.extend(getLine(True, rmStaLines, -1, 0))
+        self.Param.Global.source.extend(getLine(True, rmSouLines, -1, 0))
         
         # get the omit station    
         if self.globFlag == 1:
@@ -1045,7 +1101,77 @@ class MyForm(QMainWindow):
             self.ionFlag = 0
             self.onBottonClick_process()
             # self.signal_plotChange()
-        
+
+    def onBottonClick_modify_nnrt_trf(self):
+        '''
+        dialog = QDialog(self)
+        dialog.setWindowTitle('TRF constrain setting')
+        dialog.setWindowModality(Qt.ApplicationModal)
+        dialog.resize(self.size() * 0.5)
+
+        layout = QVBoxLayout()
+        label = QLabel()
+        label.setFont(QFont("Arial", 10))
+        layout.addWidget(label)
+
+        dialog.setLayout(layout)
+        dialog.exec_()
+        '''
+        self.globModifyFile = os.path.join(self.dirpath[2],self.ui.lineEdit_glob_trf_nnrnnt.text())
+        if not os.path.exists(self.globModifyFile):
+            QMessageBox.critical(self,'Error',f'{self.globModifyFile} not exists!',QMessageBox.Ok)
+        self.ui.textEdit_glob.clear()
+
+        fid = open(self.globModifyFile,'r')
+        lines = fid.read()
+        fid.close()
+
+        self.ui.textEdit_glob.setPlainText(lines)
+
+    def onBottonClick_modify_nnr_crf(self):
+        self.globModifyFile = os.path.join(self.dirpath[2], self.ui.lineEdit_glob_crf_nnr.text())
+        if not os.path.exists(self.globModifyFile):
+            QMessageBox.critical(self, 'Error', f'{self.globModifyFile} not exists!', QMessageBox.Ok)
+        self.ui.textEdit_glob.clear()
+
+        fid = open(self.globModifyFile, 'r')
+        lines = fid.read()
+        fid.close()
+
+        self.ui.textEdit_glob.setPlainText(lines)
+
+    def onBottonClick_modify_exsta(self):
+        self.globModifyFile = os.path.join(self.dirpath[2], self.ui.lineEdit_glob_station_exclude.text())
+        if not os.path.exists(self.globModifyFile):
+            QMessageBox.critical(self, 'Error', f'{self.globModifyFile} not exists!', QMessageBox.Ok)
+        self.ui.textEdit_glob.clear()
+
+        fid = open(self.globModifyFile, 'r')
+        lines = fid.read()
+        fid.close()
+
+        self.ui.textEdit_glob.setPlainText(lines)
+
+    def onBottonClick_modify_exsou(self):
+        self.globModifyFile = os.path.join(self.dirpath[2], self.ui.lineEdit_glob_source_exclude.text())
+        if not os.path.exists(self.globModifyFile):
+            QMessageBox.critical(self, 'Error', f'{self.globModifyFile} not exists!', QMessageBox.Ok)
+        self.ui.textEdit_glob.clear()
+
+        fid = open(self.globModifyFile, 'r')
+        lines = fid.read()
+        fid.close()
+
+        self.ui.textEdit_glob.setPlainText(lines)
+
+    def onBottonClick_modify_save(self):
+        if self.globModifyFile != '':
+            reply = QMessageBox.question(self,'Inquiry', f'Rewrite {self.globModifyFile}',QMessageBox.Yes | QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                lines = self.ui.textEdit_glob.toPlainText()
+                fid = open(self.globModifyFile,'w')
+                fid.writelines(lines)
+                fid.close()
     
     def onBottonClick_outlierMode(self):
         self.ui.pushButton_plot_clkbk.setChecked(False)
@@ -1261,6 +1387,8 @@ class MyForm(QMainWindow):
     def onBottonClick_SetClearMode(self):
         if self.ui.checkBox_est_clk.isChecked():
             self.ui.checkBox_est_clk.setChecked(False)
+        if self.ui.checkBox_est_blclk.isChecked():
+            self.ui.checkBox_est_blclk.setChecked(False)
         if self.ui.checkBox_est_wet.isChecked():
             self.ui.checkBox_est_wet.setChecked(False)
         if self.ui.checkBox_est_grad.isChecked():
@@ -1350,6 +1478,7 @@ class MyForm(QMainWindow):
             self.ui.pushButton_plot_moderegular.setChecked(False)
 
             self.ui.checkBox_est_clk.setChecked(True)
+            self.ui.checkBox_est_blclk.setChecked(True)
             self.ui.checkBox_est_wet.setChecked(True)
             self.ui.checkBox_est_grad.setChecked(True)
             self.ui.radioButton_est_eop_poly.setChecked(True)
@@ -1368,14 +1497,31 @@ class MyForm(QMainWindow):
             self.ui.checkBox_est_wet.setChecked(True)
             self.ui.radioButton_est_eop_poly.setChecked(True)
             self.ui.checkBox_est_ut1.setChecked(True)
-        
+
     def onBottonClick_showHelp(self):
-        self.form2 = QDialog()
-        self.ui2 = Ui_Form()# Ui_form为你副窗口的对象名
-        self.ui2.setupUi(self.form2)
-        self.form2.setWindowModality(Qt.ApplicationModal)        
-        self.form2.show()
-        
+        dialog = QDialog(self)
+        dialog.setWindowTitle('File and Path help')
+        dialog.setWindowModality(Qt.ApplicationModal)
+        dialog.resize(self.size()*0.5)
+        layout = QVBoxLayout()
+        label = QLabel()
+        label.setText("""<style>span {white-space:pre;}</style>
+                         <span style='color:red;'><p>Station:</p></span>
+                         <span style='color:red;'><p>%Name            X(m)                 Y(m)             Z(m)        Vx(m/yr)   Vy(m/yr)  Vz(m/yr)   startMJD   notes</p></span>
+                         <span style='color:red;'><p>GRASSE 4581697.4036 556126.1061 4389351.6728 -0.01390  0.01906  0.01100    57023  ITRF2020</p></span>
+                         <span style='color:blue;'><p>Source:</p></span>
+                         <span style='color:blue;'><p>%IERS_name  ICRF_Designation  J2000_name IVS_name    d_o    Right Ascension          Declination</p></span>
+                         <span style='color:blue;'><p>%if IVS_name is equal to IERS_name, then is X, define is defining source</p></span>
+                         <span style='color:blue;'><p>0005+114  J000800.8+114400  J0008+1144            X    other  00 08 00.83826352     11 44 00.7748326</p></span>
+                         <span style='color:blue;'><p>0007+106  J001031.0+105829  J0010+1058   IIIZW2  define  00 10 31.00590413     10 58 29.5042981</p></span>
+                         <span style='color:green;'><p>EOP: can be usno_finals, C04, for IERS finals.daily format</p></span>
+                         <span style='color:black;'><p>SNX: the path is also used for menu File->DBList</p></span>""")
+        label.setFont(QFont("Arial",10))
+        layout.addWidget(label)
+
+        dialog.setLayout(layout)
+        dialog.exec_()
+
     def onBottonClick_staInfoAdd(self):
         self.ui.listWidget_plot_station.blockSignals(True)
         self.ui.listWidget_plot_station.selectAll()
@@ -1536,11 +1682,14 @@ class MyForm(QMainWindow):
                 self.ui.pushButton_plot_resStaAdd.setEnabled(False)
                 self.ui.pushButton_plot_resStaSub.setEnabled(False)
 
+                sourceID = -1
                 listSelect = self.ui.listWidget_plot_resSou.selectedIndexes()
                 for item in listSelect:
                     sourceID = item.row()
 
-                self.plot_res.plotSource(sourceID)
+                if sourceID >= 0:
+                    print(sourceID)
+                    self.plot_res.plotSource(sourceID)
 
     def signal_plotResAll(self):
         self.ui.pushButton_plot_resOmitBL.setEnabled(False)
@@ -1685,7 +1834,7 @@ class MyForm(QMainWindow):
 
     def signal_showLoadData(self, method, data):
         if method == 'menu':
-            dataFile, fileType = QFileDialog.getOpenFileName(self,'Wrapper file Select',self.dirpath[0]+'/2013',\
+            dataFile, fileType = QFileDialog.getOpenFileName(self,'Wrapper file Select',self.dirpath[0],\
                                                             'All Files(*)')
             if len(dataFile):
                 temp = dataFile.rfind('/')
@@ -1778,7 +1927,7 @@ class MyForm(QMainWindow):
                                                             %(len(self.scanInfo.stationAll))+\
                                                             'Number of source:                                   %-2d'\
                                                             %(len(self.scanInfo.sourceAll)))
-            
+
             self.initEstParam()
             if method != 'plot':
                 self.menuAction_showParamBasic()
@@ -1802,7 +1951,7 @@ class MyForm(QMainWindow):
                     self.ui.pushButton_plot_ionZero.setEnabled(True)
                 index = 1
                 
-            qcodeLine = 'Number proportion of qcode:             '
+            qcodeLine = 'Number proportion of qcode:                        '
             for i in range(6):
                 temp = np.where(self.scanInfo.qCode[index]==(i+4))[0]
                 qcodeLine += ' %d(%3.1f%%)'%(i+4,len(temp)/obsNum*100)
@@ -1858,11 +2007,15 @@ class MyForm(QMainWindow):
             item.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
             self.ui.tableWidget_session.setItem(i, 6, item)
 
-            item = QTableWidgetItem('%5.1f'%searchFile[i][6])
+            item = QTableWidgetItem('%.1f'%searchFile[i][6])
             item.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
             self.ui.tableWidget_session.setItem(i, 7, item)
 
-            self.ui.tableWidget_session.setItem(i, 8, QTableWidgetItem(searchFile[i][7]))
+            item = QTableWidgetItem('%5.1f'%searchFile[i][7])
+            item.setTextAlignment(Qt.AlignHCenter | Qt.AlignVCenter)
+            self.ui.tableWidget_session.setItem(i, 8, item)
+
+            self.ui.tableWidget_session.setItem(i, 9, QTableWidgetItem(searchFile[i][8]))
             # if searchFile[i][4]<=50:
                 # wrmsSum += searchFile[i][4]**2
                 # k += 1
@@ -1875,9 +2028,10 @@ class MyForm(QMainWindow):
         self.ui.tableWidget_session.horizontalHeader().setSectionResizeMode(5, QHeaderView.ResizeToContents)
         self.ui.tableWidget_session.horizontalHeader().setSectionResizeMode(6, QHeaderView.ResizeToContents)
         self.ui.tableWidget_session.horizontalHeader().setSectionResizeMode(7, QHeaderView.ResizeToContents)
+        self.ui.tableWidget_session.horizontalHeader().setSectionResizeMode(8, QHeaderView.ResizeToContents)
 
         # cancel the sort
-        self.ui.tableWidget_session.sortByColumn(-1)
+        #self.ui.tableWidget_session.sortByColumn(-1)
         # allow sort
         self.ui.tableWidget_session.setSortingEnabled(True)
     def thread_signal_showOutFinish(self, checkFlag):
@@ -1939,11 +2093,12 @@ class MyForm(QMainWindow):
         self.ui.listWidget_plot_resSou.clear()
         for i in self.scanInfo.souUsed:
             self.ui.listWidget_plot_resSou.addItem(self.scanInfo.sourceAll[i])
-
+        self.ui.listWidget_plot_resSou.setCurrentRow(0)
 
         self.ui.comboBox_plot_baseline.blockSignals(False)
         self.ui.comboBox_plot_station.blockSignals(False)
         self.ui.listWidget_plot_resSou.blockSignals(False)
+
                 
         self.updateStaTab(useSta)
         self.updateBlTab(useblNum, usebl)
@@ -2003,8 +2158,9 @@ class MyForm(QMainWindow):
     #-------------------------------------------------------------------------#
     #------------------------------- GUI update ------------------------------#
     def updateBlTab(self, useblNum, usebl):
-        
-        self.ui.table_data_bl.setRowCount(len(usebl))
+
+        self.ui.table_data_bl.setRowCount(0)
+        self.ui.table_data_bl.setRowCount(len(usebl)+1)
         self.ui.table_data_bl.verticalHeader().setVisible(False)
 
         for i in range(len(usebl)):
@@ -2041,6 +2197,10 @@ class MyForm(QMainWindow):
                 item = QTableWidgetItem('')
                 item.setTextAlignment(Qt.AlignCenter)
                 self.ui.table_data_bl.setItem(i,4,item)
+
+        item = QTableWidgetItem(str(sum(useblNum)))
+        item.setTextAlignment(Qt.AlignCenter)
+        self.ui.table_data_bl.setItem(len(usebl), 3, item)
                 
     def updateGlobSourceTab(self):
         

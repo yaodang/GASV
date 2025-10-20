@@ -25,7 +25,7 @@ def globalPrepareNew(Param):
         print(sessionName)
         year = get_year(sessionName)
         # filePath = os.path.join(Param.Out.snxPath[1],'VLBI_IVS',sessionName)
-        # filePath = os.path.join(Param.Out.snxPath[1],str(year),sessionName)
+        #filePath = os.path.join(Param.Out.snxPath[1],str(year),sessionName)
         filePath = os.path.join(Param.Out.snxPath[1], sessionName)
         sitEst, souEst, paramSession, Ns, bs, solutionStatics = read_SNX(filePath, 3)
         numObs += solutionStatics['NoO']
@@ -90,8 +90,8 @@ def globalPrepareNew(Param):
 
         updateSitAll(sitAll,souAll,Param)
         positInSession, positInGlob, sitObsEpoch = searchIndexNew(sitAll, souAll, paramSession, Param)
-        #if sessionName == '01MAY18XN_bkg2022a':
-        #    print('yes')
+        if sessionName == '00JAN12XA':
+            print('yes')
         checkProcess(positInSession,sitEst['code'],souEst['name'], Param, rmStaNum, rmSouNum)
 
         NsNew, bsNew = matrixRebuild(Ns, bs, positInSession[2])
@@ -121,10 +121,10 @@ def globalPrepareNew(Param):
                 #'''
             matrixStack(NGlob, Nrn, bGlob, brn, positInGlob[2])
 
-    fid = open('souAll.txt','w')
-    for name in souAll['name']:
-        fid.writelines(name+'\n')
-    fid.close()
+    #fid = open('souAll.txt','w')
+    #for name in souAll['name']:
+    #    fid.writelines(name+'\n')
+    #fid.close()
 
     get_stationTRF(Param, sitAll)
     get_sourceCRF(Param, souAll)

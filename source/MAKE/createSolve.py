@@ -31,6 +31,11 @@ def createBaselineClockSetup(path, staAll, baselineClock, fileList):
             data.variables['BaselineClock'][i,1] = np.char.encode(list(sta2))
             
         data.close()
+    else:
+        for i in range(len(fileList)):
+            if 'BaselineClockSetup' in fileList[i]:
+                fileList.pop(i)
+                break
     
 
 def createClockSetup(path, refClkName, fileList):

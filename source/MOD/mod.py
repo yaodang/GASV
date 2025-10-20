@@ -41,7 +41,8 @@ def mod(Param, eopApri, scanInfo, sourceInfo, stationInfo, ephem):
     
     Scan2Station = np.delete(scanInfo.Scan2Station, scanInfo.rmScanNum, axis=0)
     StatScan = getStatScan(numSta, Scan2Station)
-    
+
+    '''
     if numSta >= 4 and len(scanMJD) >= 500:
         parallelFlag = 'YES'
         
@@ -55,21 +56,22 @@ def mod(Param, eopApri, scanInfo, sourceInfo, stationInfo, ephem):
     else:
         parallelFlag = 'NO'
         scanList = np.linspace(0, len(scanMJD)-1, len(scanMJD), dtype=int)
+    #'''
         
-    # parallelFlag = 'NO'
-    # scanList = np.linspace(0, len(scanMJD)-1, len(scanMJD), dtype=int)
+    parallelFlag = 'NO'
+    scanList = np.linspace(0, len(scanMJD)-1, len(scanMJD), dtype=int)
     
     
     print('    EOP interpolation......')
     eopObs = interpEOP(eopApri, scanInfo.scanMJD, Param, 1)
     
     print('    The TRF to CRF matrix build......')
-    t2c = mod_trs2crsn(eopObs,scanList,parallelFlag)
+    t2c = mod_trs2crsn(eopObs,scanList,parallelFlag,)
 
         
     print('    Compute Station correlation information......')
     resultStation = parallelStation(numSta, t2c.trs2crs, rq, scan2Source, ephem, scanMJD, scanTime, \
-                                    StatScan, eopObs, stationInfo, createFlag, Press, Temp, GPT3Data)
+                                    StatScan, eopObs, stationInfo, createFlag, Press, Temp, GPT3Data, Param.Map.mapFun, Param.Map.tidalCorrect)
     print('    Compute theoretical delay and parameter partial......')        
     resultDelay = parallelDelay(scanList, scanMJD, refMJD, scan2Source, scanBl, scanCabCal, scanGD, scanGDSig, \
                                 rq, pRaDec, t2c, ephem, StatScan, resultStation, bandNum, createFlag, parallelFlag)
@@ -80,11 +82,11 @@ def mod(Param, eopApri, scanInfo, sourceInfo, stationInfo, ephem):
     return eopObs,com
     
 def parallelStation(numSta, trs2crs, rq, scan2Source, ephem, scanMJD, scanTime, \
-                    StatScan, eopObs, stationInfo, createFlag, Press, Temp, GPT3Data):
+                    StatScan, eopObs, stationInfo, createFlag, Press, Temp, GPT3Data, mapFlag, tidalFlag):
     
     poolSta = Pool(processes=numSta)
     args_list = []
-            
+    #'''
     for i in range(numSta):
         scanP = StatScan[i][0]
         if createFlag == 'CREATE':
@@ -99,13 +101,10 @@ def parallelStation(numSta, trs2crs, rq, scan2Source, ephem, scanMJD, scanTime, 
         args = (trs2crs[scanP], rq[scan2Source[scanP]], ephem.moon.xgeo[:,scanP], ephem.sun.xgeo[:,scanP], \
                                                 ephem.earth.vbar[:,scanP], scanMJD[scanP], scanTime[scanP], \
                                                 i, eopObs.XP[scanP], eopObs.YP[scanP], stationInfo, createFlag, \
-                                                scanPress, scanTemp, GPT3Data)
+                                                scanPress, scanTemp, GPT3Data, mapFlag, tidalFlag)
         args_list.append(args)
-    #args = (trs2crs, rq[scan2Source], ephem.moon.xgeo, ephem.sun.xgeo, \
-    #                                            ephem.earth.vbar, scanMJD, scanTime, \
-    #                                            i, eopObs.XP, eopObs.YP, stationInfo, createFlag, \
-    #                                            scanPress, scanTemp, GPT3Data)
-    #staPositCorr(args)
+    #'''
+    #    staPositCorr(args)
     results = poolSta.map(staPositCorr,args_list)
     
     return results
@@ -148,7 +147,7 @@ def processScan(args):
         oc_obs.append([])
         pObs.append([])
 
-    #fid = open('/home/GeoAS/Work/grav.delay', 'w')
+    fid = open('/home/GeoAS/Work/grav.delay', 'w')
     for iscan in scanList:
         
         # the observe source vector
@@ -206,8 +205,14 @@ def processScan(args):
                 for iband in range(bandNum):
                     oc_obs[iband].append(scanGD[iscan][iband][ib]+corcab-com_delay)
                     pObs[iband].append(scanGDSig[iscan][iband][ib])
-                    
-                    
+
+                    if iband == 1:
+                        fid.writelines('%20.15f %20.15f %20.15f %20.15f %20.15f\n'%(scanGD[iscan][iband][ib]+corcab,com_delay,
+                                                                                    results[idSta2].staObs[iscan2][7] - results[idSta1].staObs[iscan1][7],
+                                                                                    results[idSta2].staObs[iscan2][5] - results[idSta1].staObs[iscan1][5],
+                                                                                    results[idSta2].staObs[iscan2][9] - results[idSta1].staObs[iscan1][9]))
+
+
                 # delayScan.oc_obs.append(scanGD[iscan][ib]+corcab-com_delay)
                 # delayScan.pObs.append(scanGDSig[iscan][ib])
             
@@ -244,7 +249,7 @@ def processScan(args):
             delayScan.psou.append(psou)
 
         delayScan.pxyzt.append(pxyz) #modify 2022.11.24
-    #fid.close()
+    fid.close()
     delayScan.oc_obs = oc_obs
     delayScan.pObs = pObs
     

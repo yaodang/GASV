@@ -3,8 +3,9 @@
 import numpy as np
 import netCDF4 as nc
 import os
+from INIT import *
 
-def createAntenna(path, session, numSta, staList, stationInfo):
+def createAntenna(path, session, staList):
     """
     Create the Antenna.nc file.
 
@@ -12,7 +13,6 @@ def createAntenna(path, session, numSta, staList, stationInfo):
     ----------
     path : the path of vgosDb.
     session : experiment name.
-    numSta : the station number of session.
     staList : the station list
     stationInfo : the struct of station information
 
@@ -27,7 +27,7 @@ def createAntenna(path, session, numSta, staList, stationInfo):
     data = nc.Dataset(ncFile,'w',format='NETCDF4')
 
     data.createDimension('Char_x_6',6)
-    data.createDimension('NumStation',numSta)
+    data.createDimension('NumStation',len(staList))
     data.createDimension('DimX000001',1)
     data.createDimension('DimX000008',8)
 
@@ -48,7 +48,7 @@ def createAntenna(path, session, numSta, staList, stationInfo):
     
     data.close()
     
-def createSource(path, session, numSou, souList, sourceInfo):
+def createSource(path, session, souList, souFile):
     """
     Create the Source.nc file. Current no AprioriSourceReference variable
 
@@ -56,9 +56,7 @@ def createSource(path, session, numSou, souList, sourceInfo):
     ----------
     path : the path of vgosDb.
     session : experiment name.
-    numSou : the source number of session.
     souList : the source name list
-    sourceInfo : the struct of source information
 
     Returns
     -------
@@ -66,12 +64,12 @@ def createSource(path, session, numSou, souList, sourceInfo):
     """
     
     ncFile = path+'/Source.nc'
-    makeFile(ncFile)    
+    makeFile(ncFile)
     
     data = nc.Dataset(ncFile,'w',format='NETCDF4')
 
     data.createDimension('Char_x_6',6)
-    data.createDimension('NumSource',numSou)
+    data.createDimension('NumSource',len(souList))
     data.createDimension('DimX000002',2)
     data.createDimension('DimX000008',8)
     data.createDimension('DimX000018',18)
@@ -81,11 +79,26 @@ def createSource(path, session, numSou, souList, sourceInfo):
     data.createVariable("AprioriSource2000RaDec",np.float64,("NumSource",'DimX000002'))
     data.createVariable("AprioriSourceReference",'S1',("NumSource",'DimX000018'))
 
+    sou_iers, sou_icrf, sou_iau, sou_ivs, flag, Ra, De = readSourceFile(souFile)
+    blank = '        '
     RaDec = []
+    for i in range(len(souList)):
+        name = souList[i]
+        if name.strip() in sou_iers:
+            index = sou_iers.index(name.strip())
+            souRa = Ra[index]
+            souDe = De[index]
+        elif name.strip() in sou_ivs:
+            index = sou_ivs.index(name.strip())
+            souRa = Ra[index]
+            souDe = De[index]
+        else:
+            print('        The %s not in source file, using apriori posit in data!' % name)
+            sys.exit()
+        RaDec.append([souRa, souDe])
+
     souL = []
     for sou in souList:
-        positS = sourceInfo.sourceName.index(sou)
-        RaDec.append(sourceInfo.rade[positS])
         souL.append(list(sou))
     
     data.variables['Session'][:]=np.char.encode(session)
@@ -94,7 +107,7 @@ def createSource(path, session, numSou, souList, sourceInfo):
     
     data.close()
     
-def createStation(path, session, numSta, staList, stationInfo):
+def createStation(path, session, staList, staFile):
     """
     Create the Station.nc file. Current no AprioriStationTectonicPlate vaariable.
 
@@ -102,9 +115,7 @@ def createStation(path, session, numSta, staList, stationInfo):
     ----------
     path : the path of vgosDb.
     session : experiment name.
-    numSta : the station number of session.
     staList : the station list
-    stationInfo : the struct of station information
 
     Returns
     -------
@@ -117,7 +128,7 @@ def createStation(path, session, numSta, staList, stationInfo):
     data = nc.Dataset(ncFile,'w',format='NETCDF4')
 
     data.createDimension('Char_x_6',6)
-    data.createDimension('NumStation',numSta)
+    data.createDimension('NumStation',len(staList))
     data.createDimension('DimX000003',3)
     data.createDimension('DimX000004',4)
     data.createDimension('DimX000008',8)
@@ -128,14 +139,24 @@ def createStation(path, session, numSta, staList, stationInfo):
     data.createVariable("AprioriStationXYZ",np.float64,("NumStation",'DimX000003'))
     data.createVariable("AprioriStationVel",np.float64,("NumStation",'DimX000003'))
 
+    station = np.loadtxt(staFile, dtype='str', comments='$$', usecols=[0], unpack=True)
+    staPosit = np.loadtxt(staFile, dtype='float', comments='$$', usecols=[1, 2, 3, 4, 5, 6, 7], unpack=False)
+    station = add_blank(station)
 
     XYZ = []
     Vel = []
+    for i in range(len(staList)):
+        name = staList[i]
+        if name in station:
+            index = station.index(name)
+            XYZ.append(staPosit[index, 0:3])
+            Vel.append(staPosit[index,3:6])
+        else:
+            print('        The %s not in station file, using apriori posit in data and set velocity zeros!'%name)
+            sys.exit()
+
     staL = []
     for sta in staList:
-        positS = stationInfo.stationName.index(sta)
-        XYZ.append(stationInfo.posit[positS])
-        Vel.append(stationInfo.vel[positS])
         staL.append(list(sta))
     
     data.variables['Session'][:]=np.char.encode(session)

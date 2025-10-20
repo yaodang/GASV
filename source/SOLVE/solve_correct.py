@@ -23,7 +23,7 @@ def correctIono(scanInfo, staObs):
     None.
 
     '''
-    
+    print('    Correct ionosphere...\n')
     usedObsPosit = np.where(scanInfo.Obs2Scan !=0)
     usedBl = scanInfo.Obs2Baseline[usedObsPosit]
     index = [scanInfo.baseInfo[0].index('S'), scanInfo.baseInfo[0].index('X')]
@@ -34,7 +34,7 @@ def correctIono(scanInfo, staObs):
     lowFreqDelay = np.array(scanInfo.oc_obs[index[0]])
     highFreqDelay = np.array(scanInfo.oc_obs[index[1]])
 
-    print(scanInfo.effFreq)
+    #print(scanInfo.effFreq)
     lowEffFreq = scanInfo.effFreq[index[0]][usedObsPosit]
     highEffFreq = scanInfo.effFreq[index[1]][usedObsPosit]
     
@@ -86,7 +86,6 @@ def correctAmbiguty(staNum, scanInfo, residual, sigma, ambSize, staRefNum):
         the number of correct ambiguity .
 
     '''
-    
     blMJD = scanInfo.blMJD
     blPosit = scanInfo.blResPosit
     blUsed = scanInfo.blUsed

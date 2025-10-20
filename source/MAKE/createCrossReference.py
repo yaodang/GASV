@@ -218,7 +218,7 @@ def createStationCrossRef(path, scanSta, numScan):
     
     data.close()
     
-    return np.array(staAll)[sortIndex].tolist()
+    return np.array(staAll)[sortIndex].tolist(),Scan2Station
 
 def reSortScanBl(blIndex, blList):
     '''

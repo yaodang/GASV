@@ -8,6 +8,7 @@ Created on Wed Mar 15 14:39:09 2023
 
 import os,datetime
 from COMMON.time_transfer import *
+from COMMON.coordinate_transfer import *
 
 def writeSNX(param, scanInfo, sourceInfo, stationInfo, eopApri, result, out):
     """
@@ -74,9 +75,12 @@ def writeSNX(param, scanInfo, sourceInfo, stationInfo, eopApri, result, out):
                    '*\n'+\
                    '+SITE/ID\n'+\
                    '*Code PT Domes____ T Station description___ Approx_lon_ Approx_lat_ App_h__\n')
-            
+
+    xyzP = out.param.index('xyz') - len(out.param)
     for i in range(len(out.nscode)):
-        fid.writelines(' %s  A %s R %-8s\n'%(out.nscode[i][0],out.nscode[i][1],out.nscode[i][2]))
+
+        lon,lat,h = xyz2ell(out.aprioriValue[xyzP][i])
+        fid.writelines(' %s  A %s R %-8s %-13s\n'%(out.nscode[i][0],out.nscode[i][1],out.nscode[i][2],out.nscode[i][3]))
         
     # SOURCE/ID    
     fid.writelines('-SITE/ID\n'+\
@@ -91,7 +95,7 @@ def writeSNX(param, scanInfo, sourceInfo, stationInfo, eopApri, result, out):
             index = sourceInfo.sourceName.index(out.souName[i])
         else:
             index = sourceInfo.ivsName.index(out.souName[i])
-        fid.writelines(' %04d %-8s %-16s %-10s %-8s\n'%(i+1,sourceInfo.sourceName[index],sourceInfo.icfName[index],\
+        fid.writelines(' %04d %-8s %-16s %-10s %-8s \n'%(i+1,sourceInfo.sourceName[index],sourceInfo.icfName[index],\
                                                         sourceInfo.iauName[index],sourceInfo.ivsName[index]))
 
     
@@ -134,7 +138,7 @@ def writeSNX(param, scanInfo, sourceInfo, stationInfo, eopApri, result, out):
                    '* Units for WRMS: sec\n')
         
     # SOLUTION/STATISTICS
-    ocStr = '%16.14E'%(np.dot(np.dot(result.o_creal.T,result.preal),result.o_creal))
+    ocStr = '%16.14E'%(result.wssoc)
     VTPVStr = '%16.14E'%(result.vTPv)
     chiStr = '%16.14E'%(result.chis)
     wrmsStr = '%16.14E'%(result.wrms*1E-12)

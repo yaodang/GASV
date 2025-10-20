@@ -3,6 +3,8 @@
 import os,sys
 import re
 
+from source.COMMON.other import changeBlank
+
 sys.path.append("..//")
 import netCDF4 as nc
 import numpy as np
@@ -23,6 +25,7 @@ def read_vgosDB(Param, num):
         scanInfo       : scan struct
     ---------------------
     """
+    print('    Reading vgosDB......')
     vgosDBPath = Param.Setup.vgosdbPath
     session = Param.Arcs.session[num]
     AC = Param.Arcs.AC[num]
@@ -71,10 +74,10 @@ def read_HOPSDone(Param, sessionPath, scanInfo, wrpInfo):
     read_Source(scanInfo, sessionPath,wrpInfo)               # get apriori source position
     read_Station(scanInfo, sessionPath,wrpInfo)              # get apriori station position
     read_nscode(scanInfo, Param)                     # get the station codes
-    read_TimeUTC(scanInfo, sessionPath)              # get the scan time
-    read_ScanTimeMJD(scanInfo, sessionPath)          # get the scan MJD
+    read_TimeUTC(scanInfo, sessionPath,wrpInfo)              # get the scan time
+    read_ScanTimeMJD(scanInfo, sessionPath,wrpInfo)          # get the scan MJD
     
-    read_ObsCross(scanInfo, sessionPath)             # get observe and scan relation
+    read_ObsCross(scanInfo, sessionPath, wrpInfo)             # get observe and scan relation
     read_StationCorss(scanInfo, sessionPath, wrpInfo)# get station and scan relation
     read_SourceCorss(scanInfo, sessionPath, wrpInfo) # get source and scan relation
     
@@ -112,8 +115,8 @@ def read_AmbIonBkDone(Param, sessionPath, scanInfo, wrpInfo):
 
     '''
         
-    if Param.Flags.blClk == 'IN':
-        read_blClock(scanInfo, sessionPath, wrpInfo)
+    #if Param.Flags.blClk == 'IN':
+    scanInfo.blClkList = read_blClock(scanInfo.stationAll, sessionPath, wrpInfo)
     
     read_Edit(scanInfo, sessionPath, wrpInfo)
     read_ionFile(scanInfo, sessionPath, wrpInfo)
@@ -166,7 +169,7 @@ def read_baseInfo(scanInfo, sessionPath, wrpInfo):
     scanInfo.ambigNum = np.zeros((len(band),len(scanInfo.Obs2Scan)))
 
 
-def read_blClock(scanInfo, sessionPath, wrpInfo):
+def read_blClock(stationAll, sessionPath, wrpInfo):
     """
     Read the BaselineClockSetup.nc file, get baseline clock list.
 
@@ -188,8 +191,8 @@ def read_blClock(scanInfo, sessionPath, wrpInfo):
             sta1 = changeBlank(temp[0])
             sta2 = changeBlank(temp[1])
 
-            sta1P = scanInfo.stationAll.index(sta1) + 1
-            sta2P = scanInfo.stationAll.index(sta2) + 1
+            sta1P = stationAll.index(sta1) + 1
+            sta2P = stationAll.index(sta2) + 1
 
             blClock.append([sta1P,sta2P])
         elif len(temp.shape) == 3:
@@ -199,12 +202,12 @@ def read_blClock(scanInfo, sessionPath, wrpInfo):
                 sta1 = changeBlank(temp[i][0])
                 sta2 = changeBlank(temp[i][1])
 
-                sta1P = scanInfo.stationAll.index(sta1) + 1
-                sta2P = scanInfo.stationAll.index(sta2) + 1
+                sta1P = stationAll.index(sta1) + 1
+                sta2P = stationAll.index(sta2) + 1
 
                 blClock.append([sta1P, sta2P])
 
-        scanInfo.blClkList = blClock
+    return blClock
     
 def read_cable(scanInfo, sessionPath, wrpInfo):
     """
@@ -239,7 +242,7 @@ def read_cable(scanInfo, sessionPath, wrpInfo):
             
             if cableFlag:
                 if data['Cal-Cable'][:].data.shape[0] == NumStatScan:
-                    # cableCal.append(data['Cal-Cable'][:].data)
+                    #cableCal.append(data['Cal-Cable'][:].data)
                     if std(data['Cal-Cable'][:].data*1E12) > 1000:
                         cableCal.append(np.zeros(NumStatScan))
                     else:
@@ -263,6 +266,7 @@ def read_cable(scanInfo, sessionPath, wrpInfo):
             cableCal.append(np.zeros(NumStatScan))
             
     scanInfo.cableCal = cableCal
+    #print(cableCal)
     
 def read_calibrationSetup(scanInfo, sessionPath, wrpInfo):
     '''
@@ -275,12 +279,15 @@ def read_calibrationSetup(scanInfo, sessionPath, wrpInfo):
             path = sessionPath + '/Solve/'+file
             data = nc.Dataset(path)
             staCableFlag = data['StatCalFlag'][:].data
-            cableUsedPosit = np.where(staCableFlag==1)
-            temp_sta = np.char.decode(data['StatCalStationList'][:].data)
-            
+
             cableUsedStaList = []
-            for i in cableUsedPosit[0]:
-                cableUsedStaList.append(''.join(temp_sta[i]))
+            if 'StatCalStationList' in data.variables:
+                cableUsedPosit = np.where(staCableFlag>=1)
+                temp_sta = np.char.decode(data['StatCalStationList'][:].data)
+
+                for i in cableUsedPosit[0]:
+                    cableUsedStaList.append(changeBlank(temp_sta[i]))
+                    #cableUsedStaList.append(''.join(temp_sta[i]))
                 
             for i in range(len(scanInfo.stationAll)):
                 if scanInfo.stationAll[i] not in cableUsedStaList:
@@ -633,15 +640,22 @@ def read_ionFile(scanInfo, sessionPath, wrpInfo):
             if data['Cal-SlantPathIonoGroup'][:].data.shape[0] == 2:
                 scanInfo.iondl = np.zeros(len(scanInfo.Obs2Scan))
                 scanInfo.iondlSig = np.zeros(len(scanInfo.Obs2Scan))
+                scanInfo.ionFlag = np.zeros(len(scanInfo.Obs2Scan))
             else:
                 scanInfo.iondl = data['Cal-SlantPathIonoGroup'][:].data[:,0]
                 scanInfo.iondlSig = data['Cal-SlantPathIonoGroupSigma'][:].data[:,0]
+                try:
+                    scanInfo.ionFlag = data['Cal-SlantPathIonoGroupDataFlag'][:].data
+                except:
+                    scanInfo.ionFlag = np.zeros(len(scanInfo.Obs2Scan))
         else:
             scanInfo.iondl = np.zeros(len(scanInfo.Obs2Scan))
             scanInfo.iondlSig = np.zeros(len(scanInfo.Obs2Scan))
+            scanInfo.ionFlag = np.zeros(len(scanInfo.Obs2Scan))
     else:
         scanInfo.iondl = np.zeros(len(scanInfo.Obs2Scan))
         scanInfo.iondlSig = np.zeros(len(scanInfo.Obs2Scan))
+        scanInfo.ionFlag = np.zeros(len(scanInfo.Obs2Scan))
     
     # scanInfo.iondl = np.zeros(len(scanInfo.Obs2Scan))
     # scanInfo.iondlSig = np.zeros(len(scanInfo.Obs2Scan))
@@ -710,7 +724,21 @@ def read_nscode(scanInfo, param):
     '''
     nsCode = []
     path = param.Map.stationFile[0:param.Map.stationFile.rfind('/')]
-    ns_code = np.loadtxt(os.path.join(path,'ns-codes.txt'),dtype=str,comments='*',usecols=[0,1,2,3],unpack=False)
+    nsCodePath = os.path.join(path,'ns-codes.txt')
+    #ns_code = np.loadtxt(nsCodePath,dtype=str,comments='*',usecols=[0,1,2,3],unpack=False)
+
+    ns_code = []
+    fid = open(nsCodePath,'r')
+    lines = fid.readlines()
+    fid.close()
+    for line in lines:
+        if line[0] == '*':
+            continue
+        else:
+            staComment = line[28:-1]
+            temp = list(filter(None, line[:-1].split(" ")))
+            ns_code.append([temp[0],temp[1],temp[2],temp[3],staComment])
+    ns_code = np.array(ns_code)
 
     sitplPath = os.path.join(path, 'sitpl.dat')
     fid = open(sitplPath,'r')
@@ -740,18 +768,21 @@ def read_nscode(scanInfo, param):
             k += 1
         else:
             print('        The %s not in ns-codes.txt, set default!'%staStr)
-            nsCode.append(['Xx',staStr,'XXXXXXXXX','0000','XXXX'])
+            nsCode.append(['Xx',staStr,'XXXXXXXXX','0000','XXXXXXXXXXXXX','XXXX'])
             k += 1
             #sys.exit()
         
     scanInfo.stationCode = nsCode
 
-def read_ObsCross(scanInfo, sessionPath):
+def read_ObsCross(scanInfo, sessionPath, wrpInfo):
     """
     Read the ObsCrossRef.nc file, get observe and baseline in scan.
     
     """
-    path = sessionPath+'/CrossReference/ObsCrossRef.nc'
+    for file in wrpInfo.Observe:
+        if 'ObsCrossRef' in file:
+            path = sessionPath + '/CrossReference/' + file
+    #path = sessionPath+'/CrossReference/ObsCrossRef.nc'
     
     if os.path.exists(path):
         data = nc.Dataset(path)
@@ -794,7 +825,8 @@ def read_QualityCode(scanInfo, sessionPath, wrpInfo):
 
             # vgosDB from calc/solve
             posit = np.where(((temp == '') | (temp == ' ') | (temp == 'A') | (temp == 'C') |\
-                              (temp == 'D') | (temp == 'E') | (temp == 'F') | (temp == 'J')))
+                              (temp == 'D') | (temp == 'E') | (temp == 'F') | (temp == 'J')| \
+                              (temp == 'B')))
             temp[posit] = '0'
 
             if len(temp) == 1:
@@ -825,13 +857,15 @@ def read_QualityCode(scanInfo, sessionPath, wrpInfo):
         '''
     scanInfo.qCode = qCode
     
-def read_ScanTimeMJD(scanInfo, sessionPath):
+def read_ScanTimeMJD(scanInfo, sessionPath, wrpInfo):
     '''
     Reading the ScanTimeMJD.nc file, get the Modified Julian Day of earch scan.
     
     '''
-    
-    path = sessionPath+'/Solve/ScanTimeMJD.nc'
+    for file in wrpInfo.Solve:
+        if 'ScanTimeMJD' in file:
+            path = sessionPath + '/Solve/'+file
+
     if os.path.exists(path):
         data = nc.Dataset(path)
         MJD = data['MJD'][:].data
@@ -960,12 +994,14 @@ def read_StationCorss(scanInfo, sessionPath, wrpInfo):
         scanInfo.Scan2Station = Scan2Station
         scanInfo.Station2Scan = Station2Scan
 
-def read_TimeUTC(scanInfo, sessionPath):
+def read_TimeUTC(scanInfo, sessionPath, wrpInfo):
     """
     Read the TimeUTC.nc file, get observe time (y,m,d,h,mi,s) of earch scan
 
     """
-    path = sessionPath+'/Scan/TimeUTC.nc'
+    for file in wrpInfo.Scan:
+        if 'TimeUTC' in file:
+            path = sessionPath + '/Scan/'+file
     
     if os.path.exists(path):
         data = nc.Dataset(path)

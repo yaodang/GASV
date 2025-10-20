@@ -33,9 +33,9 @@ def GLOB(Param):
     if Param.Global.source[0] == 'YES':
         writeCRFResult(sitAll,souAll,xout)
 
-    np.savetxt('NGlob.txt',NGlobc,delimiter=',')
-    np.savetxt('bGlob.txt', bGlobc,delimiter=',')
-    np.savetxt('Bcon.txt',Bcon,delimiter=',')
+    #np.savetxt('NGlob.txt',NGlobc,delimiter=',')
+    #np.savetxt('bGlob.txt', bGlobc,delimiter=',')
+    #np.savetxt('Bcon.txt',Bcon,delimiter=',')
     return NGlob, bGlob, sitAll, souAll
 
 def makeConstMatrix(sitAll, souAll, Param):

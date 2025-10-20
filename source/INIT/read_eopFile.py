@@ -7,6 +7,9 @@ eop_choice(filename): main subroutine
 import os, math
 import numpy as np
 import sys
+
+from source.COMMON.time_transfer import leap_second
+
 sys.path.append("..//")
 from COMMON import *
 
@@ -46,9 +49,10 @@ def read_eop(filename, MJDObs):
     DY = DY * as2rad
     
     posit = find_MJD(MJD, MJDObs)
-    
+    UT1New = processLeap(posit, MJD, UT1[posit[0]:posit[1]])
+
     eop = EOP(MJD[posit[0]:posit[1]],XP[posit[0]:posit[1]],YP[posit[0]:posit[1]],\
-              UT1[posit[0]:posit[1]],DX[posit[0]:posit[1]],DY[posit[0]:posit[1]])
+              UT1New,DX[posit[0]:posit[1]],DY[posit[0]:posit[1]])
     
     return eop
 
@@ -179,4 +183,15 @@ def find_MJD(MJD, MJDObs):
     return np.array([temp1[0][-1],temp2[0][0]])
 
     
+def processLeap(posit,MJD,UT1):
+    leap = leap_second(MJD[posit[0]:posit[1]])
+    jump = np.where(np.diff(leap)!=0)[0]
+    UT1New = UT1 + 0
+    if len(jump):
+        leapSecond = leap[jump[0]+1] - leap[jump[0]]
+        if jump[0] < 5:
+            UT1New[:jump[0]] += leapSecond
+        else:
+            UT1New[jump[0]+1:] -= leapSecond
 
+    return UT1New

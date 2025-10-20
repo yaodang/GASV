@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import os
+import os,configparser
 import numpy as np
 import sys
 sys.path.append("..//")
@@ -64,6 +64,22 @@ def read_cnt(filename, Param):
     Param.creatParam(ParamSetup, ParamFlags, ParamData, ParamGlobal, ParamMap, \
                      ParamCon, ParamArcs, ParamTie, ParamOut)
     
+def read_dbPathFile(fileName):
+    # read the ini file for vgosDB make
+    if not os.path.exists(fileName):
+        sys.stderr.write('    Error: the ini file of vgosDB make isn\'t exists!\n\n')
+        sys.exit()
+
+    config = configparser.ConfigParser()
+    config.read(fileName)
+
+    paramPath = {}
+    for section in config.sections():
+        paramPath[section] = {}
+        for key, value in config.items(section):
+            paramPath[section][key] = value
+
+    return paramPath
 
 def getKeyandPosit(lines):
     """

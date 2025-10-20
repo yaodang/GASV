@@ -24,16 +24,21 @@ def firstSolution(scanInfo, stationInfo, P_obs, oc_obs, staObs):
     """
     ocObs = 1*oc_obs
     A_clkzwd,A_clk,firstStaClockNum = cbFun(scanInfo, staObs)
-    
+    #s = time.time()
     Q_clk = np.linalg.inv(A_clkzwd.T@P_obs@A_clkzwd)
+    #e = time.time()
+    #Q1 = matrix_inv(A_clkzwd.T@P_obs@A_clkzwd)
+    #e1 = time.time()
+    #a1 = e - s
+    #a2 = e1 - e
     b_clk = A_clkzwd.T@P_obs@ocObs
     
     # Q_clk = np.linalg.inv(np.dot(np.dot(A_clk.T, P_obs),A_clk))
     # b_clk = np.dot(np.dot(A_clk.T, P_obs),ocObs)
-    
-    clkzwd_val = np.dot(Q_clk,b_clk)    # [s]
-    
-    ocObs -= np.dot(A_clk,clkzwd_val[0:A_clk.shape[1]])
+
+    clkzwd_val = Q_clk@b_clk  # [s]
+
+    ocObs -= A_clk@clkzwd_val[0:A_clk.shape[1]]
     # ocObs -= np.dot(A_clk, clkzwd_val)
     
     temp = clkzwd_val[0:A_clk.shape[1]]
@@ -61,7 +66,7 @@ def firstSolution(scanInfo, stationInfo, P_obs, oc_obs, staObs):
     scanInfo.staClkPoly = staClkPoly
     # scanInfo.firstStaClockNum = firstStaClockNum
     
-    return ocObs
+    return ocObs,clkzwd_val
     
 def cbFun(scanInfo, staObs):
     """
@@ -162,7 +167,21 @@ def LSQSolution(estPara, Ablk, Hblk, P_obs, oc, oc_obs, staNNTR, souNNR, nobs, r
     mi = mo*np.sqrt(np.diag(Qxx))
     tempA = A.toarray()
     tempP = P_obs.toarray()
+    times = time.time()
+    '''
+    s = time.time()
+    Q0 = np.linalg.inv(tempP[:nobs, :nobs])
+    #Q0 = tempA[:nobs,:]@Qxx
+    e = time.time()
+    #Q1 = matrix_multipy(tempA[:nobs,:],Qxx)
+    Q1 = matrix_inv(tempP[:nobs, :nobs])
+    e1 = time.time()
+    print(e - s)
+    print(e1 - e)
+    #'''
     Qvv = np.linalg.inv(tempP[:nobs,:nobs])-tempA[:nobs,:]@Qxx@tempA[:nobs,:].T
+    #timee = time.time()
+    #print(timee-times)
     result.SReal[bandIndex] = np.sqrt(mo**2*np.diag(Qvv))
     
     # save the result
@@ -188,4 +207,54 @@ def LSQSolution(estPara, Ablk, Hblk, P_obs, oc, oc_obs, staNNTR, souNNR, nobs, r
     result.wrms = wrms
     result.para = x
     result.err = mi
-        
+
+def matrix_inv(MatrixA):
+    filePath = os.path.abspath(__file__)
+    runPath = filePath[0:filePath.rfind('/') + 1]
+    libPath = os.path.join(runPath[:-6], 'EXTERNAL/MATRIX/libmatrix.so')
+    lib = ctypes.CDLL(libPath)
+    lib.mat_inv_.argtypes = [np.ctypeslib.ndpointer(dtype=np.float64, flags='F_CONTIGUOUS'), \
+                         np.ctypeslib.ndpointer(dtype=np.float64, flags='F_CONTIGUOUS'), \
+                         ctypes.POINTER(ctypes.c_int), \
+                         ctypes.POINTER(ctypes.c_int)]
+    lib.mat_inv_.restype = None
+
+    N = len(MatrixA)
+    INFO = ctypes.c_int(-1)
+    MatrixAInv = np.zeros((N, N), dtype=np.float64, order='F')
+    lib.mat_inv_(np.array(MatrixA, dtype=np.float64, order='F'),
+             MatrixAInv,
+             ctypes.c_int(N),
+             INFO)
+
+    return MatrixAInv
+
+def matrix_multipy(MatrixA,MatrixB):
+    filePath = os.path.abspath(__file__)
+    runPath = filePath[0:filePath.rfind('/') + 1]
+    libPath = os.path.join(runPath[:-6], 'EXTERNAL/MATRIX/libmatrix.so')
+
+    lib = ctypes.CDLL(libPath)
+    lib.mat_mult_.argtypes = [np.ctypeslib.ndpointer(dtype=np.float64, flags='F_CONTIGUOUS'), \
+                         np.ctypeslib.ndpointer(dtype=np.float64, flags='F_CONTIGUOUS'), \
+                         np.ctypeslib.ndpointer(dtype=np.float64, flags='F_CONTIGUOUS'), \
+                         ctypes.POINTER(ctypes.c_int), \
+                         ctypes.POINTER(ctypes.c_int), \
+                         ctypes.POINTER(ctypes.c_int)]
+    lib.mat_mult_.restype = None
+    M,K1 = MatrixA.shape
+    K2,N = MatrixB.shape
+    if K1 != K2:
+        print('    Error: the dimensions are inconsistent.')
+
+    MatrixC = np.zeros((M,N), dtype=np.float64, order='F')
+
+    lib.mat_mult_(np.array(MatrixA, dtype=np.float64,order='F'),
+             np.array(MatrixB, dtype=np.float64,order='F'),
+             MatrixC,
+             ctypes.c_int(M),
+             ctypes.c_int(N),
+             ctypes.c_int(K1))
+
+    return MatrixC
+

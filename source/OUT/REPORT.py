@@ -143,7 +143,7 @@ def writeSFF(param, scanInfo, eopApri, result, out):
         else:
             fid.writelines('%2d/%02d/%02d %02d:%02d %14.4f %13.4f %14.4f %13.2f %13.2f %12.2f\n'\
                            %(year-2000,mon,day,hour,int(minute),0,0,out.aprioriValue[0][0]+out.estValue[0][0],0,0,out.formalErr[0][0]*1E3))
-    
+
     nutPosit = [out.param.index('nutx'),out.param.index('nuty')]
     if sum(out.estFlag[nutPosit]) != 0:
         fid.writelines('\n EOP epoch (TT)   MJD:                   NUT epoch (TT)    MJD:\n')
@@ -162,7 +162,7 @@ def writeSFF(param, scanInfo, eopApri, result, out):
                 sta1 = scanInfo.stationAll[scanInfo.blClkList[i][0] - 1]
                 sta2 = scanInfo.stationAll[scanInfo.blClkList[i][1] - 1]
                 fid.writelines('       %8s-%8s Clock offset %34.3f ps %18.3f ps %18.3f ps\n'%(sta1,sta2,blclkEstValue[i],blclkErrValue[i],blclkErrValue[i]))
-    
+
     fid.close()
     
     

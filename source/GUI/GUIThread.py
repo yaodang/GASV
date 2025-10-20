@@ -50,6 +50,7 @@ class localFileThread(QThread):
         self.Stime = []
         self.station = []
         self.wrms = []
+        self.chi = []
         self.obs = []
         
         nsCode = np.loadtxt(os.path.join(self.dir_file_Path[2],'ns-codes.txt'),dtype=str,comments='*',usecols=[0,1,2,3],unpack=False)
@@ -80,9 +81,11 @@ class localFileThread(QThread):
                         solutionStatistics = read_SNX(snxFile,0)
                         self.wrms.append(solutionStatistics['WoPR'])
                         self.obs.append(solutionStatistics['NoO'])
+                        self.chi.append(solutionStatistics['VF'])
                     else:
                         self.wrms.append(0)
                         self.obs.append(0)
+                        self.chi.append(0)
                     
                     try:
                         index = self.fileInfo[0].index(filename)
@@ -98,13 +101,13 @@ class localFileThread(QThread):
         if self.pattern == 'All':
             for i in range(len(self.fileList)):
                 self.searchFile.append([self.fileList[i],self.SName[i],self.Stime[i],self.version[i],\
-                                        self.ac[i],self.obs[i],self.wrms[i],self.station[i]])
+                                        self.ac[i],self.obs[i],self.chi[i],self.wrms[i],self.station[i]])
         else:
             for i in range(len(self.fileList)):
                 file = self.fileList[i]
                 if self.fileType[i] in self.pattern:
                     self.searchFile.append([file,self.SName[i],self.Stime[i],self.version[i],\
-                                            self.ac[i],self.obs[i],self.wrms[i],self.station[i]])
+                                            self.ac[i],self.obs[i],self.chi[i],self.wrms[i],self.station[i]])
 
         self.finished.emit(self.fileList, self.searchFile)
 
@@ -225,45 +228,46 @@ class localFileThread(QThread):
             flag = 1
             masterFile = os.path.join(path,'master'+str(year)+'-int.txt')
 
-        fid = open(masterFile,'r')
-        lines = fid.readlines()
-        fid.close()
-        
-        for line in lines:
-            if line[0] == '|':
-                tempPos = [match.start() for match in re.finditer(re.escape('|'), line)]
-                if flag == 0:
-                    self.fileInfo[0].append(str(year)[2:4]+line[tempPos[2]+1:tempPos[3]]+line[tempPos[11]+1:tempPos[12]].strip())
-                    self.fileInfo[2].append(line[tempPos[1] + 1:tempPos[2]].strip().lower())
-                    if 'INI' in line:
-                        self.fileInfo[1].append('INT0')
-                    elif '|IN1' in line:
-                        self.fileInfo[1].append('INT1')
-                    elif '|IN2' in line:
-                        self.fileInfo[1].append('INT2')
-                    elif '|IN3' in line:
-                        self.fileInfo[1].append('INT3')
-                    elif 'VGOS' in line:
-                        self.fileInfo[1].append('VGOS_1h')
-                    else:
-                        self.fileInfo[1].append('1h_other')
-                else:
-                    self.fileInfo[0].append(line[tempPos[1]+1:tempPos[2]]+'-'+line[tempPos[2]+1:tempPos[3]].strip())
-                    self.fileInfo[2].append(line[tempPos[2] + 1:tempPos[3]].strip().lower())
-                    if 'IVS-INT-00' in line:
-                        self.fileInfo[1].append('INT0')
-                    elif 'IVS-INT-1' in line:
-                        self.fileInfo[1].append('INT1')
-                    elif 'IVS-INT-2' in line:
-                        self.fileInfo[1].append('INT2')
-                    elif 'IVS-INT-3' in line:
-                        self.fileInfo[1].append('INT3')
-                    elif 'VGOS' in line:
-                        self.fileInfo[1].append('VGOS_1h')
-                    else:
-                        self.fileInfo[1].append('1h_other')
+        if os.path.exists(masterFile):
+            fid = open(masterFile,'r')
+            lines = fid.readlines()
+            fid.close()
 
-                self.fileInfo[3].append(line[tempPos[4]+1:tempPos[5]])
+            for line in lines:
+                if line[0] == '|':
+                    tempPos = [match.start() for match in re.finditer(re.escape('|'), line)]
+                    if flag == 0:
+                        self.fileInfo[0].append(str(year)[2:4]+line[tempPos[2]+1:tempPos[3]]+line[tempPos[11]+1:tempPos[12]].strip())
+                        self.fileInfo[2].append(line[tempPos[1] + 1:tempPos[2]].strip().lower())
+                        if 'INI' in line:
+                            self.fileInfo[1].append('INT0')
+                        elif '|IN1' in line:
+                            self.fileInfo[1].append('INT1')
+                        elif '|IN2' in line:
+                            self.fileInfo[1].append('INT2')
+                        elif '|IN3' in line:
+                            self.fileInfo[1].append('INT3')
+                        elif 'VGOS' in line:
+                            self.fileInfo[1].append('VGOS_1h')
+                        else:
+                            self.fileInfo[1].append('1h_other')
+                    else:
+                        self.fileInfo[0].append(line[tempPos[1]+1:tempPos[2]]+'-'+line[tempPos[2]+1:tempPos[3]].strip())
+                        self.fileInfo[2].append(line[tempPos[2] + 1:tempPos[3]].strip().lower())
+                        if 'IVS-INT-00' in line:
+                            self.fileInfo[1].append('INT0')
+                        elif 'IVS-INT-1' in line:
+                            self.fileInfo[1].append('INT1')
+                        elif 'IVS-INT-2' in line:
+                            self.fileInfo[1].append('INT2')
+                        elif 'IVS-INT-3' in line:
+                            self.fileInfo[1].append('INT3')
+                        elif 'VGOS' in line:
+                            self.fileInfo[1].append('VGOS_1h')
+                        else:
+                            self.fileInfo[1].append('1h_other')
+
+                    self.fileInfo[3].append(line[tempPos[4]+1:tempPos[5]])
                 
             
 class runThread(QThread):
@@ -285,7 +289,7 @@ class runThread(QThread):
             # self.staObs = args[2]
         
     def run(self):
-        if self.runFlag == 0: 
+        if self.runFlag == 0:
             print('    Reading station file......')
             self.stationInfo = read_station(self.Param.Map.stationFile, self.scanInfo)
     

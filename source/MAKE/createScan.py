@@ -2,8 +2,11 @@
 
 import netCDF4 as nc
 import numpy as np
-import os
+import os,sys
 from COMMON.other import makeFile
+from COMMON.time_transfer import *
+from MOD.mod_iau2006a import mod_iau2006a_iers
+from MOD.mod_eop import *
 
 def createERPApriori(path, session, numScan, eopObs):
     """
@@ -86,10 +89,76 @@ def createEphemeris(path, session, numScan, sun, moon, earth):
     data.variables['EarthXYZ'][:] = np.reshape(temp, (numScan,3,3))
     
     data.close()
-    
+
+def createHFERP(path, scanMJD, numScan):
+    '''
+    Create the HFERP_kdesai.nc file in Scan dir.
+
+    Parameters
+    ----------
+    path : The path of Scan file.
+    scanMJD : the MJD of scan.
+    scanNum : the number of scan
+
+    Returns
+    -------
+    The Cal-HiFreqERP_kdesai.nc is created.
+
+    '''
+    TAB = getTab('Desai')
+    hfpmx, hfpmy, hfut1 = eop_hf_eanes(scanMJD, TAB)
+    hferp = np.array([hfpmx, hfpmy, hfut1])
+
+    ncFile = path + '/Cal-HiFreqERP_kdesai.nc'
+    makeFile(ncFile)
+
+    data = nc.Dataset(ncFile, 'w', format='NETCDF4')
+
+    data.createDimension('NumScans', numScan)
+    data.createDimension('DimX000003', 3)
+
+    data.createVariable("PMUT1", np.float64, ("NumScans", "DimX000003"))
+    data.variables['PMUT1'][:] = hferp.T
+    data.close()
+
+def createNutation(path, scanMJD, numScan):
+    '''
+    Create the NutationNRO_kIAU2006.nc file of Scan
+
+    Parameters
+    ----------
+    path : The path of NutationNRO file.
+    scanMJD : the MJD of scan.
+    numScan : the number of scan
+
+    Returns
+    -------
+    The NutationNRO_kIAU2006.nc is created.
+
+    '''
+    X,Y,S = mod_iau2006a_iers(scanMJD)
+
+    ncFile = path + '/NutationNRO_kIAU2006.nc'
+    makeFile(ncFile)
+
+    data = nc.Dataset(ncFile, 'w', format='NETCDF4')
+
+    data.createDimension('NumScans', numScan)
+    data.createDimension('DimX000002', 2)
+    data.createDimension('DimX000003', 3)
+
+    data.createVariable("NutationNRO", np.float64, ("NumScans", "DimX000002", "DimX000003"))
+    tempData = np.zeros((numScan,2,3))
+    for i in range(numScan):
+        tempData[i][0, 0] = X[i]
+        tempData[i][0, 1] = Y[i]
+        tempData[i][0, 2] = S[i]
+    data.variables['NutationNRO'][:] = tempData
+    data.close()
+
 def createTimeUTC(path, scanTime, numScan):
     '''
-    Create the TimeUTC file of Scan
+    Create the TimeUTC.nc file of Scan
 
     Parameters
     ----------
@@ -99,7 +168,7 @@ def createTimeUTC(path, scanTime, numScan):
 
     Returns
     -------
-    The TimeUTC is created.
+    The TimeUTC.nc is created.
 
     '''
     ncFile = path+'/TimeUTC.nc'
@@ -118,7 +187,4 @@ def createTimeUTC(path, scanTime, numScan):
     data.variables['YMDHM'][:] = np.array(scanTime,dtype=int)[:,[0,5,6,2,3]]
     
     data.close()
-
-    
-#def createNutation():
     

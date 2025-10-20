@@ -10,9 +10,9 @@ def helmertTRF(flag_nnr, flag_nnt, staPosit):
     xyz = staPosit/np.linalg.norm(staPosit)
     # xyz = staPosit
     zeros = np.zeros((3,3))
-    B = np.array([[1, 0, 0, 0, xyz[2], -xyz[1]],\
-                      [0, 1, 0, -xyz[2], 0, xyz[0]],\
-                      [0, 0, 1, xyz[1], -xyz[0], 0]])
+    B = np.array([[1, 0, 0,       0,  xyz[2],   -xyz[1]],\
+                  [0, 1, 0, -xyz[2],       0,    xyz[0]],\
+                  [0, 0, 1,  xyz[1], -xyz[0],        0]])
 
     
     if flag_nnr and flag_nnt:

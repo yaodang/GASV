@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os,sys,re
+import numpy as np
 # import platform
 
 def changeBlank(strList):
@@ -13,7 +14,20 @@ def changeBlank(strList):
         staName = temp_staName
 
     return staName
-        
+
+def checkFile(fileList, fileName):
+    version = -1
+    for file in fileList:
+        if fileName in file:
+            if '_V' in file:
+                index = file.index('_V')
+                version = int(file[index+2:index+5]) + 1
+            else:
+                version = 0
+    if version == -1 or version == 0:
+        fileList.append(fileName+'.nc')
+    return version
+
 def getVersion(path,string):
     files = os.listdir(path)
     #pattern = re.compile('^'+string+'*')

@@ -15,7 +15,7 @@ def read_SNX(filePath,flag):
             fid = open(filePath, 'r')
         else:
             fid = open(filePath+'.snx','r')
-        
+
     lines = fid.readlines()
     fid.close()
     

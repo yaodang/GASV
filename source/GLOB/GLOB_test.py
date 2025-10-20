@@ -1,3 +1,6 @@
+import sys
+sys.path.append("../")
+
 from COMMON import *
 from GLOB_glob import *
 
@@ -5,9 +8,11 @@ Param = PARAMETER()
 Param.Map.stationFile = '/home/GeoAS/Work/GASV/APRIORI/station.txt'
 Param.Map.sourceFile = '/home/GeoAS/Work/GASV/APRIORI/souSort.txt'
 Param.Out.snxPath = ['YES','/data/VLBI/SINEX/bkg2022a/']
+#Param.Out.snxPath = ['YES','/home/GeoAS/Work/GASV/SNX_Glob/2000']
 
 #fid = open('/home/GeoAS/Work/GASV/ARC/glob_arc/bkg2022a_test.arc', 'r')
 fid = open('/home/GeoAS/Work/GASV/ARC/glob_arc/bkg2022a_1996_2022.arc', 'r')
+#fid = open('/home/GeoAS/Work/GASV/ARC/ntsc_arc/00.arc', 'r')
 
 lines = fid.readlines()
 fid.close()
@@ -30,7 +35,7 @@ fid.close()
 fid = open('/home/GeoAS/Work/GASV/APRIORI/ICRF3_NNR.txt','r')
 crfLines = fid.readlines()
 fid.close()
-fid = open('/home/GeoAS/Work/GASV/APRIORI/GLOB_rm_bkg2022a.txt','r')
+fid = open('/home/GeoAS/Work/GASV/APRIORI/GLOB_rm_sta1_bkg2022a.txt','r')
 rmStaLines = fid.readlines()
 fid.close()
 fid = open('/home/GeoAS/Work/GASV/APRIORI/GLOB_rm_sou_bkg2022a.txt','r')

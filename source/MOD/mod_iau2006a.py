@@ -1,9 +1,34 @@
 #!/usr/bin/env python3
 
-import sys,math
+import sys,math,ctypes,os,time
 import numpy as np
 
 from MOD import *
+
+def mod_iau2006a_iers(MJD):
+    filePath = os.path.abspath(__file__)
+    runPath = filePath[0:filePath.rfind('/') + 1]
+    libPath = os.path.join(runPath[:-4],"EXTERNAL/SOFA/libiau2006a.so")
+    #print(libPath)
+    lib = ctypes.CDLL(libPath)
+
+    lib.iau_xys06a_.argtypes = [ctypes.POINTER(ctypes.c_double), \
+                                np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS'), \
+                                ctypes.POINTER(ctypes.c_int),\
+                                np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS'), \
+                                np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS'), \
+                                np.ctypeslib.ndpointer(dtype=np.float64, flags='C_CONTIGUOUS')]
+
+    DATE2 = np.array(MJD,dtype=np.float64,order='C')
+    N = ctypes.c_int(len(MJD))
+    X = np.zeros(len(MJD), dtype=np.float64, order='C')
+    Y = np.zeros(len(MJD), dtype=np.float64, order='C')
+    S = np.zeros(len(MJD), dtype=np.float64, order='C')
+
+    lib.iau_xys06a_(ctypes.c_double(2400000.5),
+                    DATE2, N, X, Y, S)
+
+    return X, Y, S
 
 def mod_iau2006a(T):
     
@@ -3051,3 +3076,15 @@ def mod_iau2006a(T):
     S = S -(X*Y)/2
     
     return X,Y,S  
+
+'''
+startTime1 = time.time()
+X,Y,S = mod_iau2006a_iers([50123.2,50123.3,50123.4])
+stopTime1 = time.time()
+
+startTime = time.time()
+T = calc_T([50123.2])
+X1,Y1,S1 = mod_iau2006a(T)
+stopTime = time.time()
+print(X,stopTime1-startTime1,stopTime-startTime)
+'''

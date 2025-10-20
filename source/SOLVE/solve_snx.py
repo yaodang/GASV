@@ -54,6 +54,7 @@ def reduceSNX(result, snxParam):
 
         #ytpy = result.o_creal.T@result.preal@result.o_creal
         #ytpy - b2.T@np.linalg.inv(N22)@b2
+        result.wssoc = result.o_creal.T@result.preal@result.o_creal - b2.T@np.linalg.inv(N22)@b2
     
 def getCol(result, snxParam):
     '''

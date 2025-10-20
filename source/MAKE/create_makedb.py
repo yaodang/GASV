@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
 
 import os,re
-from multiprocessing import Pool
 import numpy as np
 
+from INIT import read_dbPathFile
 from MAKE.createRoot import *
 from MAKE.createScan import *
 from MAKE.createCrossReference import *
 from MAKE.createObservables import *
 from MAKE.createSolve import *
+from MAKE.createApriori import *
+from MAKE.createStation import *
 from MAKE.MK4Type import *
 from COMMON import *
+from INIT.read_stationFile import read_ocean_tidal
 
 def makedb(dbInfo):
     '''
@@ -49,13 +52,35 @@ def makedb(dbInfo):
     # create Scan path file
     print('    Creating the file of Scan dir...')
     createTimeUTC(vgosDBPath+'/Scan', result.scanTime, numScan)
-    
+    scanMJD = []
+    for i in range(numScan):
+        scanMJD.append(result.scanTime[i][-1])
+    createNutation(vgosDBPath+'/Scan', scanMJD, numScan)
+    createHFERP(vgosDBPath+'/Scan', scanMJD, numScan)
+
     # create CrossReference path file
     print('    Creating the file of CrossReference dir...')
     crossPath = vgosDBPath+'/CrossReference'
     souAll = createSourceCrossRef(crossPath, np.array(result.scanSou))
-    staAll = createStationCrossRef(crossPath, result.scanSta, numScan)
+    staAll,Scan2Station = createStationCrossRef(crossPath, result.scanSta, numScan)
     Obs2Scan, blSort = createObsCrossRef(crossPath, result.scanBL, staAll)
+
+    # create Apriori path file
+    print('    Creating the file of Apriori dir...')
+    paramPath = read_dbPathFile(dbInfo['iniFile'])
+    aprioriPath = vgosDBPath + '/Apriori'
+    createSource(aprioriPath, session, souAll, paramPath['apriori']['souf'])
+    createStation(aprioriPath, session, staAll, paramPath['apriori']['staf'])
+    #createAntenna(aprioriPath, session, numSta, staList, stationInfo)
+
+    # create Station path file
+    for i in range(len(staAll)):
+        sta = staAll[i]
+        print('    Creating the file of %-8s dir...'%sta)
+        #createAzEl(vgosDBPath+'/'+sta.strip(), session, sta, StatScan, scanStat)
+        cto = read_ocean_tidal(paramPath['apriori']['octf'], sta)
+        createOceanTidal(vgosDBPath + '/' + sta.strip(), result.scanTime, Scan2Station[:,i], cto)
+        createStaTimeUTC(vgosDBPath + '/' + sta.strip(), result.scanTime, Scan2Station[:, i])
     
     # create Observables path file
     print('    Creating the file of Observables dir...')
@@ -319,7 +344,10 @@ def makePath(dbName, outPath):
     
     if not os.path.exists(path):
         os.mkdir(path)
-        
+
+    if not os.path.exists(path+'/Apriori'):
+        os.mkdir(path+'/Apriori')
+
     if not os.path.exists(path+'/Scan'):
         os.mkdir(path+'/Scan')
         
@@ -330,7 +358,7 @@ def makePath(dbName, outPath):
         os.mkdir(path+'/Observables')
         
     if not os.path.exists(path+'/Solve'):
-        os.mkdir(path+'/Solve')   
+        os.mkdir(path+'/Solve')
         
     return path
 

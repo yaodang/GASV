@@ -83,7 +83,7 @@
        <enum>QFrame::Plain</enum>
       </property>
       <property name="currentIndex">
-       <number>12</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="page_file_welcome">
        <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -1161,6 +1161,11 @@ p, li { white-space: pre-wrap; }
                   <family>Times New Roman</family>
                   <pointsize>12</pointsize>
                  </font>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Chi-Square</string>
                 </property>
                </column>
                <column>
@@ -2592,6 +2597,32 @@ p, li { white-space: pre-wrap; }
             </item>
            </layout>
           </widget>
+          <widget class="QWidget" name="layoutWidget">
+           <property name="geometry">
+            <rect>
+             <x>20</x>
+             <y>110</y>
+             <width>271</width>
+             <height>29</height>
+            </rect>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout_60">
+            <item>
+             <widget class="QCheckBox" name="checkBox_est_blclk">
+              <property name="text">
+               <string>Estimate baseline Clock</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_est_clearblclk">
+              <property name="text">
+               <string>clear</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
          </widget>
         </item>
         <item>
@@ -3590,20 +3621,11 @@ p, li { white-space: pre-wrap; }
             </layout>
            </item>
            <item>
-            <spacer name="verticalSpacer_6">
+            <widget class="Line" name="line">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>70</height>
-              </size>
-             </property>
-            </spacer>
+            </widget>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_25">
@@ -3775,20 +3797,11 @@ p, li { white-space: pre-wrap; }
             </layout>
            </item>
            <item>
-            <spacer name="verticalSpacer_4">
+            <widget class="Line" name="line_2">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="sizeType">
-              <enum>QSizePolicy::Fixed</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>70</height>
-              </size>
-             </property>
-            </spacer>
+            </widget>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_26">
@@ -3943,7 +3956,7 @@ p, li { white-space: pre-wrap; }
                <item row="2" column="0">
                 <widget class="QLabel" name="label_60">
                  <property name="text">
-                  <string>GLOB EXCLUDE</string>
+                  <string>STA EXCLUDE</string>
                  </property>
                 </widget>
                </item>
@@ -3963,7 +3976,7 @@ p, li { white-space: pre-wrap; }
                <item row="2" column="4">
                 <widget class="QLineEdit" name="lineEdit_glob_station_exclude">
                  <property name="text">
-                  <string>GLOB_rm.txt</string>
+                  <string>GLOB_rm_sta_bkg2022a.txt</string>
                  </property>
                  <property name="alignment">
                   <set>Qt::AlignCenter</set>
@@ -3971,7 +3984,125 @@ p, li { white-space: pre-wrap; }
                 </widget>
                </item>
                <item row="2" column="5">
-                <widget class="QPushButton" name="pushButton_glob_edit_globex">
+                <widget class="QPushButton" name="pushButton_glob_edit_globexsta">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>25</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="mysource.qrc">
+                   <normaloff>:/icons/icons/edit.png</normaloff>:/icons/icons/edit.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>25</width>
+                   <height>25</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_72">
+                 <property name="text">
+                  <string>SOU EXCLUDE</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <spacer name="horizontalSpacer_43">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="3" column="4">
+                <widget class="QLineEdit" name="lineEdit_glob_source_exclude">
+                 <property name="text">
+                  <string>GLOB_rm_sou_bkg2022a.txt</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="5" rowspan="2">
+                <widget class="QPushButton" name="pushButton_glob_edit_globexsou">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>25</width>
+                   <height>35</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                 <property name="icon">
+                  <iconset resource="mysource.qrc">
+                   <normaloff>:/icons/icons/edit.png</normaloff>:/icons/icons/edit.png</iconset>
+                 </property>
+                 <property name="iconSize">
+                  <size>
+                   <width>25</width>
+                   <height>25</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" rowspan="2">
+                <widget class="QLabel" name="label_73">
+                 <property name="text">
+                  <string>Velocity Tie</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <spacer name="horizontalSpacer_44">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+               <item row="5" column="4">
+                <widget class="QLineEdit" name="lineEdit_glob_veltie">
+                 <property name="text">
+                  <string>tie.txt</string>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="5">
+                <widget class="QPushButton" name="pushButton_glob_edit_globtie">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -4017,17 +4148,39 @@ p, li { white-space: pre-wrap; }
             </layout>
            </item>
            <item>
-            <spacer name="verticalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Vertical</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>20</width>
-               <height>40</height>
-              </size>
-             </property>
-            </spacer>
+            <layout class="QHBoxLayout" name="horizontalLayout_59">
+             <item>
+              <spacer name="horizontalSpacer_45">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_glob_save">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="icon">
+                <iconset resource="mysource.qrc">
+                 <normaloff>:/icons/icons/save.png</normaloff>:/icons/icons/save.png</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_57">
+             <item>
+              <widget class="QTextEdit" name="textEdit_glob"/>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -4456,7 +4609,7 @@ p, li { white-space: pre-wrap; }
              </size>
             </property>
             <property name="shortcut">
-             <string>Ctrl+S</string>
+             <string>Shift+X</string>
             </property>
            </widget>
           </item>
@@ -5989,7 +6142,7 @@ p, li { white-space: pre-wrap; }
     </font>
    </property>
    <property name="shortcut">
-    <string>Ctrl+T</string>
+    <string>Alt+Q</string>
    </property>
   </action>
   <action name="menu_est_EOP">
@@ -6006,7 +6159,7 @@ p, li { white-space: pre-wrap; }
     </font>
    </property>
    <property name="shortcut">
-    <string>Ctrl+E</string>
+    <string>Alt+W</string>
    </property>
   </action>
   <action name="menu_data_Station">
@@ -6023,7 +6176,7 @@ p, li { white-space: pre-wrap; }
     </font>
    </property>
    <property name="shortcut">
-    <string>Shift+S</string>
+    <string>Alt+2</string>
    </property>
   </action>
   <action name="menu_data_Baseline">
@@ -6040,7 +6193,7 @@ p, li { white-space: pre-wrap; }
     </font>
    </property>
    <property name="shortcut">
-    <string>Shift+B</string>
+    <string>Alt+1</string>
    </property>
   </action>
   <action name="menu_data_Source">
@@ -6057,7 +6210,7 @@ p, li { white-space: pre-wrap; }
     </font>
    </property>
    <property name="shortcut">
-    <string>Shift+Q</string>
+    <string>Alt+3</string>
    </property>
   </action>
   <action name="menu_file_preference">

@@ -90,7 +90,7 @@ class FLAGS:
         self.name = 'FLAGS'
         self.type = 'NO'
         self.clk = 'NO'
-        self.blClk = 'IN'
+        self.blClk = 'NO'
         self.zwd = 'NO'
         self.gradient = ['NO']
         self.ut1 = ['NO']
@@ -271,6 +271,7 @@ class MAPPING:
         self.mapFun = 'GPT3'
         # self.heopm = 'Desai'
         self.heopm = 'None'
+        self.tidalCorrect = 'IERS'
         
     def getValue(self, lines, keyword, posit):
         p = keyword.index(self.name)
@@ -294,6 +295,9 @@ class MAPPING:
                 if 'HI_FREQ_EOP' in line:
                     temp = list(filter(None,line.split(" ")))
                     self.heopm = temp[1][0:-1]
+                if 'TIDALCORRECT' in line:
+                    temp = list(filter(None, line.split(" ")))
+                    self.tidalCorrect = temp[1][0:-1]
         print('        Reading the %-15s part OK.'%('MAPPING'))
 class CONSTRAINTS:
     def __init__(self):

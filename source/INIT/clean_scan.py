@@ -9,6 +9,8 @@ def updateScanInfo(scanInfo, Param, wrpInfo):
     excludeObs = cleanDelayFlag(scanInfo)
     # if wrpInfo.Flag < 2:
     #     excludeObs += cleanQcode(scanInfo, Param.Setup.qcodeLim)
+    if wrpInfo.Flag >= 2:
+        excludeObs += cleanIonFlag(scanInfo)
     excludeObs += cleanQcode(scanInfo, Param.Setup.qcodeLim)
     # excludeObs = np.zeros(len(scanInfo.Obs2Scan))
 
@@ -18,13 +20,12 @@ def updateScanInfo(scanInfo, Param, wrpInfo):
         excludeObs += cleanSta(rmSta, scanInfo)
               
     # exclude source
-    rmSou = analysisList(Param.Data.sou, scanInfo.sourceAll, 0)
-    if rmSou:
-        excludeObs += cleanSou(rmSou, scanInfo)
+    #rmSou = analysisList(Param.Data.sou, scanInfo.sourceAll, 0)
+    #if rmSou:
+    #    excludeObs += cleanSou(rmSou, scanInfo)
         
     noEstSta = analysisList(Param.Flags.xyz, scanInfo.stationAll, 1, Param, rmSta)
     # noEstSou = analysisList(Param.Flags.sou, scanInfo.sourceAll, 2, Param, rmSou)
-
     refreshScan(scanInfo, excludeObs)
 
     # reference clock set
@@ -185,6 +186,14 @@ def cleanDelayFlag(scanInfo):
         posit = np.where(scanInfo.delayFlag > 0)
         excludeObs[posit[0]] = excludeObs[posit[0]] + 1
     
+    return excludeObs
+
+def cleanIonFlag(scanInfo):
+    excludeObs = np.zeros(len(scanInfo.Obs2Scan), dtype=int)
+
+    posit = np.where(scanInfo.ionFlag != 0)
+    excludeObs[posit[0]] = excludeObs[posit[0]] + 1
+
     return excludeObs
 
 def cleanQcode(scanInfo, qcodeLim):

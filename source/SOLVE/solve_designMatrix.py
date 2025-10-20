@@ -270,14 +270,14 @@ def gradMatrix(scanInfo, ista, staObs, nobs, mjdSta, mjd0, Param, minute, A, H, 
             #wet troposphere
             obs_per_stat, n_unk, n_all, T_ = staWise(mjdSta, mjd0, Param, minute, 'grad')
             Angr,Aegr = apw_gradient(obs_per_stat, T_, n_unk, n_all, minute, ista, staObs, nobs)
-            
             #mat_grad = sparse.eye(n_unk+1) - sparse.eye(n_unk+1, k=1)
             #mat_h = sparse.vstack((mat_grad[0:n_unk,0:n_unk+1],sparse.eye(n_unk+1)))
-            
-            #matRelP = sparse.eye(n_unk)*1/Param.Const.grad[0]**2
-            #matAbsP = sparse.eye(n_unk+1)*1/Param.Const.grad[1]**2
-            #mat_p = sparse.block_diag((matRelP,matAbsP))
-        
+
+            #matRelP = sparse.eye(n_unk) * 1 / Param.Const.grad[0] ** 2
+            #matAbsP = sparse.eye(n_unk + 1) * 1 / Param.Const.grad[1] ** 2
+            #mat_p = sparse.block_diag((matRelP, matAbsP))
+
+
             mat_rel = sparse.eye(n_unk + 1) - sparse.eye(n_unk + 1, k=1)
             mat_abs = np.eye(n_unk + 1)[:n_unk]
             matRelP = sparse.eye(n_unk) * 1 / (Param.Const.grad[0]*1E-2) ** 2
@@ -290,14 +290,14 @@ def gradMatrix(scanInfo, ista, staObs, nobs, mjdSta, mjd0, Param, minute, A, H, 
             # north gradient
             mat_ngr_h = sparse.vstack((mat_rel[:n_unk], mat_abs))
             mat_ngr_p = sparse.block_diag((matRelP, matAbsP))
-            
+
             if flag == 0:
                 A.ngr = Angr
                 A.egr = Aegr
                 H.ngr = mat_ngr_h
                 H.egr = mat_egr_h
                 P.ngr = mat_ngr_p
-                P.egr = mat_egr_p               
+                P.egr = mat_ngr_p
             else:
                 A.ngr = sparse.hstack((A.ngr, Angr))
                 H.ngr = sparse.block_diag((H.ngr, mat_ngr_h))
@@ -704,14 +704,14 @@ def eopMatrix(pEOP, scanMJD, scanObsNum, Param, mjd0, paramName, estParam):
     ---------------------
     """
     if paramName == 'ut1':
-        rad2mas = (180/np.pi)*3600*1000/15 #rad to ms
+        rad2mas = (180 / np.pi) * 3600 * 1000 / 15 # rad to ms
     else:
-        rad2mas = (180/np.pi)*3600*1000
+        rad2mas = (180 / np.pi) * 3600 * 1000 # rad to ms
     mjd1 = min(scanMJD)
     mjd2 = max(scanMJD)
     
-    t1 = (mjd1 - mjd0)*24*60
-    t2 = (mjd2 - mjd0)*24*60
+    t1 = (mjd1 - mjd0) * 24 * 60
+    t2 = (mjd2 - mjd0)* 24 * 60
     
     t_mjd = []
     for iscan in range(len(scanMJD)):
@@ -764,10 +764,15 @@ def eopMatrix(pEOP, scanMJD, scanObsNum, Param, mjd0, paramName, estParam):
     k = 0
     for inter in range(num):
         for iobs in range(stm_eop[inter]):
-            Apwdeop[k,inter] = (1-(t_mjd[k]-inter_eop[inter])/(inter_eop[inter+1]-inter_eop[inter]))*\
-                                deop[k]*const.c*100*(1/rad2mas) #[sec/rad -- cm/mas]
-            Apwdeop[k,inter+1] = (t_mjd[k]-inter_eop[inter])/(inter_eop[inter+1]-inter_eop[inter])*\
-                                deop[k]*const.c*100*(1/rad2mas)
+            #Apwdeop[k,inter] = (1-(t_mjd[k]-inter_eop[inter])/(inter_eop[inter+1]-inter_eop[inter]))*\
+            #                    deop[k]*const.c*100*(1/rad2mas) #[sec/rad -- cm/mas]
+            #Apwdeop[k,inter+1] = (t_mjd[k]-inter_eop[inter])/(inter_eop[inter+1]-inter_eop[inter])*\
+            #                    deop[k]*const.c*100*(1/rad2mas)
+            Apwdeop[k, inter] = (1 - (t_mjd[k] - inter_eop[inter]) / (inter_eop[inter + 1] - inter_eop[inter])) * \
+                                deop[k] * const.c * (1 / rad2mas)  # [sec/rad -- m/mas]
+            Apwdeop[k, inter + 1] = (t_mjd[k] - inter_eop[inter]) / (inter_eop[inter + 1] - inter_eop[inter]) * \
+                                    deop[k] * const.c * (1 / rad2mas) # [sec/rad -- m/mas]
+
             k += 1
     
     

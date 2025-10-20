@@ -19,7 +19,7 @@ from COMMON.time_transfer import *
 
 def collectResult(param, scanInfo, stationInfo, sourceInfo, staObs, eopApri, result):
     out = OUTRESULT()
-    
+
     paramS = result.paramName.index('ut1')
     estP = np.where(result.paramNum[paramS:] > 0)
     out.estFlag[estP[0]] = 1
@@ -86,6 +86,7 @@ def collectResult(param, scanInfo, stationInfo, sourceInfo, staObs, eopApri, res
     
     souP = result.paramName.index('sou') - paramS
     aprioriSou(param, scanInfo, sourceInfo, result, param.Flags.sou[0], souP, out)
+
     
     return out
 
@@ -113,7 +114,7 @@ def aprioriSta(param, scanInfo, stationInfo, staObs, result, estflag, xyzP, out)
     staAprPosit = []
     for sta in range(len(scanInfo.stationAll)):
         if not scanInfo.stationAll[sta] in param.Flags.xyz:
-            nsCode.append([ns_code[sta][3],ns_code[sta][2],ns_code[sta][1],ns_code[sta][4]])
+            nsCode.append([ns_code[sta][3],ns_code[sta][2],ns_code[sta][1],ns_code[sta][5]])
             meanTime.append(staObs.meanTime[sta])
             staAprPosit.append(staObs.meanPosit[sta])
     out.nscode = nsCode

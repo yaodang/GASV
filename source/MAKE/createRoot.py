@@ -50,7 +50,7 @@ def createHead(path, session, staAll, souAll, scanNum, obsNum):
     data.createDimension('NumSource', souNum)
     data.createDimension('NumStation', staNum)
     
-    data.createVariable('Session', 'S1', (DimX))
+    #data.createVariable('Session', 'S1', (DimX))
     data.createVariable('ExpName', 'S1', ('DimX000006'))
     data.createVariable('ExpDescription', 'S1', ('DimX000010'))
     data.createVariable("NumStation", np.int32, ("DimUnity"))
@@ -67,7 +67,7 @@ def createHead(path, session, staAll, souAll, scanNum, obsNum):
     data.variables['NumSource'][:] = souNum
     data.variables['NumScan'][:] = scanNum
     data.variables['NumObs'][:] = obsNum
-    data.variables['Session'][:] = np.char.encode(list(session))
+    #data.variables['Session'][:] = np.char.encode(list(session))
 
     for i in range(staNum):
         data.variables['StationList'][i,:] = np.char.encode(list(staAll[i]))
@@ -99,6 +99,8 @@ def createWrpFile(path, staAll, flag, *args):
             
         fid.writelines('Begin Session\n'+\
                        'Head.nc\n'+\
+                       'Source.nc\n'+\
+                       'Station.nc\n'+\
                        'StationCrossRef.nc\n'+\
                        'SourceCrossRef.nc\n'+\
                        'End Session\n!\n')
