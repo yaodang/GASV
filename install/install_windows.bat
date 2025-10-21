@@ -34,10 +34,10 @@ set "PARENT_DIR=%PARENT_DIR:~0,-1%"
 
 rem echo %PARENT_DIR%
 
-rem pyinstaller -n GASVGUI -i %PARENT_DIR%\source\GUI\icons\swallow.png %PARENT_DIR%\source\GASV_GUI.py
+rem pyinstaller -n GASVGUI -i %PARENT_DIR%\source\GUI\icons\swallow.png %PARENT_DIR%\source\GASVGUI.py
 rem copy "%PARENT_DIR%\source\directory.ini" "dist\GASVGUI\"
 
-pyinstaller -n GASVR %PARENT_DIR%\source\run.py
+pyinstaller -n GASVR %PARENT_DIR%\source\GASVR.py
 
 echo Install over.
 
