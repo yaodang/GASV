@@ -147,7 +147,6 @@ def processScan(args):
         oc_obs.append([])
         pObs.append([])
 
-    #fid = open('/home/GeoAS/Work/grav.delay', 'w')
     for iscan in scanList:
         
         # the observe source vector
@@ -193,11 +192,6 @@ def processScan(args):
             # gravity deformation correct
             com_delay += results[idSta2].staObs[iscan2][9] - results[idSta1].staObs[iscan1][9]
 
-
-            #fid.writelines('%2d %2d %5.1f %5.1f %10.1f ps\n'%(idSta1,idSta2,(np.pi/2-results[idSta1].staObs[iscan1][4])*180/np.pi, \
-            #                                                  (np.pi/2-results[idSta2].staObs[iscan2][4]) * 180 / np.pi,\
-            #                                      (results[idSta2].staObs[iscan2][9] - results[idSta1].staObs[iscan1][9])*1E12))
-
                         
             if createFlag != 'CREATE':
                 
@@ -205,12 +199,6 @@ def processScan(args):
                 for iband in range(bandNum):
                     oc_obs[iband].append(scanGD[iscan][iband][ib]+corcab-com_delay)
                     pObs[iband].append(scanGDSig[iscan][iband][ib])
-
-                    #if iband == 1:
-                    #    fid.writelines('%20.15f %20.15f %20.15f %20.15f %20.15f\n'%(scanGD[iscan][iband][ib]+corcab,com_delay,
-                    #                                                                results[idSta2].staObs[iscan2][7] - results[idSta1].staObs[iscan1][7],
-                    #                                                                results[idSta2].staObs[iscan2][5] - results[idSta1].staObs[iscan1][5],
-                    #                                                                results[idSta2].staObs[iscan2][9] - results[idSta1].staObs[iscan1][9]))
 
 
                 # delayScan.oc_obs.append(scanGD[iscan][ib]+corcab-com_delay)
@@ -249,7 +237,7 @@ def processScan(args):
             delayScan.psou.append(psou)
 
         delayScan.pxyzt.append(pxyz) #modify 2022.11.24
-    #fid.close()
+
     delayScan.oc_obs = oc_obs
     delayScan.pObs = pObs
     
