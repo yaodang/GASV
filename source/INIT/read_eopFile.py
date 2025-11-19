@@ -8,7 +8,7 @@ import os, math
 import numpy as np
 import sys
 
-from source.COMMON.time_transfer import leap_second
+from COMMON.time_transfer import leap_second
 
 sys.path.append("..//")
 from COMMON import *

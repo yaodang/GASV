@@ -23,11 +23,8 @@ source "$CONDAINIT"
 echo "Activate conda environment: $CONDAENV"
 conda activate $CONDAENV
 
-pyinstaller -n $NAMER -w ../source/GASVR.py
-cp -r ../source/EXTERNAL dist/$NAMER/_internal/
-pyinstaller -n $NAMEG ../source/GASVGUI.py
-cp -r ../source/EXTERNAL dist/$NAMEG/_internal/
-cp ../source/directory.ini dist/$NAMEG/_internal/
+pyinstaller -n $NAMER -w --add-data "../source/EXTERNAL:./EXTERNAL" ../source/GASVR.py
+pyinstaller -n $NAMEG --add-data "../source/EXTERNAL:./EXTERNAL" --add-data "../source/directory.ini:." ../source/GASVGUI.py
 
 if grep -qxF "export PATH=\"\$PATH:$SOFTRPATH\"" ~/.bashrc; then
     echo "The path '$SOFTRPATH' already in .bashrc"
