@@ -2,6 +2,7 @@
 
 import sys,os,time
 import re,copy,zipfile
+import multiprocessing
 
 from INIT.init import *
 from MOD.mod import *
@@ -10,7 +11,7 @@ from GLOB.GLOB_glob import *
 from OUT import *
 from MAKE import *
 
-# makedb -d 23JAN11XA -o /Users/dangyao/work/software/VIPS/vgosDb/2023 /Users/dangyao/Downloads/crf134
+# mkcalc -d 23JAN11XA -o /Users/dangyao/work/software/VIPS/vgosDb/2023 /Users/dangyao/Downloads/crf134
 # plog -p /Users/dangyao/work/software/VIPS/STALOG -k log /Users/dangyao/work/software/VIPS/vgosDb/2022/22JUN24XG
 # D:/software/V1.9.8/APRIORI/cnt.txt
 # makedb -d 23OCT18NU -o D:/data/VLBI/vgosDB/2023 D:/data/VLBI/HOPS_OUT/U231018
@@ -27,7 +28,7 @@ def check():
     elif sys.argv[1] == 'init':
         creatPath()
         
-    elif sys.argv[1] == 'makedb':
+    elif sys.argv[1] == 'mkcalc':
         runFlag = 1
         runInfo = {'ac':'','dbName':'','outPath':'','inPath':''}
         
@@ -48,11 +49,11 @@ def check():
 
         return runFlag,runInfo
     
-    elif sys.argv[1] == 'calc':
-        runFlag = 2
-        runInfo = [sys.argv[2]]
+    #elif sys.argv[1] == 'calc':
+    #    runFlag = 2
+    #    runInfo = [sys.argv[2]]
         
-        return runFlag,runInfo
+    #    return runFlag,runInfo
     
     elif sys.argv[1] == 'plog':
         runFlag = 3
@@ -82,14 +83,14 @@ def printHelp():
           "           --help: print help information\n\n"+\
           "             init: create the work path\n"+\
           "                   <path>-- the work path\n\n"+\
-          "           makedb: create the vgosDB file from HOPS output, the parameter is:\n"+\
+          "           mkcalc: create the vgosDB file from HOPS output, the parameter is:\n"+\
           "                   -a 'AnalysisName'\n"+\
           "                   -d 'databaseName'\n"+\
           "                   -o 'outputDir'\n"+\
           "                   -c 'iniFile'\n"+\
           "                   'fringe data path'\n\n"+\
-          "             calc: create the vgosDB version 2, the parameter is:\n"+\
-          "                   <wrap file>-- the vgosDB wrap file\n\n"+\
+          #"             calc: create the vgosDB version 2, the parameter is:\n"+\
+          #"                   <wrap file>-- the vgosDB wrap file\n\n"+\
           "             plog: read the station log or other file, the parameter is:\n"+\
           "                   -p 'log path'\n"+\
           "                   -k [log|met|cable]\n"+\
@@ -132,6 +133,7 @@ def main():
         makedb(runInfo)
     
     Param = PARAMETER()
+    '''
     if runFlag == 2:
         Param.Setup.calctheroe = 'CREATE'
         wrapName = sys.argv[2]
@@ -147,6 +149,7 @@ def main():
         else:
             print('    The wrap not exists!')
             sys.exit()
+    '''
     
     if runFlag == 3:
         pLog(runInfo)
@@ -204,6 +207,7 @@ def process(ParamApri):
         fid.close()
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     startTime = time.time()
     main()
     stopTime = time.time()

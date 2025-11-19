@@ -38,7 +38,7 @@ def collectResult(param, scanInfo, stationInfo, sourceInfo, staObs, eopApri, res
         if param.Flags.type == 'POLY':
             eopmMJD = np.array([scanInfo.refMJD])
         
-        meanEOP = interpEOP(eopApri, eopmMJD, param, 0)
+        meanEOP = interpEOP(eopApri, eopmMJD, param.Map.heopm, 0)
         
         
         temp = result.paramName.index('ut1')

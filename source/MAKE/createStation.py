@@ -3,52 +3,50 @@
 import netCDF4 as nc
 import numpy as np
 import os
+from INIT.read_sourceFile import *
 from MOD.mod_staCorr import *
+from COMMON.coordinate_transfer import *
 
-def createAzEl(path, session, station, StatScan, scanState):
+
+def createAzEl(path, RaDec, souPosit, staXYZ, trs2crs):
     """
     Create the <STATION>/AzEl.nc file.
 
     Parameters
     ----------
     path : the path of vgosDb.
-    session : experiment name.
-    station : the station name
-    StatScan : scan posit and station posit in scan.
-    scanState : the ellipsoidal coordinates lam,phi,elh for each station of each scan.
+    RaDec : the rigth ascension and declination of observed source [rad].
+    souPosit : the observed source position in RaDec.
+    staXYZ : the station ITRF coordinates [m].
+    trs2crs : TRS transfer to CRS matrix.
 
     Returns
     -------
     The <STATION>/AzEl.nc is created.
     """
     
-    ncFile = path+'/'+station.strip()+'/AzEl.nc'
-    makeFile(ncFile)    
+    ncFile = path + '/AzEl.nc'
+    makeFile(ncFile)
         
     data = nc.Dataset(ncFile,'w',format='NETCDF4')
 
-    numStatScan = len(StatScan[0])
+    numStatScan = len(souPosit)
     data.createDimension('Char_x_6',6)
     data.createDimension('Char_x_8',8)
     data.createDimension('NumStatScan',numStatScan)
     data.createDimension('DimX000002',2)
 
-    data.createVariable("Session",'S1',("Char_x_6"))
-    data.createVariable("Station",'S1',("Char_x_8"))
     data.createVariable("ElTheo",np.float64,("NumStatScan",'DimX000002'))
     data.createVariable("AzTheo",np.float64,("NumStatScan",'DimX000002'))
 
-
+    lam, phi, height = xyz2ell(staXYZ)
     Az = []
     El = []
     for i in range(numStatScan):
-        
-        Az.append([scanState[StatScan[0][i]][StatScan[1][i]][3],0])
-        El.append([np.pi/2-scanState[StatScan[0][i]][StatScan[1][i]][4],0])
-
-    
-    data.variables['Session'][:]=np.char.encode(list(session))
-    data.variables['Station'][:]=np.char.encode(list(station))
+        rq, pRaDec = partialSource(RaDec[souPosit[i]-1][0],RaDec[souPosit[i]-1][1])
+        az, zd, corz, de, LHAe = locsource(lam, phi, rq, trs2crs[i])
+        Az.append([az*180/np.pi,0])
+        El.append([(np.pi/2-zd)*180/np.pi,0])
     
     data.variables['ElTheo'][:] = np.array(El)
     data.variables['AzTheo'][:] = np.array(Az)

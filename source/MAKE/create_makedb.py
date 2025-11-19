@@ -15,6 +15,7 @@ from MAKE.MK4Type import *
 from COMMON import *
 from INIT.read_stationFile import read_ocean_tidal
 
+
 def makedb(dbInfo):
     '''
     Create the vgosDB format from fringe data
@@ -61,26 +62,38 @@ def makedb(dbInfo):
     # create CrossReference path file
     print('    Creating the file of CrossReference dir...')
     crossPath = vgosDBPath+'/CrossReference'
-    souAll = createSourceCrossRef(crossPath, np.array(result.scanSou))
-    staAll,Scan2Station = createStationCrossRef(crossPath, result.scanSta, numScan)
+    souAll, Scan2Source = createSourceCrossRef(crossPath, np.array(result.scanSou))
+    staAll, Scan2Station = createStationCrossRef(crossPath, result.scanSta, numScan)
     Obs2Scan, blSort = createObsCrossRef(crossPath, result.scanBL, staAll)
 
     # create Apriori path file
     print('    Creating the file of Apriori dir...')
     paramPath = read_dbPathFile(dbInfo['iniFile'])
     aprioriPath = vgosDBPath + '/Apriori'
-    createSource(aprioriPath, session, souAll, paramPath['apriori']['souf'])
-    createStation(aprioriPath, session, staAll, paramPath['apriori']['staf'])
+    RaDec = createSource(aprioriPath, session, souAll, paramPath['apriori']['souf'])
+    StaXYZ = createStation(aprioriPath, session, staAll, paramPath['apriori']['staf'])
     #createAntenna(aprioriPath, session, numSta, staList, stationInfo)
+
+    mjdObs = np.array(result.scanTime)[:,-1]
+    eop = read_eop(paramPath['apriori']['eopf'], mjdObs)
+    eopObs = interpEOP(eop, mjdObs, 'Desai', 1)
+    scanList = np.linspace(0, len(mjdObs) - 1, len(mjdObs), dtype=int)
+    t2c = mod_trs2crsn(eopObs, scanList, 'NO')
 
     # create Station path file
     for i in range(len(staAll)):
         sta = staAll[i]
         print('    Creating the file of %-8s dir...'%sta)
-        #createAzEl(vgosDBPath+'/'+sta.strip(), session, sta, StatScan, scanStat)
         cto = read_ocean_tidal(paramPath['apriori']['octf'], sta)
+        print('        Dis-OceanLoad.nc...')
         createOceanTidal(vgosDBPath + '/' + sta.strip(), result.scanTime, Scan2Station[:,i], cto)
+        print('        TimeUTC.nc...')
         createStaTimeUTC(vgosDBPath + '/' + sta.strip(), result.scanTime, Scan2Station[:, i])
+
+        print('        AzEl.nc...')
+        scanPosit = np.where(Scan2Station[:, i]!=0)[0]
+
+        createAzEl(vgosDBPath + '/' + sta.strip(), RaDec, Scan2Source[scanPosit], StaXYZ[i], t2c.trs2crs[scanPosit])
     
     # create Observables path file
     print('    Creating the file of Observables dir...')

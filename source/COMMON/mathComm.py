@@ -3,6 +3,26 @@
 import numpy as np
 from itertools import *
 
+def calculate_bl_lengths(stations):
+
+    n = len(stations)
+    if n < 2:
+        return {}
+
+    pairs = Cnm(range(n),2)
+    baselines = {}
+
+    for i,j in pairs:
+        dx = stations[i][0] - stations[j][0]
+        dy = stations[i][1] - stations[j][1]
+        dz = stations[i][2] - stations[j][2]
+        distance = np.sqrt(dx**2+dy**2+dz**2)
+
+        baselines[(i,j)] = distance
+
+    return baselines
+
+
 def Cnm(inputList,num):
     '''
     Get the permutation combination result

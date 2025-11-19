@@ -30,6 +30,12 @@ class MyForm(QMainWindow):
         
         
         # the class of plot
+        self.plot_mapsta = PlotMapSta(50,50)
+        self.ui.horizontalLayout_prarm_mapsta.addWidget(self.plot_mapsta)
+
+        self.plot_mapsou = PlotMapSou(50, 50)
+        self.ui.horizontalLayout_prarm_mapsou.addWidget(self.plot_mapsou)
+
         self.plot_res = PlotRes(50,50)
         self.ui.verticalLayout_plot_res.addWidget(self.plot_res)
         self.plot_res.finished_clk.connect(self.plot_signal_showClockBreak)
@@ -377,7 +383,7 @@ class MyForm(QMainWindow):
                 
     @Slot(int,int)
     def on_table_data_bl_cellClicked(self, row, column):
-        if column == 4:
+        if column == 5:
             temp = self.ui.table_data_bl.currentIndex().data()
             if temp == 'Y':
                 item = QTableWidgetItem('')
@@ -394,7 +400,7 @@ class MyForm(QMainWindow):
             item.setTextAlignment(Qt.AlignCenter)
             self.ui.table_data_bl.setItem(row, column, item)
                 
-        if column == 5:
+        if column == 6:
             temp = self.ui.table_data_bl.currentIndex().data()
             if temp == 'X':
                 item = QTableWidgetItem('')
@@ -723,8 +729,8 @@ class MyForm(QMainWindow):
         rmObsBl = []
         if self.runFlag == 1:
             for i in range(self.ui.table_data_bl.rowCount()):
-                if self.ui.table_data_bl.item(i,5) != None:
-                    if self.ui.table_data_bl.item(i,5).text() == 'X':
+                if self.ui.table_data_bl.item(i,6) != None:
+                    if self.ui.table_data_bl.item(i,6).text() == 'X':
                         rmObsBl.extend(self.scanInfo.blResPosit[i].tolist())
                         
                         self.scanInfo.delayFlag += pickRmObs(self.scanInfo.Obs2Scan, self.scanInfo.Obs2Baseline, self.scanInfo.blResPosit[i], 1)
@@ -800,7 +806,7 @@ class MyForm(QMainWindow):
                 
                 item = QTableWidgetItem('Y')
                 item.setTextAlignment(Qt.AlignCenter)
-                self.ui.table_data_bl.setItem(blPosit, 4, item)
+                self.ui.table_data_bl.setItem(blPosit, 5, item)
         
     
     def onBottonClick_ambAddandSub(self, flag):
@@ -930,7 +936,7 @@ class MyForm(QMainWindow):
             for i in range(rowNum - 1):
                 item = QTableWidgetItem('')
                 item.setTextAlignment(Qt.AlignCenter)
-                self.ui.table_data_bl.setItem(i, 4, item)
+                self.ui.table_data_bl.setItem(i, 5, item)
 
     def onBottonClick_clkbkMode(self):
         if self.ui.radioButton_plot_station.isChecked():
@@ -1200,7 +1206,7 @@ class MyForm(QMainWindow):
             blRow = self.ui.comboBox_plot_baseline.currentIndex()
             item = QTableWidgetItem('X')
             item.setTextAlignment(Qt.AlignCenter)
-            self.ui.table_data_bl.setItem(blRow, 5, item)
+            self.ui.table_data_bl.setItem(blRow, 6, item)
         
     def onBottonClick_omitSta(self):
         reply = QMessageBox.question(self,'Omit Station?','Omit the %s station data?'\
@@ -1322,8 +1328,18 @@ class MyForm(QMainWindow):
     def onBottonClick_reWeight(self):
         if self.runFlag == 1:
             if hasattr(self.result, 'chis'):
-                self.Param.Setup.weight = 'BL'
-                self.onBottonClick_process()
+                rowNum = self.ui.table_data_bl.rowCount()
+                k = 0
+                for i in range(rowNum-1):
+                    num = int(self.ui.table_data_bl.item(i, 4).text())
+                    if num <= 1:
+                        K += 1
+                if k == 0:
+                    self.Param.Setup.weight = 'BL'
+                    self.onBottonClick_process()
+                else:
+                    QMessageBox.warning(self,'Warning','Observe number of some baselines equal to 1!', QMessageBox.Yes)
+
     def onBottonClick_saveOut(self):
         self.outFlag = [self.ui.checkBox_plot_report.isChecked(),\
                         self.ui.checkBox_plot_eopout.isChecked(),\
@@ -1872,6 +1888,18 @@ class MyForm(QMainWindow):
             #if self.ui.radioButton_file_wrp.isChecked():
             if self.ui.comboBox_dataType.currentIndex() == 0:
                 self.scanInfo, self.wrpInfo = read_vgosDB(self.Param, 0)
+                latAll = []
+                lonAll = []
+                for i in range(len(self.scanInfo.stationAll)):
+                    lon,lat,height = xyz2ell(self.scanInfo.staPosit[i])
+                    latAll.append(lat*180/np.pi)
+                    lonAll.append(lon*180/np.pi)
+                self.plot_mapsta.clearMap()
+                self.plot_mapsta.plotStation(latAll,lonAll,self.scanInfo.stationAll)
+                self.plot_mapsou.clearMap()
+                self.plot_mapsou.plotSource(self.scanInfo.souPosit)
+
+
                 '''
                 try:
                     self.scanInfo, self.wrpInfo = read_vgosDB(self.Param, 0)
@@ -1907,25 +1935,25 @@ class MyForm(QMainWindow):
             sMon = getMon(int(self.scanInfo.scanTime[0,1]))
             eMon = getMon(int(self.scanInfo.scanTime[-1,1]))
             self.ui.textBrowser_information.clear()
-            self.ui.textBrowser_information.insertPlainText('\nSession/Code:                                       %s/%s\n\n'\
+            self.ui.textBrowser_information.insertPlainText('\nSession/Code:                                  %s/%s\n'\
                                                             %(self.Param.Arcs.session[0],self.scanInfo.expName)+\
-                                                            'Experiment description:                             %s\n\n'\
+                                                            'Experiment description:                        %s\n'\
                                                             %self.scanInfo.expDescrip+\
-                                                            'Epoch of the first observation:                     %02d %s %4d;%02d:%02d:%7.4f\n\n'\
+                                                            'Epoch of the first observation:                %02d %s %4d;%02d:%02d:%7.4f\n'\
                                                             %(self.scanInfo.scanTime[0,2],sMon,self.scanInfo.scanTime[0,0],\
                                                             self.scanInfo.scanTime[0,3],self.scanInfo.scanTime[0,4],self.scanInfo.scanTime[0,5])+\
-                                                            'Epoch of the last observation:                      %02d %s %4d;%02d:%02d:%7.4f\n\n'\
+                                                            'Epoch of the last observation:                 %02d %s %4d;%02d:%02d:%7.4f\n'\
                                                             %(self.scanInfo.scanTime[-1,2],eMon,self.scanInfo.scanTime[-1,0],\
                                                             self.scanInfo.scanTime[-1,3],self.scanInfo.scanTime[-1,4],self.scanInfo.scanTime[-1,5])+\
-                                                            'Interval of observation:                            %02dhr %02dmin %5.2fsec\n\n'\
+                                                            'Interval of observation:                       %02dhr %02dmin %5.2fsec\n'\
                                                             %(hour,minu,sec)+\
-                                                            'Number of scan:                                     %-5d\n\n'\
+                                                            'Number of scan:                                %-5d\n'\
                                                             %(len(self.scanInfo.scanMJD))+\
-                                                            'Number of observe:                                  %-5d\n\n'\
+                                                            'Number of observe:                             %-5d\n'\
                                                             %obsNum+\
-                                                            'Number of station:                                  %-2d\n\n'\
+                                                            'Number of station:                             %-2d\n'\
                                                             %(len(self.scanInfo.stationAll))+\
-                                                            'Number of source:                                   %-2d'\
+                                                            'Number of source:                              %-2d'\
                                                             %(len(self.scanInfo.sourceAll)))
 
             self.initEstParam()
@@ -1951,12 +1979,12 @@ class MyForm(QMainWindow):
                     self.ui.pushButton_plot_ionZero.setEnabled(True)
                 index = 1
                 
-            qcodeLine = 'Number proportion of qcode:                        '
+            qcodeLine = 'Number proportion of qcode:                   '
             for i in range(6):
                 temp = np.where(self.scanInfo.qCode[index]==(i+4))[0]
                 qcodeLine += ' %d(%3.1f%%)'%(i+4,len(temp)/obsNum*100)
 
-            self.ui.textBrowser_information.insertPlainText('\n\n%s'%qcodeLine)
+            self.ui.textBrowser_information.insertPlainText('\n%s'%qcodeLine)
             
             if method == 'plot':
                 self.onBottonClick_process()
@@ -2167,40 +2195,50 @@ class MyForm(QMainWindow):
             self.ui.table_data_bl.setItem(i, 0, QTableWidgetItem(str(i)))
             self.ui.table_data_bl.setItem(i, 1, QTableWidgetItem(self.scanInfo.stationAll[usebl[i][0]-1]+'-'+\
                                                                       self.scanInfo.stationAll[usebl[i][1]-1]))
-            temp = np.where(np.sum(np.abs(self.scanInfo.Obs2Baseline - usebl[i]),axis=1)==0)
-            item = QTableWidgetItem(str(len(temp[0])))
 
+            # compute baseline length
+            sta_xyz1 = self.scanInfo.staPosit[usebl[i][0]-1]
+            sta_xyz2 = self.scanInfo.staPosit[usebl[i][1]-1]
+            bllength = np.sqrt((sta_xyz1[0]-sta_xyz2[0])**2 + \
+                               (sta_xyz1[1]-sta_xyz2[1])**2 + \
+                               (sta_xyz1[2]-sta_xyz2[2])**2)
+            item = QTableWidgetItem(str('%9.3f'%(bllength*1E-3)))
             item.setTextAlignment(Qt.AlignCenter)
             self.ui.table_data_bl.setItem(i, 2, item)
+
+            temp = np.where(np.sum(np.abs(self.scanInfo.Obs2Baseline - usebl[i]), axis=1) == 0)
+            item = QTableWidgetItem(str(len(temp[0])))
+            item.setTextAlignment(Qt.AlignCenter)
+            self.ui.table_data_bl.setItem(i, 3, item)
             
             item = QTableWidgetItem(str(useblNum[i]))
             item.setTextAlignment(Qt.AlignCenter)
-            self.ui.table_data_bl.setItem(i,3,item)
+            self.ui.table_data_bl.setItem(i,4,item)
             
             item = QTableWidgetItem('')
             item.setTextAlignment(Qt.AlignCenter)
-            self.ui.table_data_bl.setItem(i,5,item)
+            self.ui.table_data_bl.setItem(i,6,item)
             
             #------------------ baseline clock flag ---------------------#
             flag = 0
             # tempbl = [usebl[i][0]-1, usebl[i][1]-1]
             if usebl[i] in self.scanInfo.blClkList:
-                if self.ui.table_data_bl.item(i,4)==None:
+                if self.ui.table_data_bl.item(i,5)==None:
                     flag += 1
-                elif self.ui.table_data_bl.item(i,4).text() != 'Y':
+                elif self.ui.table_data_bl.item(i,5).text() != 'Y':
                     flag += 1
                 if flag:
                     item = QTableWidgetItem('Y')
                     item.setTextAlignment(Qt.AlignCenter)
-                    self.ui.table_data_bl.setItem(i,4,item) 
+                    self.ui.table_data_bl.setItem(i,5,item)
             else:
                 item = QTableWidgetItem('')
                 item.setTextAlignment(Qt.AlignCenter)
-                self.ui.table_data_bl.setItem(i,4,item)
+                self.ui.table_data_bl.setItem(i,5,item)
 
         item = QTableWidgetItem(str(sum(useblNum)))
         item.setTextAlignment(Qt.AlignCenter)
-        self.ui.table_data_bl.setItem(len(usebl), 3, item)
+        self.ui.table_data_bl.setItem(len(usebl), 4, item)
                 
     def updateGlobSourceTab(self):
         

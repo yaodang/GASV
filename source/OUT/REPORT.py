@@ -102,7 +102,7 @@ def writeSFF(param, scanInfo, eopApri, result, out):
     # EOP
     #meanMJD = (scanInfo.scanMJD[0]+scanInfo.scanMJD[-1])/2
     meanMJD = scanInfo.refMJD
-    meanEOP = interpEOP(eopApri, [meanMJD], param, 0)
+    meanEOP = interpEOP(eopApri, [meanMJD], param.Map.heopm, 0)
     
     year,mon,day,hours,minutes,seconds = mjd2date(meanMJD)
     hour = (meanMJD-int(meanMJD))*24

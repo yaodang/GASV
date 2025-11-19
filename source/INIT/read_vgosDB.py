@@ -3,8 +3,6 @@
 import os,sys
 import re
 
-from source.COMMON.other import changeBlank
-
 sys.path.append("..//")
 import netCDF4 as nc
 import numpy as np
@@ -826,7 +824,8 @@ def read_QualityCode(scanInfo, sessionPath, wrpInfo):
             # vgosDB from calc/solve
             posit = np.where(((temp == '') | (temp == ' ') | (temp == 'A') | (temp == 'C') |\
                               (temp == 'D') | (temp == 'E') | (temp == 'F') | (temp == 'J')| \
-                              (temp == 'B')))
+                              (temp == 'B') | (temp == 'y') | (temp == 'K') | (temp == 'H')| \
+                              (temp == 'O')))
             temp[posit] = '0'
 
             if len(temp) == 1:

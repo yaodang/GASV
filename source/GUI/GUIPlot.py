@@ -1,13 +1,108 @@
 import matplotlib
+from matplotlib.lines import drawStyles, lineStyles
+from scipy.sparse.csgraph import bellman_ford
+
 matplotlib.use('Qt5Agg')
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import matplotlib.ticker as ticker
 from matplotlib.pyplot import MultipleLocator
+from matplotlib.widgets import RectangleSelector
 from PyQt5.QtCore import pyqtSignal as Signal
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+from cartopy.mpl.gridliner import LONGITUDE_FORMATTER,LATITUDE_FORMATTER
 import numpy as np
 from COMMON import *
 
+class PlotMapSou(FigureCanvas):
+    def __init__(self, width, height):
+        self.fig = Figure(figsize=(width, height), tight_layout=True)
+        self.axes = self.fig.add_subplot(111, projection='mollweide')
+        FigureCanvas.__init__(self, self.fig)
+
+        self.markers = []
+
+        self.initMap()
+
+    def initMap(self):
+        self.axes.set_xticks(np.radians([-180,-150,-120,-90,-60,-30,0,30,60,90,120,150]))
+        self.axes.set_xticklabels(['12h','','','','','','','','','','',''], ha='right')
+        self.axes.set_yticks(np.radians([90,60,30,0,-30,-60,-90]))
+        self.axes.set_yticklabels(['+90','','','','','','-90'])
+        self.axes.grid(True, alpha=0.3)
+
+        self.draw()
+
+    def plotSource(self, radec):
+        for i in range(len(radec)):
+            if radec[i][0] > np.pi:
+                radec[i][0] -= 2*np.pi
+            marker = self.axes.plot(radec[i,0], radec[i,1], color='black', marker='o', linestyle='None', markersize=5)[0]
+            self.markers.append(marker)
+
+        self.draw()
+
+    def clearMap(self):
+        if len(self.markers):
+            for marker in self.markers:
+                marker.remove()
+            self.markers = []
+            self.draw()
+
+class PlotMapSta(FigureCanvas):
+
+    def __init__(self, width, height):
+        self.fig = Figure(figsize=(width, height), tight_layout=True)
+        self.axes = self.fig.add_subplot(111, projection=ccrs.PlateCarree())
+        FigureCanvas.__init__(self, self.fig)
+
+        self.markers = []
+        self.labels = []
+        self.initMap()
+
+    def initMap(self):
+        self.axes.set_global()
+        self.axes.add_feature(cfeature.COASTLINE, linewidth=0.5)
+        self.axes.add_feature(cfeature.BORDERS, linestyle='--', linewidth=0.3)
+        gl = self.axes.gridlines(crs=ccrs.PlateCarree(),
+                                 draw_labels=True,
+                                 linewidth=0.5,
+                                 color='gray',
+                                 linestyle='--')
+        gl.top_labels = False
+        gl.right_labels = False
+        gl.xformatter = LONGITUDE_FORMATTER
+        gl.yformatter = LATITUDE_FORMATTER
+        gl.xlabel_style = {'size': 10}
+        gl.ylabel_style = {'size': 10}
+
+        self.draw()
+
+    def plotStation(self, lat, lon, stationList):
+        for i in range(len(lat)):
+            marker = self.axes.plot(lon[i], lat[i], marker='o',transform=ccrs.PlateCarree(),
+                              color='red',linestyle='None')[0]
+            label = self.axes.text(lon[i]+2, lat[i]+2,
+                                   stationList[i],
+                                   transform = ccrs.PlateCarree(),
+                                   fontsize = 8,
+                                   color = 'red')
+                                   #bbox=dict(facecolor='white',alpha=0.4))
+
+            self.markers.append(marker)
+            self.labels.append(label)
+        self.draw()
+
+    def clearMap(self):
+        if len(self.markers):
+            for marker in self.markers:
+                marker.remove()
+            self.markers = []
+            for  label in self.labels:
+                label.remove()
+            self.labels = []
+            self.draw()
 
 class PlotRes(FigureCanvas):
     finished_clk = Signal(object)
@@ -25,16 +120,15 @@ class PlotRes(FigureCanvas):
         FigureCanvas.__init__(self, self.fig)
         self.axes = self.fig.add_subplot(111)
         self.figInit()
-        
+
+
         # self.background = None
-        self.canvas = FigureCanvas(self.fig)
-        
-        # self.canvas.mpl_connect('motion_notify_event', self.on_move)
-        # self.canvas.mpl_connect('draw_event', self.clear)
-        self.chid1 = self.canvas.mpl_connect('button_press_event', self.onClick)
-        self.chid3 = self.canvas.mpl_connect("button_release_event", self.onRelease)
+        #self.canvas = FigureCanvas(self.fig)
+
+        self.chid1 = self.fig.canvas.mpl_connect('button_press_event', self.onClick)
+        #self.chid3 = self.canvas.mpl_connect("button_release_event", self.onRelease)
         # self.chid4 = self.canvas.mpl_connect("scroll_event", self.do_scrollZoom)
-        
+
     def initParam(self, scanInfo, stationInfo, result, session):
         self.scanInfo = scanInfo
         self.stationInfo = stationInfo
@@ -217,6 +311,8 @@ class PlotRes(FigureCanvas):
                 self.rectSy = event.ydata
                 
             if event.dblclick:
+                self.leftSelector.set_active(False)
+                self.rightSelector.set_active(False)
                 showPosit = []
                 minValue = []
                 for i in range(len(self.xData)):
@@ -231,7 +327,11 @@ class PlotRes(FigureCanvas):
                 if min(minValue) < space:
                     blPosit = self.xbl[index[0]]
                     self.signal_dbclick.emit(blPosit, showPosit[index[0]])
-                        
+
+            else:
+                self.leftSelector.set_active(True)
+                self.rightSelector.set_active(True)
+
                 
     def onRelease(self, event):
         '''
@@ -318,7 +418,111 @@ class PlotRes(FigureCanvas):
                         
                         self.draw()
 
-        
+    def onLegtRelease(self, eclick, erelease):
+        '''
+        Get the select region and amplify, if outlier mode, point the select.
+
+        '''
+
+        x1, y1 = eclick.xdata, eclick.ydata
+        x2, y2 = erelease.xdata, erelease.ydata
+
+        if self.outlierFlag == 1:
+            selectPoint = [[], [],
+                           []]  # first is xData index, second is baseline index, third is resposit index
+            for i in range(len(self.xData)):
+                p1 = np.where((self.xData[i] >= x1) & (self.xData[i] <= x2))[0]
+                if len(p1):
+                    p2 = np.where((self.yData[i][p1] >= y1) & (self.yData[i][p1] <= y2))[0]
+
+                    if len(p2):
+                        selectPoint[0].append(i)
+                        selectPoint[1].append(self.xbl[i])
+                        selectPoint[2].append(p1[p2].tolist())
+
+
+            for i in range(len(selectPoint[0])):
+                # self.axes.plot(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
+                #                color=self.plotColor[selectPoint[0][i]],marker='o',mfc='w',linestyle='None')
+                self.axes.errorbar(self.xData[selectPoint[0][i]][selectPoint[2][i]],
+                                   self.yData[selectPoint[0][i]][selectPoint[2][i]], \
+                                   yerr=self.yDataErr[selectPoint[0][i]][selectPoint[2][i]],
+                                   color=self.plotColor[selectPoint[0][i]], \
+                                   marker='o', mfc='w', linestyle='None')
+                self.draw()
+
+                if selectPoint[1][i] not in self.rmMark[0]:
+                    self.rmMark[0].append(selectPoint[1][i])
+                    self.rmMark[1].append(selectPoint[2][i])
+                    self.rmMark[2].append(
+                        self.scanInfo.blResPosit[selectPoint[1][i]][selectPoint[2][i]].tolist())
+                else:
+                    index = self.rmMark[0].index(selectPoint[1][i])
+                    for j in selectPoint[2][i]:
+                        if j not in self.rmMark[1][index]:
+                            self.rmMark[1][index].append(j)
+                            self.rmMark[2][index].append(self.scanInfo.blResPosit[selectPoint[1][i]][j])
+        else:
+            if x1 != x2 or x2 - x1 > 1.0 / 1440.0:
+                self.axes.set_xlim([x1, x2])
+                self.axes.set_ylim([y1, y2])
+                if x2 - x1 > 2.0 / 24.0:
+                    self.xticksSpace(30.0 / 1440.0)
+                elif x2 - x1 > 30.0 / 1440.0:
+                    self.xticksSpace(10.0 / 1440.0)
+                elif x2 - x1 > 10.0 / 1440.0:
+                    self.xticksSpace(2.0 / 1440.0)
+                elif x2 - x1 < 5.0 / 1440.0:
+                    self.xticksSpace(1.0 / 1440.0)
+
+                self.draw()
+
+    def onRightRelease(self, eclick, erelease):
+        '''
+        Get the select region, unselect point.
+
+        '''
+
+        x1, y1 = eclick.xdata, eclick.ydata
+        x2, y2 = erelease.xdata, erelease.ydata
+
+        if self.outlierFlag == 1:
+            selectPoint = [[], [],
+                           []]  # first is xData index, second is baseline index, third is resposit index
+            for i in range(len(self.xData)):
+                p1 = np.where((self.xData[i] >= x1) & (self.xData[i] <= x2))[0]
+                if len(p1):
+                    p2 = np.where((self.yData[i][p1] >= y1) & (self.yData[i][p1] <= y2))[0]
+
+                    if len(p2):
+                        selectPoint[0].append(i)
+                        selectPoint[1].append(self.xbl[i])
+                        selectPoint[2].append(p1[p2].tolist())
+
+
+            for i in range(len(selectPoint[0])):
+                # self.axes.plot(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
+                #                color=self.plotColor[selectPoint[0][i]],marker='o',mfc='w',linestyle='None')
+                self.axes.errorbar(self.xData[selectPoint[0][i]][selectPoint[2][i]],
+                                   self.yData[selectPoint[0][i]][selectPoint[2][i]], \
+                                   yerr=self.yDataErr[selectPoint[0][i]][selectPoint[2][i]],
+                                   color=self.plotColor[selectPoint[0][i]], \
+                                   marker='o', linestyle='None')
+                self.draw()
+
+                if selectPoint[1][i] in self.rmMark[0]:
+                    index = self.rmMark[0].index(selectPoint[1][i])
+                    for j in selectPoint[2][i]:
+                        if j in self.rmMark[1][index]:
+                            popPosit = self.rmMark[1][index].index(j)
+                            self.rmMark[1][index].pop(popPosit)
+                            self.rmMark[2][index].pop(popPosit)
+                    if len(self.rmMark[1]) != 0 and len(self.rmMark[1][index]) == 0:
+                        self.rmMark[0].pop(index)
+                        self.rmMark[1].pop(index)
+                        self.rmMark[2].pop(index)
+
+
     def do_scrollZoom(self,event):
         ax = event.inaxes
         if ax == None:
@@ -382,7 +586,33 @@ class PlotRes(FigureCanvas):
         self.axes.grid('on')
         
     def figInit(self):
-        
+        select_style = {'fill': False,
+                        'edgecolor': 'red',
+                        'alpha': 0.3,
+                        'linewidth': 2,
+                        'linestyle': '--'}
+
+        self.leftSelector = RectangleSelector(self.axes,
+                                          self.onLegtRelease,
+                                          useblit = True,
+                                          button = [1],
+                                          props = select_style,
+                                          minspanx = 5,
+                                          minspany = 5,
+                                          spancoords = 'pixels',
+                                          interactive = False)
+
+        self.rightSelector = RectangleSelector(self.axes,
+                                              self.onRightRelease,
+                                              useblit=True,
+                                              button=[3],
+                                              props=select_style,
+                                              minspanx=5,
+                                              minspany=5,
+                                              spancoords='pixels',
+                                              interactive=False)
+
+
         self.axes.clear()
         self.axes.grid(color='silver',linewidth=1,alpha=0.3)
         self.draw()

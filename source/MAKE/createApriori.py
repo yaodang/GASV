@@ -106,6 +106,8 @@ def createSource(path, session, souList, souFile):
     data.variables['AprioriSource2000RaDec'][:] = np.array(RaDec)
     
     data.close()
+
+    return np.array(RaDec)
     
 def createStation(path, session, staList, staFile):
     """
@@ -165,6 +167,8 @@ def createStation(path, session, staList, staFile):
     data.variables['AprioriStationVel'][:] = np.array(Vel)
     
     data.close()
+
+    return np.array(XYZ)
     
 def makeFile(ncFile):
     

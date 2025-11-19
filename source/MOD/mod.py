@@ -42,7 +42,7 @@ def mod(Param, eopApri, scanInfo, sourceInfo, stationInfo, ephem):
     Scan2Station = np.delete(scanInfo.Scan2Station, scanInfo.rmScanNum, axis=0)
     StatScan = getStatScan(numSta, Scan2Station)
 
-    '''
+    #'''
     if numSta >= 4 and len(scanMJD) >= 500:
         parallelFlag = 'YES'
         
@@ -58,15 +58,15 @@ def mod(Param, eopApri, scanInfo, sourceInfo, stationInfo, ephem):
         scanList = np.linspace(0, len(scanMJD)-1, len(scanMJD), dtype=int)
     #'''
         
-    parallelFlag = 'NO'
-    scanList = np.linspace(0, len(scanMJD)-1, len(scanMJD), dtype=int)
+    #parallelFlag = 'NO'
+    #scanList = np.linspace(0, len(scanMJD)-1, len(scanMJD), dtype=int)
     
     
     print('    EOP interpolation......')
-    eopObs = interpEOP(eopApri, scanInfo.scanMJD, Param, 1)
+    eopObs = interpEOP(eopApri, scanInfo.scanMJD, Param.Map.heopm, 1)
     
     print('    The TRF to CRF matrix build......')
-    t2c = mod_trs2crsn(eopObs,scanList,parallelFlag,)
+    t2c = mod_trs2crsn(eopObs,scanList,parallelFlag)
 
         
     print('    Compute Station correlation information......')
@@ -147,7 +147,7 @@ def processScan(args):
         oc_obs.append([])
         pObs.append([])
 
-    fid = open('/home/GeoAS/Work/grav.delay', 'w')
+    #fid = open('/home/GeoAS/Work/grav.delay', 'w')
     for iscan in scanList:
         
         # the observe source vector
@@ -206,11 +206,11 @@ def processScan(args):
                     oc_obs[iband].append(scanGD[iscan][iband][ib]+corcab-com_delay)
                     pObs[iband].append(scanGDSig[iscan][iband][ib])
 
-                    if iband == 1:
-                        fid.writelines('%20.15f %20.15f %20.15f %20.15f %20.15f\n'%(scanGD[iscan][iband][ib]+corcab,com_delay,
-                                                                                    results[idSta2].staObs[iscan2][7] - results[idSta1].staObs[iscan1][7],
-                                                                                    results[idSta2].staObs[iscan2][5] - results[idSta1].staObs[iscan1][5],
-                                                                                    results[idSta2].staObs[iscan2][9] - results[idSta1].staObs[iscan1][9]))
+                    #if iband == 1:
+                    #    fid.writelines('%20.15f %20.15f %20.15f %20.15f %20.15f\n'%(scanGD[iscan][iband][ib]+corcab,com_delay,
+                    #                                                                results[idSta2].staObs[iscan2][7] - results[idSta1].staObs[iscan1][7],
+                    #                                                                results[idSta2].staObs[iscan2][5] - results[idSta1].staObs[iscan1][5],
+                    #                                                                results[idSta2].staObs[iscan2][9] - results[idSta1].staObs[iscan1][9]))
 
 
                 # delayScan.oc_obs.append(scanGD[iscan][ib]+corcab-com_delay)
@@ -249,7 +249,7 @@ def processScan(args):
             delayScan.psou.append(psou)
 
         delayScan.pxyzt.append(pxyz) #modify 2022.11.24
-    fid.close()
+    #fid.close()
     delayScan.oc_obs = oc_obs
     delayScan.pObs = pObs
     

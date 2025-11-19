@@ -61,7 +61,11 @@ def staPositCorr(args):
         if stationInfo.psdFlag[p_sta] > 0:
             cpsd = psd_corr(mjd, stationInfo.psd[p_sta], psd_phi, psd_lam)
             # print(cpsd)            
-
+        #print('Solid Earth tide:',cts)
+        #print('Ocean Tide Loading:', cts)
+        #print('Solid Pole and Ocean Pole tide:', ctp)
+        #print('Atm. S1-S2 tide:', cta)
+        #print('post-seismic deformation:', cpsd)
         p_corr = cts + cto + ctp + cta + cpsd
         #p_corr = cts + ctp + cta + cpsd
         

@@ -32,7 +32,7 @@ def create_result(vgosDBPath, scanInfo, wrpInfo, Arcs):
     ionPath = vgosDBPath + '/ObsDerived'
     if hasattr(scanInfo, "iondl"):
         # two band observe
-        createSlantPathIonoGroup(ionPath, scanInfo.iondl, scanInfo.iondlSig, wrpInfo.Observe)
+        createSlantPathIonoGroup(ionPath, scanInfo.iondl, scanInfo.iondlSig, scanInfo.ionFlag, wrpInfo.Observe)
     else:
         # single band observe
         createSlantPathIonoGroup(ionPath, 0, len(scanInfo.Obs2Scan), wrpInfo.Observe)

@@ -75,7 +75,10 @@ def ITRF2ICRF(args):
         E = np.arctan2(Y[i], X[i])
         d = np.arctan2(np.sqrt(XY), np.sqrt(1-XY))
         Q = np.dot(np.dot(np.dot(rotm1(-E,3),rotm1(-d,2)),rotm1(E,3)),rotm1(S[i],3))
-    
+
+        #print('polar rotation matrix:',W)
+        #print('earth rotation matrix:',R)
+        #print('Precession and nutation rotation matrix:',Q)
         trs2crs[i,:,:] = np.dot(np.dot(Q,R),W)
         
         #----------------------------------------------------------------------

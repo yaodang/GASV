@@ -11,13 +11,14 @@ from COMMON import *
 #from read_eopFile import *
 
 
-def interpEOP(eopApri,MJDObs,Param,flag):
+def interpEOP(eopApri,MJDObs,module_hfc,flag):
     """
     Get the EOP at observe epoch
     ---------------------
     input: 
         EOP          : from apairori eop file, [rad,rad,s]
         MJDObs       : session observe epoch
+        module_hfc   : module of eop high frequency correctiong
     output: 
         EOPObs       : the EOP of observe epoch, [rad,rad,s]
     ---------------------
@@ -36,8 +37,8 @@ def interpEOP(eopApri,MJDObs,Param,flag):
     UT1Obs = UT1Obs + UT1corr
     
     # high frequency correction
-    if Param.Map.heopm != 'None' and flag == 1:
-        TAB = getTab(Param.Map.heopm)
+    if module_hfc != 'None' and flag == 1:
+        TAB = getTab(module_hfc)
         corx,cory,corut = eop_hf_eanes(MJDObs,TAB)
     else:
         corx = np.zeros(len(MJDObs))

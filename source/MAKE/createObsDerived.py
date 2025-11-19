@@ -5,7 +5,7 @@ import netCDF4 as nc
 import numpy as np
 from COMMON.other import *
 
-def createSlantPathIonoGroup(path, ionDelay, ionDelaySig, fileList):
+def createSlantPathIonoGroup(path, ionDelay, ionDelaySig, ionFlag, fileList):
     '''
         Create the Cal-SlantPathIonoGroup.nc file in ObsDerived dir.
 
@@ -24,12 +24,15 @@ def createSlantPathIonoGroup(path, ionDelay, ionDelaySig, fileList):
 
     data.createVariable('Cal-SlantPathIonoGroup', np.float64, ('NumObs','DimX000002'))
     data.createVariable('Cal-SlantPathIonoGroupSigma', np.float64, ('NumObs','DimX000002'))
+    data.createVariable('Cal-SlantPathIonoGroupDataFlag', np.float64, ('NumObs'))
 
     data.variables['Cal-SlantPathIonoGroup'][:] = np.zeros((obsNum,2))
     data.variables['Cal-SlantPathIonoGroupSigma'][:] = np.zeros((obsNum, 2))
+    data.variables['Cal-SlantPathIonoGroupDataFlag'][:] = np.zeros(obsNum)
 
     if type(ionDelay) != int and type(ionDelaySig) != int:
         data.variables['Cal-SlantPathIonoGroup'][:,0] = ionDelay
         data.variables['Cal-SlantPathIonoGroupSigma'][:,0] = ionDelaySig
+        data.variables['Cal-SlantPathIonoGroupDataFlag'][:] = ionFlag
 
     data.close()

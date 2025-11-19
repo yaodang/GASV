@@ -135,7 +135,7 @@ def createSourceCrossRef(path, sou):
     data.createVariable("CrossRefSourceList", 'S1', ("NumSource",'DimX000008'))
     data.createVariable("Scan2Source", np.int32, ("NumScans"))
     
-    Scan2Sou = np.zeros(numScan)
+    Scan2Sou = np.zeros(numScan, dtype=int)
     for i in range(numSou):
         posit = np.where(sou == sortSou[i])
         Scan2Sou[posit[0]] = i + 1
@@ -145,7 +145,7 @@ def createSourceCrossRef(path, sou):
     
     data.close()
     
-    return sortSou
+    return sortSou, Scan2Sou
     
 def createStationCrossRef(path, scanSta, numScan):
     '''
@@ -204,7 +204,7 @@ def createStationCrossRef(path, scanSta, numScan):
     data.createVariable("Scan2Station", np.int32, ("NumScans",'NumStation'))
     
     Station2Scan = np.zeros((max(staObs), numSta),dtype=int)
-    Scan2Station = np.zeros((numScan, numSta))
+    Scan2Station = np.zeros((numScan, numSta), dtype=int)
     
     for ista in range(numSta):
         nista = sortIndex[ista]
