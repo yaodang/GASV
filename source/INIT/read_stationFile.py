@@ -25,8 +25,8 @@ def read_station(stationFile, scanInfo):
         sys.stderr.write('Error: The apriori station file not exist!')
         sys.exit()
     
-    station,ptype = np.loadtxt(stationFile, dtype='str',comments='$$',usecols=[0,8], unpack=True)
-    staPosit = np.loadtxt(stationFile, dtype='float',comments='$$',usecols=[1,2,3,4,5,6,7], unpack=False)
+    station,ptype = np.loadtxt(stationFile, dtype='str',comments='#',usecols=[0,8], unpack=True)
+    staPosit = np.loadtxt(stationFile, dtype='float',comments='#',usecols=[1,2,3,4,5,6,7], unpack=False)
 
     station = add_blank(station)
     

@@ -33,9 +33,9 @@ def read_eop(filename, MJDObs):
         [MJD,XP,YP,UT1,DX,DY] = read_C04(filename)
     elif 'usno' in filename.lower():
         [MJD,XP,YP,UT1,DX,DY] = read_USNO(filename)
-    elif 'finals_all' in filename.lower():
+    elif 'finals' in filename.lower() and 'all' in filename.lower() or 'daily' in filename.lower():
         [MJD,XP,YP,UT1,DX,DY] = read_IERSFinals(filename)
-    else:
+    elif 'special' in filename.lower():
         [MJD,XP,YP,UT1,DX,DY] = read_other(filename)
         # sys.stderr.write('Error: The EOP file not in C04 or USNO format!')
         # sys.exit()
