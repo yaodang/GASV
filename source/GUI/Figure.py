@@ -167,11 +167,11 @@ class Ui_GASV(object):
         self.label_18.setObjectName("label_18")
         self.horizontalLayout_9.addWidget(self.label_18)
         self.lineEdit_path_vgosDb = QtWidgets.QLineEdit(self.groupBox_3)
+        self.lineEdit_path_vgosDb.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_path_vgosDb.setObjectName("lineEdit_path_vgosDb")
         self.horizontalLayout_9.addWidget(self.lineEdit_path_vgosDb)
         self.comboBox_dataType = QtWidgets.QComboBox(self.groupBox_3)
         self.comboBox_dataType.setObjectName("comboBox_dataType")
-        self.comboBox_dataType.addItem("")
         self.comboBox_dataType.addItem("")
         self.comboBox_dataType.addItem("")
         self.horizontalLayout_9.addWidget(self.comboBox_dataType)
@@ -190,6 +190,7 @@ class Ui_GASV(object):
         self.label_17.setObjectName("label_17")
         self.horizontalLayout_8.addWidget(self.label_17)
         self.lineEdit_path_master = QtWidgets.QLineEdit(self.groupBox_3)
+        self.lineEdit_path_master.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.lineEdit_path_master.setObjectName("lineEdit_path_master")
         self.horizontalLayout_8.addWidget(self.lineEdit_path_master)
         self.pushButton_browse_master = QtWidgets.QPushButton(self.groupBox_3)
@@ -205,6 +206,7 @@ class Ui_GASV(object):
         self.label_19.setObjectName("label_19")
         self.horizontalLayout_10.addWidget(self.label_19)
         self.lineEdit_path_Apriori = QtWidgets.QLineEdit(self.groupBox_3)
+        self.lineEdit_path_Apriori.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.lineEdit_path_Apriori.setObjectName("lineEdit_path_Apriori")
         self.horizontalLayout_10.addWidget(self.lineEdit_path_Apriori)
         self.pushButton_browse_apriori = QtWidgets.QPushButton(self.groupBox_3)
@@ -458,6 +460,7 @@ class Ui_GASV(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEdit_file_startyear.sizePolicy().hasHeightForWidth())
         self.lineEdit_file_startyear.setSizePolicy(sizePolicy)
+        self.lineEdit_file_startyear.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_file_startyear.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_file_startyear.setObjectName("lineEdit_file_startyear")
         self.horizontalLayout_17.addWidget(self.lineEdit_file_startyear)
@@ -473,6 +476,7 @@ class Ui_GASV(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lineEdit_file_stopyear.sizePolicy().hasHeightForWidth())
         self.lineEdit_file_stopyear.setSizePolicy(sizePolicy)
+        self.lineEdit_file_stopyear.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.lineEdit_file_stopyear.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_file_stopyear.setObjectName("lineEdit_file_stopyear")
         self.horizontalLayout_18.addWidget(self.lineEdit_file_stopyear)
@@ -2911,7 +2915,7 @@ class Ui_GASV(object):
         self.menubar.addAction(self.menuPlot.menuAction())
 
         self.retranslateUi(GASV)
-        self.stackedWidget.setCurrentIndex(5)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(GASV)
 
     def retranslateUi(self, GASV):
@@ -2928,22 +2932,18 @@ class Ui_GASV(object):
 "</style></head><body style=\" font-family:\'Times New Roman\',\'Times New Roman\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-weight:600;\">Manual:</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-weight:600;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-weight:600;\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">File menu     :</span><span style=\" font-family:\'Sans Serif\'; font-weight:600;\"> </span><span style=\" font-family:\'Sans Serif\';\">apriori</span><span style=\" font-family:\'Sans Serif\'; font-weight:600;\"> </span><span style=\" font-family:\'Sans Serif\';\">path setup and vgosDB data load.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-weight:600;\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">File menu          :</span><span style=\" font-family:\'Sans Serif\'; font-weight:600;\"> </span><span style=\" font-family:\'Sans Serif\';\">apriori</span><span style=\" font-family:\'Sans Serif\'; font-weight:600;\"> </span><span style=\" font-family:\'Sans Serif\';\">path setup and vgosDB data load.</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Param menu    :</span><span style=\" font-family:\'Sans Serif\';\"> mode setup and certain observatin category select.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Param menu     :</span><span style=\" font-family:\'Sans Serif\';\"> mode setup and certain observatin category select.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Observe menu  :</span><span style=\" font-family:\'Sans Serif\';\"> list the obsere station, baseline and source.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Estimate menu :</span><span style=\" font-family:\'Sans Serif\';\"> the clock, troposphere, TRF and CRF parameter set.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Glob menu     :</span><span style=\" font-family:\'Sans Serif\';\"> golbal solution set.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Glob menu        :</span><span style=\" font-family:\'Sans Serif\';\"> golbal solution set.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Plot menu     :</span><span style=\" font-family:\'Sans Serif\';\"> plot the residual and result.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Plot menu         :</span><span style=\" font-family:\'Sans Serif\';\"> plot the residual and result.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">  </span><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">Shutcut:</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-style:italic;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">    Ctrl+space : process</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-style:italic;\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-weight:600;\">Tips:</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-style:italic;\">First, check the path in File/Preference and save;</span></p>\n"
@@ -2951,7 +2951,7 @@ class Ui_GASV(object):
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-weight:600;\">Version:</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-weight:600;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">This software is still in under development! Currently can analysis VLBI data, future will analysis SLR data.</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\';\">This software is still in under development! Currently can analysis VLBI data, future will analysis SLR and GNSS data.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Ubuntu\';\">If you find any bugs or if you have great ideas what could be improved, </span><span style=\" font-family:\'Ubuntu\'; font-weight:600;\">raise an issue</span><span style=\" font-family:\'Ubuntu\';\"> to yaodang@ntsc.ac.cn, thank you!</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Ubuntu\';\"><br /></p>\n"
@@ -2960,6 +2960,7 @@ class Ui_GASV(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">If you use our software and write a paper, it would be nice if you would cite us. </span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\';\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">Current reference:</span></p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\';\">Dang Yao et al, 2026, Res. Astron. Astrophys, 26, 017001, 10.1088/1674-4527/ae143e.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\';\"><br /></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'MS Shell Dlg 2\'; font-weight:600;\">License:</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'MS Shell Dlg 2\'; font-weight:600;\"><br /></p>\n"
@@ -2973,7 +2974,6 @@ class Ui_GASV(object):
         self.label_18.setText(_translate("GASV", "DataPath"))
         self.comboBox_dataType.setItemText(0, _translate("GASV", "vgosDB"))
         self.comboBox_dataType.setItemText(1, _translate("GASV", "NGS"))
-        self.comboBox_dataType.setItemText(2, _translate("GASV", "other"))
         self.label_17.setText(_translate("GASV", "Master    "))
         self.label_19.setText(_translate("GASV", "Apriori   "))
         self.label_39.setText(_translate("GASV", "Station:   "))
@@ -3388,7 +3388,7 @@ class Ui_GASV(object):
         self.menu_data_Source.setText(_translate("GASV", "Source"))
         self.menu_data_Source.setShortcut(_translate("GASV", "Alt+3"))
         self.menu_file_preference.setText(_translate("GASV", "Preference"))
-        self.menu_file_preference.setShortcut(_translate("GASV", "Ctrl+I"))
+        self.menu_file_preference.setShortcut(_translate("GASV", "Ctrl+A"))
         self.menu_file_input.setText(_translate("GASV", "vgosDB input"))
         self.menu_file_input.setShortcut(_translate("GASV", "Ctrl+V"))
         self.menu_file_exit.setText(_translate("GASV", "Exit"))

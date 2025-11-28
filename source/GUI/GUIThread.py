@@ -293,7 +293,7 @@ class runThread(QThread):
             print('    Reading station file......')
             self.stationInfo = read_station(self.Param.Map.stationFile, self.scanInfo)
     
-            updateScanInfo(self.scanInfo, self.Param, self.wrpInfo)
+            updateScanInfo(self.scanInfo, self.Param, self.wrpInfo, 0)
             makeScan(0,self.scanInfo)
     
             print('    Reading source file......')

@@ -4,14 +4,16 @@ import numpy as np
 import sys
 
 
-def updateScanInfo(scanInfo, Param, wrpInfo):
+def updateScanInfo(scanInfo, Param, wrpInfo, sessionNum):
     
     excludeObs = cleanDelayFlag(scanInfo)
     # if wrpInfo.Flag < 2:
     #     excludeObs += cleanQcode(scanInfo, Param.Setup.qcodeLim)
     if wrpInfo.Flag >= 2:
         excludeObs += cleanIonFlag(scanInfo)
-    excludeObs += cleanQcode(scanInfo, Param.Setup.qcodeLim)
+    
+    if Param.Arcs.version[sessionNum] > 0:
+        excludeObs += cleanQcode(scanInfo, Param.Setup.qcodeLim)
     # excludeObs = np.zeros(len(scanInfo.Obs2Scan))
 
     # exclude station 

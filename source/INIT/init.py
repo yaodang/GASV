@@ -30,7 +30,7 @@ def init(Param, sessionNum):
     stationInfo = read_station(Param.Map.stationFile, scanInfo)
     
     if v2Flag != 1:
-        updateScanInfo(scanInfo, Param, wrpInfo)
+        updateScanInfo(scanInfo, Param, wrpInfo, sessionNum)
         
     makeScan(v2Flag, scanInfo)
     # write_result(Param, sessionNum, scanInfo)
@@ -38,7 +38,7 @@ def init(Param, sessionNum):
     
     print('    Reading source file......')
     meanMJD = np.mean(scanInfo.scanMJD)
-    sourceInfo = read_source(Param.Map.sourceFile, scanInfo.sourceAll, scanInfo.souPosit,meanMJD)
+    sourceInfo = read_source(Param.Map.sourceFile, scanInfo.sourceAll, scanInfo.souPosit, meanMJD)
     
     # print('    Calculate the ionosphere from GIM')
     # ionDelay = readAndCreateIONFile(Param, scanInfo, stationInfo, sourceInfo)

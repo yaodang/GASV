@@ -39,7 +39,7 @@ def writeEOP(Param, scanInfo, result, sessionNum, out):
 
             expName = np.loadtxt(eopFile, comments='*', usecols=[17], dtype=str, unpack=True)
             expName = expName.tolist()
-            epoch = np.loadtxt(eopFile, comments='*', usecols=[0], dtype=float, unpack=True)
+            epoch = np.loadtxt(eopFile, comments='*', usecols=[0], dtype=float, ndmin=1, unpack=True)
     
     eopLine = np.zeros(30).tolist()
     eopLine[0] = scanInfo.refMJD

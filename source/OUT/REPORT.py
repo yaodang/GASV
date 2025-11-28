@@ -30,7 +30,7 @@ def writeSFF(param, scanInfo, eopApri, result, out):
     print('    Write the spool file......')
     
     time = datetime.datetime.now()
-    [year,mon,day,hour,minute,second] = mjd2ymdhms(scanInfo.scanMJD[0])
+    [year, mon, day, hour, minute, second] = mjd2ymdhms(scanInfo.scanMJD[0])
     reportPath = os.path.join(param.Out.reportPath[1], str(year))
     if not os.path.exists(reportPath):
         os.mkdir(reportPath)

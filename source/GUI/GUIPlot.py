@@ -115,7 +115,7 @@ class PlotRes(FigureCanvas):
         self.rmMark = [[],[],[]] # first is baseline index, second is xData index, third is residual index
         self.getColor()
     
-        self.fig = Figure(figsize=(width,height),tight_layout=True)
+        self.fig = Figure(figsize=(width,height),dpi=100,tight_layout=True)
 
         FigureCanvas.__init__(self, self.fig)
         self.axes = self.fig.add_subplot(111)
@@ -126,8 +126,6 @@ class PlotRes(FigureCanvas):
         #self.canvas = FigureCanvas(self.fig)
 
         self.chid1 = self.fig.canvas.mpl_connect('button_press_event', self.onClick)
-        #self.chid3 = self.canvas.mpl_connect("button_release_event", self.onRelease)
-        # self.chid4 = self.canvas.mpl_connect("scroll_event", self.do_scrollZoom)
 
     def initParam(self, scanInfo, stationInfo, result, session):
         self.scanInfo = scanInfo
@@ -259,9 +257,11 @@ class PlotRes(FigureCanvas):
         minValue = 0
         for i in range(len(self.xData)):
             if self.typeFlag == 1:
-                self.axes.plot(self.xData[i],self.yData[i],color=self.plotColor[i],marker='o',linestyle='None')
+                #self.axes.plot(self.xData[i],self.yData[i],color=self.plotColor[i],marker='o',linestyle='None')
+                self.axes.plot(self.xData[i],self.yData[i],color=self.plotColor[i],marker='o',markersize=3,linestyle='None')
             else:
-                self.axes.errorbar(self.xData[i],self.yData[i],yerr=self.yDataErr[i],color=self.plotColor[i],marker='o',linestyle='None')
+                #self.axes.errorbar(self.xData[i],self.yData[i],yerr=self.yDataErr[i],color=self.plotColor[i],marker='o',linestyle='None')
+                self.axes.errorbar(self.xData[i],self.yData[i],yerr=self.yDataErr[i],color=self.plotColor[i],marker='o',markersize=3,linewidth=0.4,linestyle='None')
                 
                             
             if max(self.yData[i]) > maxValue:
@@ -298,127 +298,37 @@ class PlotRes(FigureCanvas):
         Get the mouse click position in axes.
         
         '''
-        
-        self.rectSx = None
-        self.rectSy = None
-        if event.inaxes:
-            
-            if self.clkbkFlag == 1:
-                self.clkbkTime = event.xdata
-                self.finished_clk.emit(event.xdata)
-            else:
-                self.rectSx = event.xdata
-                self.rectSy = event.ydata
-                
+
+        if event.inaxes == self.axes:
             if event.dblclick:
                 self.leftSelector.set_active(False)
                 self.rightSelector.set_active(False)
-                showPosit = []
-                minValue = []
-                for i in range(len(self.xData)):
-                    resx = np.abs(self.xData[i]-event.xdata)
-                    xminp = np.where(resx==min(resx))[0]
-                    minValue.append(abs(self.yData[i][xminp[0]]-event.ydata))
-                    showPosit.append(xminp[0])
-                                         
-                index = np.where(minValue==min(minValue))[0]
-                ymin,ymax = self.axes.get_ybound()
-                space = (ymax-ymin)*0.1
-                if min(minValue) < space:
-                    blPosit = self.xbl[index[0]]
-                    self.signal_dbclick.emit(blPosit, showPosit[index[0]])
 
+                if self.clkbkFlag == 1:
+                    self.clkbkTime = event.xdata
+                    self.finished_clk.emit(event.xdata)
+
+                else:
+                    showPosit = []
+                    minValue = []
+                    for i in range(len(self.xData)):
+                        resx = np.abs(self.xData[i]-event.xdata)
+                        xminp = np.where(resx==min(resx))[0]
+                        minValue.append(abs(self.yData[i][xminp[0]]-event.ydata))
+                        showPosit.append(xminp[0])
+                                             
+                    index = np.where(minValue==min(minValue))[0]
+                    ymin,ymax = self.axes.get_ybound()
+                    space = (ymax-ymin)*0.1
+                    if min(minValue) < space:
+                        blPosit = self.xbl[index[0]]
+                        self.signal_dbclick.emit(blPosit, showPosit[index[0]])
             else:
                 self.leftSelector.set_active(True)
                 self.rightSelector.set_active(True)
 
-                
-    def onRelease(self, event):
-        '''
-        Get the select region and amplify, if outlier mode, point the select.
 
-        '''
-        self.rectEx = None
-        self.rectEy = None
-        
-        if event.inaxes:
-            self.rectEx = event.xdata
-            self.rectEy = event.ydata
-            
-            if self.rectSx != None and self.rectEx != None:
-                x1 = min(self.rectSx,self.rectEx)
-                x2 = max(self.rectSx,self.rectEx)
-                y1 = min(self.rectSy,self.rectEy)
-                y2 = max(self.rectSy,self.rectEy)
-                
-                if self.outlierFlag == 1:
-                    selectPoint = [[],[],[]]   # first is xData index, second is baseline index, third is resposit index
-                    for i in range(len(self.xData)):
-                        p1 = np.where((self.xData[i] >= x1) & (self.xData[i] <= x2))[0]
-                        if len(p1):
-                            p2 = np.where((self.yData[i][p1] >= y1) & (self.yData[i][p1] <= y2))[0]
-                        
-                            if len(p2):
-                                selectPoint[0].append(i)
-                                selectPoint[1].append(self.xbl[i])
-                                selectPoint[2].append(p1[p2].tolist())
-                                
-                    if event.button == 1:
-                        for i in range(len(selectPoint[0])):
-                            # self.axes.plot(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
-                            #                color=self.plotColor[selectPoint[0][i]],marker='o',mfc='w',linestyle='None')
-                            self.axes.errorbar(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
-                                               yerr=self.yDataErr[selectPoint[0][i]][selectPoint[2][i]], color=self.plotColor[selectPoint[0][i]],\
-                                               marker='o',mfc='w',linestyle='None')
-                            self.draw()
-                            
-                            if selectPoint[1][i] not in self.rmMark[0]:
-                                self.rmMark[0].append(selectPoint[1][i])
-                                self.rmMark[1].append(selectPoint[2][i])
-                                self.rmMark[2].append(self.scanInfo.blResPosit[selectPoint[1][i]][selectPoint[2][i]].tolist())
-                            else:
-                                index = self.rmMark[0].index(selectPoint[1][i])
-                                for j in selectPoint[2][i]:
-                                    if j not in self.rmMark[1][index]:
-                                        self.rmMark[1][index].append(j)
-                                        self.rmMark[2][index].append(self.scanInfo.blResPosit[selectPoint[1][i]][j])
-                                                                    
-                    elif event.button == 3:
-                        for i in range(len(selectPoint[0])):
-                            # self.axes.plot(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
-                            #                color=self.plotColor[selectPoint[0][i]],marker='o',linestyle='None')
-                            self.axes.errorbar(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
-                                               yerr=self.yDataErr[selectPoint[0][i]][selectPoint[2][i]],color=self.plotColor[selectPoint[0][i]],\
-                                               marker='o',linestyle='None')
-                            self.draw()
-                            
-                            if selectPoint[1][i] in self.rmMark[0]:
-                                index = self.rmMark[0].index(selectPoint[1][i])
-                                for j in selectPoint[2][i]:
-                                    if j in self.rmMark[1][index]:
-                                        popPosit = self.rmMark[1][index].index(j)
-                                        self.rmMark[1][index].pop(popPosit)
-                                        self.rmMark[2][index].pop(popPosit)
-                                if len(self.rmMark[1]) != 0 and len(self.rmMark[1][index]) == 0:
-                                    self.rmMark[0].pop(index)
-                                    self.rmMark[1].pop(index)
-                                    self.rmMark[2].pop(index)
-                else:
-                    if x1 != x2 or x2-x1>1.0/1440.0:
-                        self.axes.set_xlim([x1,x2])
-                        self.axes.set_ylim([y1,y2])
-                        if x2-x1 > 2.0/24.0:
-                            self.xticksSpace(30.0/1440.0)
-                        elif x2-x1 > 30.0/1440.0:
-                            self.xticksSpace(10.0/1440.0)
-                        elif x2-x1 > 10.0/1440.0:
-                            self.xticksSpace(2.0/1440.0)
-                        elif x2-x1 < 5.0/1440.0:
-                            self.xticksSpace(1.0/1440.0)
-                        
-                        self.draw()
-
-    def onLegtRelease(self, eclick, erelease):
+    def onLeftRelease(self, eclick, erelease):
         '''
         Get the select region and amplify, if outlier mode, point the select.
 
@@ -440,7 +350,6 @@ class PlotRes(FigureCanvas):
                         selectPoint[1].append(self.xbl[i])
                         selectPoint[2].append(p1[p2].tolist())
 
-
             for i in range(len(selectPoint[0])):
                 # self.axes.plot(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
                 #                color=self.plotColor[selectPoint[0][i]],marker='o',mfc='w',linestyle='None')
@@ -448,8 +357,7 @@ class PlotRes(FigureCanvas):
                                    self.yData[selectPoint[0][i]][selectPoint[2][i]], \
                                    yerr=self.yDataErr[selectPoint[0][i]][selectPoint[2][i]],
                                    color=self.plotColor[selectPoint[0][i]], \
-                                   marker='o', mfc='w', linestyle='None')
-                self.draw()
+                                   marker='o',markersize=3,linewidth=0.4,mfc='w', linestyle='None')
 
                 if selectPoint[1][i] not in self.rmMark[0]:
                     self.rmMark[0].append(selectPoint[1][i])
@@ -462,6 +370,7 @@ class PlotRes(FigureCanvas):
                         if j not in self.rmMark[1][index]:
                             self.rmMark[1][index].append(j)
                             self.rmMark[2][index].append(self.scanInfo.blResPosit[selectPoint[1][i]][j])
+            self.draw()
         else:
             if x1 != x2 or x2 - x1 > 1.0 / 1440.0:
                 self.axes.set_xlim([x1, x2])
@@ -499,16 +408,12 @@ class PlotRes(FigureCanvas):
                         selectPoint[1].append(self.xbl[i])
                         selectPoint[2].append(p1[p2].tolist())
 
-
             for i in range(len(selectPoint[0])):
-                # self.axes.plot(self.xData[selectPoint[0][i]][selectPoint[2][i]], self.yData[selectPoint[0][i]][selectPoint[2][i]],\
-                #                color=self.plotColor[selectPoint[0][i]],marker='o',mfc='w',linestyle='None')
                 self.axes.errorbar(self.xData[selectPoint[0][i]][selectPoint[2][i]],
                                    self.yData[selectPoint[0][i]][selectPoint[2][i]], \
                                    yerr=self.yDataErr[selectPoint[0][i]][selectPoint[2][i]],
                                    color=self.plotColor[selectPoint[0][i]], \
-                                   marker='o', linestyle='None')
-                self.draw()
+                                   marker='o',markersize=3,linewidth=0.4,linestyle='None')
 
                 if selectPoint[1][i] in self.rmMark[0]:
                     index = self.rmMark[0].index(selectPoint[1][i])
@@ -521,39 +426,7 @@ class PlotRes(FigureCanvas):
                         self.rmMark[0].pop(index)
                         self.rmMark[1].pop(index)
                         self.rmMark[2].pop(index)
-
-
-    def do_scrollZoom(self,event):
-        ax = event.inaxes
-        if ax == None:
-            return
-        
-        xmin,xmax = ax.get_xbound()
-        ymin,ymax = ax.get_ybound()
-
-        xc = event.xdata
-        yc = event.ydata
-        
-        xlen1 = xc - xmin
-        xlen2 = xmax - xc
-        ylen1 = yc - ymin
-        ylen2 = ymax - yc
-
-        xchg1 = event.step * xlen1 / 10
-        xchg2 = event.step * xlen2 / 10
-        xmin = xmin + xchg1
-        xmax = xmax - xchg2
-        ychg1 = event.step * ylen1 / 10
-        ychg2 = event.step * ylen2 / 10
-        ymin = ymin + ychg1
-        ymax = ymax - ychg2
-        ax.set_xbound(xmin,xmax)
-        ax.set_ybound(ymin,ymax)
-        
-        # ax.set_xlim(xmin,xmax)
-        # ax.set_ylim(ymin,ymax)
-        # self.xticksSpace()
-        event.canvas.draw()
+            self.draw()
 
         
     def xticksSpace(self,num):
@@ -593,7 +466,7 @@ class PlotRes(FigureCanvas):
                         'linestyle': '--'}
 
         self.leftSelector = RectangleSelector(self.axes,
-                                          self.onLegtRelease,
+                                          self.onLeftRelease,
                                           useblit = True,
                                           button = [1],
                                           props = select_style,

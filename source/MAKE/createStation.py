@@ -7,7 +7,6 @@ from INIT.read_sourceFile import *
 from MOD.mod_staCorr import *
 from COMMON.coordinate_transfer import *
 
-
 def createAzEl(path, RaDec, souPosit, staXYZ, trs2crs):
     """
     Create the <STATION>/AzEl.nc file.

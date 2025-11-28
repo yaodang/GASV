@@ -87,6 +87,7 @@ def collectResult(param, scanInfo, stationInfo, sourceInfo, staObs, eopApri, res
     souP = result.paramName.index('sou') - paramS
     aprioriSou(param, scanInfo, sourceInfo, result, param.Flags.sou[0], souP, out)
 
+    [year, mon, day, hour, minute, second] = mjd2ymdhms(scanInfo.scanMJD[0])
     
     return out
 

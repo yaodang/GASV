@@ -108,6 +108,8 @@ def add_StationNew(scanInfo, scanPosit, baseline):
     scanInfo.Station2Scan = Station2Scan
     scanInfo.Obs2Baseline = Obs2Baseline
     scanInfo.Obs2Scan = Obs2Scan
+    scanInfo.ionFlag = np.zeros(len(Obs2Scan))
+
 
 def add_Station(scanInfo, scanPosit, baseline):
     '''

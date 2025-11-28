@@ -192,6 +192,7 @@ def processScan(args):
             # gravity deformation correct
             com_delay += results[idSta2].staObs[iscan2][9] - results[idSta1].staObs[iscan1][9]
 
+
                         
             if createFlag != 'CREATE':
                 
@@ -237,7 +238,6 @@ def processScan(args):
             delayScan.psou.append(psou)
 
         delayScan.pxyzt.append(pxyz) #modify 2022.11.24
-
     delayScan.oc_obs = oc_obs
     delayScan.pObs = pObs
     

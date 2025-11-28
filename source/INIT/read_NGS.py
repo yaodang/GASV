@@ -17,7 +17,6 @@ def ngsScanInfo(Param, sessionNum):
     clkBrk = CLKBRK()
     clkBrk.initBrk(scanInfo.stationAll)
     scanInfo.clkBrk = clkBrk
-    scanInfo.souPosit = []
 
     # ------------------------ the reference time set ------------------------#
     if Param.Flags.eopTime == 'NOON':
@@ -42,23 +41,52 @@ def readNGSResult(scanInfo, fileName):
     lines = fid.readlines()
     fid.close()
 
-    souAll,startPosit = getSource(lines)
+    souAll,sourcePosit,staName,staPosit,startPosit = getStaSource(lines)
+    scanInfo.souPosit = np.array(sourcePosit)
     getStaScanDelay(scanInfo, lines, startPosit, souAll)
+    scanInfo.staPosit = np.zeros((len(scanInfo.stationAll),3))
+    
+    for i in range(len(scanInfo.stationAll)):
+        index = staName.index(scanInfo.stationAll[i].strip())
+        scanInfo.staPosit[i][0] = staPosit[index][0]
+        scanInfo.staPosit[i][1] = staPosit[index][1]
+        scanInfo.staPosit[i][2] = staPosit[index][2]
 
-def getSource(lines):
+def getStaSource(lines):
     posit = []
     for i in range(len(lines)):
         if '$END' in lines[i]:
             posit.append(i)
         if len(posit) == 3:
             break
-
+    
+    sourcePosit = []
     if len(posit) == 3:
         source = []
         for i in range(posit[0]+1,posit[1]):
             source.append(lines[i][:8])
+            temp = list(filter(None, lines[i][8:-1].split(" ")))
+            ra   = float(temp[0]) + float(temp[1])/60 + float(temp[2])/3600
+            if len(temp) == 6:
+                dec  = float(temp[3]) + float(temp[4])/60 + float(temp[5])/3600
+            elif len(temp) == 7:
+                if temp[3] == '-':
+                    dec  = -1*(float(temp[4]) + float(temp[5])/60 + float(temp[6])/3600)
+                elif temp[3] == '+':
+                    dec  = float(temp[4]) + float(temp[5])/60 + float(temp[6])/3600
+            else:
+                print('    Error: NGS file format wrong!')
 
-        return source,posit[2]+1
+            sourcePosit.append([ra*np.pi/12, dec*np.pi/180])
+        
+        station = []
+        staPosit = []
+        for i in range(2,posit[0]):
+            temp = list(filter(None, lines[i].split(" ")))
+            station.append(temp[0])
+            staPosit.append([float(temp[1]),float(temp[2]),float(temp[3])])
+
+        return source, sourcePosit, station, staPosit, posit[2]+1
     else:
         print('The NGS format is wrong!')
         sys.exit()
@@ -73,7 +101,8 @@ def  getStaScanDelay(scanInfo, lines, num, souAll):
     Press = []
     Humidity = []
 
-    blockNum = 9
+    blockNum = getObsLineNum(lines, num)
+
     obsNum = int((len(lines)-num)/blockNum)
     for i in range(obsNum):
         firstLine = lines[num + blockNum * i]
@@ -112,6 +141,18 @@ def  getStaScanDelay(scanInfo, lines, num, souAll):
     #add_TimeUTC(obsTime, scanInfo, scanPosit)
     #add_GroupDelay(scanInfo, np.array(obsDelay))
 
+def getObsLineNum(lines,num):
+    '''
+    Get the observe line number, usually is 8 or 9.
+    '''
+    lineFlag = []
+    for i in range(num, num+20):
+        lineFlag.append(int(lines[i][-2]))
+
+    numList = list(set(lineFlag))
+
+    return len(numList)
+
 def create_Head(scanInfo, obsSou, souAll, scanPosit):
     blank = '        '
     scan2Source = np.zeros(scanInfo.scanNum, dtype=int)
@@ -147,8 +188,9 @@ def create_GroupDelay(scanInfo, obsDelay):
 def create_Init(scanInfo, scanPosit, baseline, Temperature, Press, Humidity):
     staNum = len(scanInfo.stationAll)
     obsNum = len(scanInfo.Obs2Source)
-
-    scanInfo.qCode = 9 * np.ones(len(scanInfo.Obs2Source), dtype=int)
+    scanInfo.qCode = []
+    qCode = 9 * np.ones(len(scanInfo.Obs2Source), dtype=int)
+    scanInfo.qCode.append(qCode)
 
     # obs cross
     Scan2Station = np.zeros((scanInfo.scanNum, staNum), dtype=int)
@@ -164,9 +206,10 @@ def create_Init(scanInfo, scanPosit, baseline, Temperature, Press, Humidity):
         Station2Scan = np.zeros((scanInfo.scanNum, staNum), dtype=int)
 
     for i in range(scanInfo.scanNum):
+        '''
         if staNum == 2:
-            Scan2Station[i] = Scan2Station[i] * (i + 1)
-            Station2Scan[i] = Station2Scan[i] * i
+            Scan2Station[i] = (Scan2Station[i]+1) * (i + 1)
+            Station2Scan[i] = (Station2Scan[i]+1) * i
             Obs2Baseline[i, 0] = 1
             Obs2Baseline[i, 1] = 2
         else:
@@ -185,7 +228,27 @@ def create_Init(scanInfo, scanPosit, baseline, Temperature, Press, Humidity):
                 index = scanInfo.stationAll.index(staListNew[s])
                 maxObs2Sta = max(Scan2Station[:,index])
                 Scan2Station[i,index] = maxObs2Sta + 1
+        '''
+        if staNum == 2:
+            Station2Scan[i] = (Station2Scan[i]+1) * (i+1)
+            Obs2Baseline[i, 0] = 1
+            Obs2Baseline[i, 1] = 2
+        staList = []
+        if i != scanInfo.scanNum - 1:
+            for j in range(scanPosit[i],scanPosit[i+1]):
+                staList.extend(baseline[j])
+                Obs2Scan[j] = i + 1
+        else:
+            for j in range(scanPosit[i],obsNum):
+                staList.extend(baseline[j])
+                Obs2Scan[j] = i + 1
 
+        staListNew = list(set(staList))
+        for s in range(len(staListNew)):
+            index = scanInfo.stationAll.index(staListNew[s])
+            maxObs2Sta = max(Scan2Station[:,index])
+            Scan2Station[i,index] = maxObs2Sta + 1
+    
     rows = max(Scan2Station[-1,:])
     if staNum > 2:
         Station2Scan = np.zeros((rows, staNum), dtype=int)
@@ -199,6 +262,7 @@ def create_Init(scanInfo, scanPosit, baseline, Temperature, Press, Humidity):
     scanInfo.Station2Scan = Station2Scan
     scanInfo.Obs2Baseline = Obs2Baseline
     scanInfo.Obs2Scan = Obs2Scan
+    scanInfo.ionFlag = np.zeros(len(Obs2Scan))
 
     # cable and met
     cableCal = []

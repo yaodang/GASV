@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys,os,time
-import re,copy,zipfile
+import re,copy
 import multiprocessing
 
 from INIT.init import *
@@ -10,11 +10,12 @@ from SOLVE.solve import *
 from GLOB.GLOB_glob import *
 from OUT import *
 from MAKE import *
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning)
 
 # mkcalc -d 23JAN11XA -o /Users/dangyao/work/software/VIPS/vgosDb/2023 /Users/dangyao/Downloads/crf134
 # plog -p /Users/dangyao/work/software/VIPS/STALOG -k log /Users/dangyao/work/software/VIPS/vgosDb/2022/22JUN24XG
 # D:/software/V1.9.8/APRIORI/cnt.txt
-# makedb -d 23OCT18NU -o D:/data/VLBI/vgosDB/2023 D:/data/VLBI/HOPS_OUT/U231018
 
 def check():
     if len(sys.argv) == 1:
@@ -48,11 +49,11 @@ def check():
         runInfo['inPath'] = sys.argv[-1]
 
         return runFlag,runInfo
-    
+
     #elif sys.argv[1] == 'calc':
     #    runFlag = 2
     #    runInfo = [sys.argv[2]]
-        
+
     #    return runFlag,runInfo
     
     elif sys.argv[1] == 'plog':
@@ -195,8 +196,8 @@ def process(ParamApri):
             print('    SOLVE using %5.1f seconds.' % (solveETime - solveSTime))
 
             print('\n---------------------  Write result  --------------------')
-            plotResuidal(Param, scanInfo, staObs, result)
             out = collectResult(Param, scanInfo, stationInfo, sourceInfo, staObs, eopApri, result)
+            plotResuidal(Param, scanInfo, staObs, result)
             writeSFF(Param, scanInfo, eopApri, result, out)
 
             writeEOP(Param, scanInfo, result, sessionNum, out)

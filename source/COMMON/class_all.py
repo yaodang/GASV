@@ -493,7 +493,7 @@ class ARCS:
 class OUTPUT:
     def __init__(self):
         self.name = 'OUTPUT'
-        self.residualPath = ''
+        self.residualPath = ['NO']
         self.snxPath = ['NO']
         self.reportPath = ['NO']
         self.eopPath = ['NO']
@@ -507,10 +507,11 @@ class OUTPUT:
                 else:
                     temp = list(filter(None, line[1:].split(" ")))
                 if 'RESIDUAL' in line:
-                    if temp[1] == 'YES' and len(temp) == 3:
-                        self.residualPath = temp[2]
-                    else:
-                        self.residualPath = 'None'
+                    if temp[1] == 'YES':
+                        if len(temp) == 2:
+                            print('RESIDUAL of $OUTPUT set wrong!')
+                        elif len(temp) >= 3:
+                            self.residualPath = temp[1:]
                 if 'SNX' in line:
                     if temp[1] == 'YES':
                         if len(temp) == 2:
@@ -1032,15 +1033,6 @@ class NNRSOU():
     def __init__(self):
         self.nnrMatrix = [[],[],[]]
         self.nnrFlag = 0
-    #     self.readNNRSou()
-        
-    # def readNNRSou(self):
-    #     fid = open('/Users/dangyao/Desktop/V1.4/COMMON/nnr_sou.txt','r')
-    #     lines = fid.readlines()
-    #     fid.close()
-        
-    #     temp = list(filter(None,lines[0][0:-1].split(" ")))
-    #     self.nnrRef = getExcept(lines, 0, temp, 0)
         
 class REWEI():
     def __init__(self):

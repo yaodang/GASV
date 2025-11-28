@@ -9,6 +9,8 @@ from itertools import *
 from COMMON import *
 from GUI import mysource_rc
 from GUI import *
+import warnings
+warnings.filterwarnings('ignore', category=UserWarning)
 # from MAKE import createFromProcess
 import matplotlib
 matplotlib.use('Qt5Agg')
@@ -59,6 +61,7 @@ class MyForm(QMainWindow):
         font = QFont('Consolas', 12)
         self.ui.textEdit_glob.setFont(font)
         self.ui.textBrowser_information.setFont(font)
+        #self.ui.textBrowser.setFont(font)
 
         self.init_gui()
         self.init_param()
@@ -941,6 +944,9 @@ class MyForm(QMainWindow):
     def onBottonClick_clkbkMode(self):
         if self.ui.radioButton_plot_station.isChecked():
             self.ui.pushButton_plot_outlier.setChecked(False)
+            icon1 = QIcon()
+            icon1.addFile(u":/icons/icons/magnifier.png", QSize(), QIcon.Normal, QIcon.Off)
+            self.ui.pushButton_plot_outlier.setIcon(icon1)
             self.plot_res.outlierFlag = 0
             self.plot_res.clkbkFlag = 1
             
@@ -1605,8 +1611,8 @@ class MyForm(QMainWindow):
             temp.extend(self.scanInfo.clkBrk.brkMJD[index])
             temp.append(xdata)
             self.scanInfo.clkBrk.brkMJD[index] = sorted(temp)
-            self.ui.pushButton_plot_clkbk.setChecked(True)
-            
+            self.ui.pushButton_plot_clkbk.setChecked(False)
+            self.plot_res.clkbkFlag = 0
 
     #-------------------------------------------------------------------------#
     #------------------------------ Other signal -----------------------------#
@@ -1850,13 +1856,14 @@ class MyForm(QMainWindow):
 
     def signal_showLoadData(self, method, data):
         if method == 'menu':
-            dataFile, fileType = QFileDialog.getOpenFileName(self,'Wrapper file Select',self.dirpath[0],\
+            dataFile, fileType = QFileDialog.getOpenFileName(self,'Data Selection',self.dirpath[0],\
                                                             'All Files(*)')
             if len(dataFile):
                 temp = dataFile.rfind('/')
                 wrpFile = dataFile[temp + 1:]
                 #if '.wrp' in wrpFile and self.ui.radioButton_file_wrp.isChecked():
                 if '.wrp' in wrpFile and self.ui.comboBox_dataType.currentIndex() == 0:
+                    # vgosDB data file
                     temp1 = wrpFile.index('_')
                     temp2 = wrpFile[temp1+1:].index('_')+temp1+1
                     temp3 = wrpFile.rfind('_')
@@ -1865,6 +1872,7 @@ class MyForm(QMainWindow):
                     self.Param.Arcs.AC = [wrpFile[temp2+2:temp3]]
                 #elif self.ui.radioButton_file_ngs.isChecked():
                 elif self.ui.comboBox_dataType.currentIndex() == 1:
+                    # NGS data file
                     self.Param.Arcs.session = [wrpFile]
                     self.Param.Arcs.version = [0]
                     self.Param.Arcs.AC = ['NONE']
@@ -1888,17 +1896,6 @@ class MyForm(QMainWindow):
             #if self.ui.radioButton_file_wrp.isChecked():
             if self.ui.comboBox_dataType.currentIndex() == 0:
                 self.scanInfo, self.wrpInfo = read_vgosDB(self.Param, 0)
-                latAll = []
-                lonAll = []
-                for i in range(len(self.scanInfo.stationAll)):
-                    lon,lat,height = xyz2ell(self.scanInfo.staPosit[i])
-                    latAll.append(lat*180/np.pi)
-                    lonAll.append(lon*180/np.pi)
-                self.plot_mapsta.clearMap()
-                self.plot_mapsta.plotStation(latAll,lonAll,self.scanInfo.stationAll)
-                self.plot_mapsou.clearMap()
-                self.plot_mapsou.plotSource(self.scanInfo.souPosit)
-
 
                 '''
                 try:
@@ -1920,7 +1917,17 @@ class MyForm(QMainWindow):
                 except:
                     QMessageBox.critical(self, 'Error', 'Other type data loading wrong! Please check path!')
                     return
-            # print(self.scanInfo.Fmout_GNSS)
+
+            latAll = []
+            lonAll = []
+            for i in range(len(self.scanInfo.stationAll)):
+                lon,lat,height = xyz2ell(self.scanInfo.staPosit[i])
+                latAll.append(lat*180/np.pi)
+                lonAll.append(lon*180/np.pi)
+            self.plot_mapsta.clearMap()
+            self.plot_mapsta.plotStation(latAll,lonAll,self.scanInfo.stationAll)
+            self.plot_mapsou.clearMap()
+            self.plot_mapsou.plotSource(self.scanInfo.souPosit)
             
             self.runFlag = 0
             self.useBlNum = 0

@@ -40,7 +40,6 @@ def createScanInfo(Param, sessionNum):
         
     
 def readAipsResult(scanInfo, fileName):
-    # fileName = 'U230619-delay-JL-KS-v1.txt'
     
     obsDate = np.loadtxt(fileName,comments='!',usecols=[0],unpack=True,dtype=str)
     obsSource = np.loadtxt(fileName,comments='!',usecols=[1],unpack=True,dtype=str)
@@ -133,6 +132,7 @@ def create_Init(scanInfo):
     scanInfo.Station2Scan = Station2Scan
     scanInfo.Obs2Baseline = Obs2Baseline
     scanInfo.Obs2Scan = np.linspace(1, scanInfo.scanNum, scanInfo.scanNum, dtype=int)
+    scanInfo.ionFlag = np.zeros(len(scanInfo.Obs2Scan))
     
     # cable and met
     cableCal = []

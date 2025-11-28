@@ -23,21 +23,11 @@ def plotResuidal(param, scanInfo, staObs, result):
         save the resuidal plot
     ---------------------
     """
-    if param.Out.residualPath == 'None':
+    if param.Out.residualPath[0] == 'NO':
         return
     print('    plot and save resuidal......')
-    '''
-    if len(scanInfo.sessionName) == 9:
-        year = 2000 + int(scanInfo.sessionName[:2])
-    else:
-        if '-' in scanInfo.sessionName:
-            index = scanInfo.sessionName.index('-')
-            if index == 8:
-                year = int(scanInfo.sessionName[0:4])
-            elif index == 7:
-                year = 2000 + int(scanInfo.sessionName[1:3])'''
-    year = 2024
-    pngPath = os.path.join(param.Out.residualPath,str(year))
+    [year, mon, day, hour, minute, second] = mjd2ymdhms(scanInfo.scanMJD[0])
+    pngPath = os.path.join(param.Out.residualPath[1],str(year))
     if not os.path.exists(pngPath):
         os.mkdir(pngPath)
     
@@ -96,6 +86,6 @@ def plotResuidal(param, scanInfo, staObs, result):
     plt.legend(loc='upper right')
     
     plt.xticks(xnum[0].tolist(),xticks)
-    plt.savefig(param.Out.residualPath+'/'+str(year)+'/'+scanInfo.sessionName+'.pdf')
+    plt.savefig(os.path.join(pngPath,scanInfo.sessionName+'.pdf'))
     plt.close()
     
