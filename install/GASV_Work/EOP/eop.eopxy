@@ -1,0 +1,44 @@
+*			      IVS EOP 3.0 FORMAT
+*  1     epoch (with at least 5 decimal digits)
+*
+*  2     x of the pole (arcsec)
+*  3     y of the pole (arcsec)
+*  4     UT1-UTC (sec)
+*  5     dpsi or dX (mas)
+*  6     deps or dY (mas)
+*
+*  7     uncertainty in x (arcsec)
+*  8     uncertainty in y (arcsec)
+*  9     uncertainty in UT1-UTC (sec)
+* 10     uncertainty in dpsi or dX (mas)
+* 11     uncertainty in deps or dY (mas)
+*
+* 12     wrms residual delay of the session (ps)
+*
+* 13     correlation coefficient : x, y
+* 14     correlation coefficient : x, UT1
+* 15     correlation coefficient : y, UT1
+* 16     correlation coefficient : dpsi,deps or dX/dY
+*
+* 17	 number of observables
+* 18     6 character IVS session code
+* 19 	 Session duration (hours)
+*
+* 20	 x rate of the pole (asc/day)
+* 21	 y rate of the pole (asc/day)
+* 22	 excess length of day (LOD) (sec), see comment below 
+* 23	 dpsi/dX rate (mas/day)
+* 24	 deps/dY rate (mas/day)
+*
+* 25     uncertainty in x rate (asc/day)
+* 26     uncertainty in y rate (asc/day)
+* 27     uncertainty in LOD (sec)
+* 28     uncertainty in dpsi/dX rate (mas/day)
+* 29     uncertainty in deps/dY rate (mas/day)
+*
+* 30     sequence of two-character IVS station identifiers as maintained 
+*        in IVS master control file ns-codes.txt (no blanks between stations)
+*        e.g. TsWzWfTcGcFt45Oh, TsWzNy or NyTs
+*        N.B.: There may be several lines for an individual session
+*              identifying different station configurations 
+59569.205765    0.0749608    0.2636209   -0.1079160    0.0002570   -0.0001403    0.0000596    0.0000797    0.0000045    0.0000777    0.0000673       31.8        0.0        0.0        0.0        0.0 13098 r11030 23.97   -0.0024377    0.0010470    0.0004235    0.0000000    0.0000000    0.0001006    0.0000928    0.0000038    0.0000000    0.0000000 AgBdHtIsKkMaNsOnSaKvShSvWzZc

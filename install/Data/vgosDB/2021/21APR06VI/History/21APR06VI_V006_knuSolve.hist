@@ -1,0 +1,37 @@
+
+TIMETAG 2021/04/16 21:01:45 UTC
+MK3DB_VERSION 6
+nuSolve: Library ID: SgLib-0.7.3 (New Market (rc3)) released on 01 Mar, 2021
+nuSolve: Driver  ID: nuSolve-0.7.3 (Urbana (rc3)) released on 24 Feb, 2021
+nuSolve: Host    ID: gs61av-vlbiprd01 (Hw: x86_64; Sw: 5.4.0-64-generic version of Linux)
+nuSolve: User    ID: Sergei Bolotin <sergei.bolotin@nasa.gov>, NVI, Inc. / NASA Goddard Space Flight Center
+nuSolve: Input data  : /sgpvlbi/level2/vgosDB/2021/21APR06VI/21APR06VI_V005_iGSFC_kall.wrp
+
+TIMETAG 2021/04/16 21:03:11 UTC
+Analyzed by Sergei Bolotin (hereafter SB) at NVI, Inc. / NASA Goddard Space Flight Center. Contact info: <sergei.bolotin@nasa.gov>
+VGOS-21096/NASA GSFC nuSolve update. -SB-
+Delays only, 6 parameters, 31.236 psec fit,
+36 obs, 6.58 microsec UT1 formal error.
+The following flyby options were used in the solution:
+Station positions flyby file: glo.sit
+Station velocities flyby file: glo.vel
+Source flyby file: glo.src
+Station axis offset flyby file: glo.axis
+EOP high frequency variations flyby file: NONE
+Station mean gradients flyby file: NONE
+Nutation series flyby file :  NONE
+Nutation offset flyby file :  NONE
+Earth rotation flyby file  :  NONE
+Tectonic plate motion file :  NONE
+Group delay ambiguities were resolved (well, at least, tried to resolve)
+Group delay outliers were processed and editing info has been updated.
+Troposphere and cable cal status for standard solution have been stored.
+Observation dependent contribution status has been stored.
+Reweighting updated for:
+KO-WE 
+Solution data configuration: group delays with ionosphere corrections
+Clock and atmosphere constraint information saved.
+Batchmode clock parameterization saved.
+Batchmode atmosphere parameterization saved.
+Ionosphere corrections were evaluated for group delays.
+Eccentricity data store in data base header.

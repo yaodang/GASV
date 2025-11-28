@@ -1,0 +1,120 @@
+VERSION 1.002   2017Oct02
+!
+!
+!
+!
+Begin History
+!
+Begin Process Correlator
+Version 1
+CreatedBy correlator operator
+Default_dir History
+RunTimeTag 2021/04/16 20:45:20 UTC
+History 21APR06VI_V000_kMk4.hist
+End Process Correlator
+!
+Begin Process SgLib/vgosDbMake
+Version 0.7.2/0.5.2
+CreatedBy WACO (USNO Correlator), United States Naval Observatory
+Default_dir History
+RunTimeTag 2021/04/16 20:46:23 UTC
+History 21APR06VI_V001_kvgosDbMake.hist
+End Process SgLib/vgosDbMake
+!
+End History
+!
+!
+Begin Session
+Session V21096
+AltSessionId 21APR06VI
+!
+Head.nc
+!
+Default_Dir CrossReference
+StationCrossRef.nc
+SourceCrossRef.nc
+!
+Default_Dir Session
+MiscFourFit.nc
+!
+End Session
+!
+Begin Station KOKEE12M
+!
+Default_Dir KOKEE12M
+TimeUTC.nc
+End Station KOKEE12M
+!
+Begin Station WETTZ13S
+!
+Default_Dir WETTZ13S
+TimeUTC.nc
+End Station WETTZ13S
+!
+!
+Begin Scan
+!
+Default_Dir Scan
+TimeUTC.nc
+CorrRootFile.nc
+ScanName.nc
+!
+End Scan
+!
+!
+Begin Observation
+!
+!
+Default_Dir Observables
+TimeUTC.nc
+Baseline.nc
+Source.nc
+ChannelInfo_bX.nc
+PhaseCalInfo_bX.nc
+CorrInfo-difx_bX.nc
+RefFreq_bX.nc
+AmbigSize_bX.nc
+QualityCode_bX.nc
+SBDelay_bX.nc
+GroupDelay_bX.nc
+GroupRate_bX.nc
+Phase_bX.nc
+DataFlag_bX.nc
+SNR_bX.nc
+Correlation_bX.nc
+!
+!
+!
+!
+!
+Default_Dir CrossReference
+ObsCrossRef.nc
+!
+!
+!
+Default_Dir Observables
+DiffTec.nc
+!
+!
+Default_Dir ObsCalTheo
+Cal-Unphase_bX.nc
+!
+!
+End Observation
+!
+!
+Begin Program Solve
+Default_dir Solve
+!
+Begin Session
+End Session
+!
+Begin Scan
+ScanTimeMJD.nc
+End Scan
+!
+Begin Observation
+End Observation
+!
+End Program Solve
+!

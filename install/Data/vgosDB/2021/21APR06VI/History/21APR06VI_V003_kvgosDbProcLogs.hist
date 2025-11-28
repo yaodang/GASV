@@ -1,0 +1,36 @@
+
+TIMETAG 2021/04/16 20:46:32 UTC
+MK3DB_VERSION 3
+. vgosDbProcLogs: Library ID: SgLib-0.7.2 (Yeager) released on 19 Nov, 2020
+. vgosDbProcLogs: Driver  ID: vgosDbProcLogs-0.5.2 (Summerfield) released on 19 Nov, 2020
+. vgosDbProcLogs: Host    ID: fringe0 (Hw: x86_64; Sw: 3.10.0-1160.24.1.el7.x86_64 version of Linux)
+. vgosDbProcLogs: User    ID: WACO (USNO Correlator) <navobsy_vlbi@navy.mil>, Washington Correlator
+. vgosDbProcLogs: User command: "vgosDbProcLogs -atevh87x9 -klog /tmp/vgosdb.ez0c43rl/vgosdb/2021/21APR06VI/21APR06VI_V002_iWACO_kall.wrp"
+. vgosDbProcLogs: Input data  : /tmp/vgosdb.ez0c43rl/vgosdb/2021/21APR06VI/21APR06VI_V002_iWACO_kall.wrp
+. vgosDbProcLogs: the session V21096 (21APR06VI) has been imported from vgosDb data set
+w readFile: got a duplicate record " Ca CAMBRIDG --------- ---- Cambridge, UK (VLBA)" for the station name "CAMBRIDG" in the ns-codes file [/tmp/vgosdb.ez0c43rl/./master/ns-codes.txt]
+w readFile: got a duplicate record " Cb CAMBRIDG --------- ---- Cambridge, UK (Ryle)" for the station name "CAMBRIDG" in the ns-codes file [/tmp/vgosdb.ez0c43rl/./master/ns-codes.txt]
+w readFile: got a duplicate record " Ef EFLSBERG 14209S001 7203 Effelsberg, Germany (originally Mk4, now common EVN usage)" for the station name "EFLSBERG" in the ns-codes file [/tmp/vgosdb.ez0c43rl/./master/ns-codes.txt]
+w readFile: got a duplicate record " Jv JODRELL2 --------- ---- VLBA, Jodrell Bank, UK" for the station name "JODRELL2" in the ns-codes file [/tmp/vgosdb.ez0c43rl/./master/ns-codes.txt]
+. importDataFromLogFiles: checking [/tmp/vgosdb.ez0c43rl/./aux/2021/v21096/] directory for station log files
+. importDataFromLogFiles: processing /tmp/vgosdb.ez0c43rl/./aux/2021/v21096/v21096k2.log, a log file for KOKEE12M station
+w readLogFile: station KOKEE12M: the experiment name has been changed: "" => "v21096"
+. readLogFile: station KOKEE12M: collected operator's comments: 
+. readLogFile: station KOKEE12M: 2021/04/06 16:41:36: Session will be run warm due to cryogenic compressor issues
+. readLogFile: station KOKEE12M: 2021/04/06 17:03:23: kokee park geophysical observatory, v21096, apr 2021, operator-goodrich
+. readLogFile: station KOKEE12M: 147923 strings of the log file (15M) were read (132672 strings were skipped)
+. verifyReadings: station KOKEE12M: insufficient number (0) of cable calibrations; skipped
+. verifyReadings: station KOKEE12M: insufficient number (0) of tsys readings; skipped
+w verifyReadings: station KOKEE12M: cannot find any usable cable calibrations
+. propagateData: station KOKEE12M: meteo parameters were found
+. importDataFromLogFiles: processing /tmp/vgosdb.ez0c43rl/./aux/2021/v21096/v21096ws.log, a log file for WETTZ13S station
+w readLogFile: station WETTZ13S: the experiment name has been changed: "" => "v21096"
+w readLogFile: station WETTZ13S: no proc record has been found in the log file
+. readLogFile: station WETTZ13S: 5276 strings of the log file (333K) were read (1225 strings were skipped)
+. verifyReadings: station WETTZ13S: insufficient number (0) of tsys readings; skipped
+. verifyReadings: station WETTZ13S: cannot find any usable cablelong measurements
+w verifyReadings: station WETTZ13S: cannot determine the cable calibration sign
+. propagateData: station WETTZ13S: no cable cal record found for the scan "096-1831" in the log file
+. propagateData: station WETTZ13S: 36 exact and 1 closest matches of cable calibrations were found
+. propagateData: station WETTZ13S: meteo parameters were found
+. vgosDbProcLogs: import of data from station log files has been complete

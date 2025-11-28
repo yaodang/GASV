@@ -1,0 +1,50 @@
+1Run
+ Analysis center: 
+ Analyst:         yaodang ( yaodang@ntsc.ac.cn )
+ Machine:         Linux
+ Executables:     .
+ Solve initials:  yd
+ Spool format:    SgLib-0.7.3 (New Market)
+ Local time:      2025.11.28-09:37:20
+ Data base $24SEP17RN_V004
+
+
+  Flyby Station Cals:    DB Station Cals:              | DB Non-station Cals: | Atmosphere Partial:
+ --------------------------------------------------------------------------------------------------
+    BADRT13V:NMFDRFLY             GION                 | Pol Tide             | GMFWTFLY              
+    JILIN12 :NMFDRFLY             GION                 | WobXCont             |                       
+    SVERT13V:NMFDRFLY             GION                 | WobYCont             |                       
+    SVETLOE :NMFDRFLY             GION                 | EarthTid             |                       
+    ZELENCHK:NMFDRFLY             GION                 | Ocean                |                       
+    ZELRT13V:NMFDRFLY             GION                 | UT1Ortho             |                       
+                                                       | XpYpOrth             |                       
+ --------------------------------------------------------------------------------------------------
+
+
+  Met Statistics:
+                    Temperature      Pressure        Humidity
+   Station         average   rms   average   rms   average   rms
+   BADRT13V  MET      0.6           927.9            91.6        
+   JILIN12   MET     14.7           983.4            99.9        
+   SVERT13V  MET     14.8          1022.3            88.6        
+   SVETLOE   MET     14.8          1022.3            88.5        
+   ZELENCHK  MET     11.8           889.2            92.2        
+   ZELRT13V  MET     11.8           889.2            92.2        
+
+
+ Data Type     Number of   Weighted RMS    Normalized RMS   Chi Square
+             Observations    Residual         Residual      (precis)
+                 Used
+   Delay      434            146.082 ps              0.00       2.3720
+   Rate         0                  0 fs/s            0.00       0.0000
+Combined        0                                    0.00       0.0000
+-----------------------------------------------------------------------
+
+
+ Parameter adjustments for 24SEP17RN_V004
+                                        Parameter               Adjustment              a-sigma              m-sigma
+       UT1-TAI   0,  24/09/17 21:57       58.6884 msec       62.86 microsec        28.01 microsec         0.00 microsec 
+ EOP without included hi-freq variations (a-sigmas)
+                      XWOB          YWOB          UT1-TAI          XSIG         YSIG         USIG
+                       mas           mas            ms           microasec    microasec    microsec
+24/09/17 21:57         0.0000        0.0000        58.6884          0.00          0.00        28.01

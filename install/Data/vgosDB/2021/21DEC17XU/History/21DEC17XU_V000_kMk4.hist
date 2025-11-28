@@ -1,0 +1,153 @@
+
+TIMETAG 2021/12/20 23:14:16 UTC
+MK3DB_VERSION 1
++HEADER
+
+CORREL   WACO
+DATABASE 21DEC17XU
+SESSNAME I21351
+OBSTIME  2021/12/17
+UTSTART  1845
+DURATION 1
+DOY      351
+CORRTIME 2021/12/17
+CORRPASS 1
+EXPORT   DONE
+
++SUMMARY
+
+Qcode      % of Total  % of Correlated
+                Scans            Scans
+                                      
+5-9               33%              97%
+0                  0%               2%
+1-4,A-H,N         66%               0%
+removed            0%               - 
+
++CORRELATOR_NOTES
+
+This final release contains only data from ISHIOKA and WETTZELL, and is 
+identical to the first database that was released on 2021-12-17.
+
+The data from KOKEE was recorded with a different schedule and was not 
+useable.
+
+Fringe quality 0 for scan 351-1942 with source 0736+017 on Is-Wz:S.
+
++STATION_NOTES
+
+ISHIOKA  (Is/I): Ok.
+
+KOKEE    (Kk/K): Recorded with a different schedule version. 
+                 Unable to correlate.
+
+WETTZELL (Wz/v): Ok.
+
++DROP_CHANNELS
+
++MANUAL_PCAL
+
++CHANNELS
+
+ Channels: XR1U = band|polarization|BBC#|sideband
+
+XR1U/L BBC01 8212.99
+XR2U   BBC02 8252.99
+XR3U   BBC03 8352.99
+XR4U   BBC04 8512.99
+XR5U   BBC05 8732.99
+XR6U   BBC06 8852.99
+XR7U   BBC07 8912.99
+XR8U/L BBC08 8932.99
+SR1U   BBC09 2225.99
+SR2U   BBC10 2245.99
+SR3U   BBC11 2265.99
+SR4U   BBC12 2295.99
+SR5U   BBC13 2345.99
+SR6U   BBC14 2365.99
+
++CLOCKS
+
+Clocks: WACO
+
+Station  fmout-gps    Used        Rate  Comments
+            [usec]  [usec]   [sec/sec]
+Is           0.411   0.702  -4.400E-13
+Wz          -7.437  -5.253  -2.695E-13  Reference
+Date: 2021/12/17 18:45:00
+
++QCODES
+
+Qcod 0 1 2 3 4 5 6 7 8  9 A B C D E F G H  N - Tot
+--------------------------------------------------
+IK:S 0 0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0 0 26 0  26
+IK:X 0 0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0 0 26 0  26
+Iv:S 1 0 0 0 0 0 0 0 0 23 0 0 0 0 0 0 0 0  0 0  24
+Iv:X 0 0 0 0 0 0 0 0 0 24 0 0 0 0 0 0 0 0  0 0  24
+Kv:S 0 0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0 0 21 0  21
+Kv:X 0 0 0 0 0 0 0 0 0  0 0 0 0 0 0 0 0 0 21 0  21
+--------------------------------------------------
+Tot  1 0 0 0 0 0 0 0 0 47 0 0 0 0 0 0 0 0 94 0 142
+QC = 0   Fringes not detected.
+   = 1-9 Fringes detected, no error condition. Higher #, better quality.
+   = B   Interpolation error in fourfit.
+   = D   No data in one or more frequency channels.
+   = E   Maximum fringe amplitude at edge of SBD, MBD, or rate window.
+   = F   "Fork" problem in processing.
+   = G   Fringe amp in a channel is <.5 times mean amp (only if SNR>20).
+   = H   Low Phase-cal amplitude in one or more channels.
+   = N   No valid correlator data.
+ Tot     Total number of scans in schedule.
+ Minus   Scans in original schedule file for which correlation was not
+         attempted, usually because of known station problems.
+
++SNR_RATIOS
+
+MEAN RATIOS = Observed SNR / Predicted SNR  for exp no. 1234
+
+ ...by baseline, over all sources:
+
+ bl     X     n       S     n
+
+ Iv    1.19   24     0.80   23
+ IK    0.00    0     0.00    0
+ vK    0.00    0     0.00    0
+
++FOURFIT_CONTROL_FILE
+
+sb_win -256.0 256.0
+mb_win -256.0 256.0
+dr_win -0.03 0.03
+pc_mode multitone
+pc_period 5
+
+if f_group X
+  ref_freq 8212.99
+
+if f_group S
+  ref_freq 2225.99
+
+if station K and f_group X
+  pc_tonemask ghijklmn 148 132 132 132 132 132 132 132
+
+if station K and f_group S
+  pc_tonemask abcdef 16 16 16 16 16 16
+
+if station I and f_group X
+  pc_tonemask ghijklmn 127 127 127 127 127 127 127 127
+
+if station I and f_group S
+  pc_tonemask abcdef 239 239 239 239 239 239
+
+if station I
+  lsb_offset 0.0
+
+if station K
+  lsb_offset -40.0
+
+if station v
+  lsb_offset 0.0
+
+* Roxanne Inniss
+
++END

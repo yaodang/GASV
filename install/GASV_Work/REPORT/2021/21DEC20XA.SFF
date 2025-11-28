@@ -1,0 +1,658 @@
+1Run
+ Analysis center: 
+ Analyst:         yaodang ( yaodang@ntsc.ac.cn )
+ Machine:         Linux
+ Executables:     .
+ Solve initials:  yd
+ Spool format:    SgLib-0.7.3 (New Market)
+ Local time:      2025.11.28-09:35:04
+ Data base $21DEC20XA
+
+
+  Flyby Station Cals:    DB Station Cals:              | DB Non-station Cals: | Atmosphere Partial:
+ --------------------------------------------------------------------------------------------------
+    AGGO    :NMFDRFLY             GION                 | Pol Tide             | GMFWTFLY              
+    BADARY  :NMFDRFLY             GION                 | WobXCont             |                       
+    HART15M :NMFDRFLY             GION                 | WobYCont             |                       
+    ISHIOKA :NMFDRFLY             GION                 | EarthTid             |                       
+    KOKEE   :NMFDRFLY             GION                 | Ocean                |                       
+    MATERA  :NMFDRFLY             GION                 | UT1Ortho             |                       
+    NYALE13S:NMFDRFLY             GION                 | XpYpOrth             |                       
+    ONSALA60:NMFDRFLY             GION                 | XpYpLib              |                       
+    RAEGSMAR:NMFDRFLY             GION                 |                      |                       
+    SEJONG  :NMFDRFLY             GION                 |                      |                       
+    SESHAN25:NMFDRFLY             GION                 |                      |                       
+    SVETLOE :NMFDRFLY             GION                 |                      |                       
+    WETTZELL:NMFDRFLY             GION                 |                      |                       
+    ZELENCHK:NMFDRFLY             GION                 |                      |                       
+ --------------------------------------------------------------------------------------------------
+
+
+  Met Statistics:
+                    Temperature      Pressure        Humidity
+   Station         average   rms   average   rms   average   rms
+   AGGO      MET     24.2          1007.8            77.5        
+   BADARY    MET    -16.1           919.1            68.1        
+   HART15M   MET     17.8           865.8            77.4        
+   ISHIOKA   MET      9.2           997.4            67.8        
+   KOKEE     MET     14.5           885.4            93.8        
+   MATERA    MET      5.0           963.2            75.1        
+   NYALE13S  MET     -7.8          1024.5            75.9        
+   ONSALA60  MET     -2.3          1025.2            96.6        
+   RAEGSMAR  MET     14.5           974.5            88.7        
+   SEJONG    MET      6.9           995.0            74.5        
+   SESHAN25  MET      9.4          1019.2            72.2        
+   SVETLOE   MET    -16.7          1007.5            84.2        
+   WETTZELL  MET      0.1           951.8            85.9        
+   ZELENCHK  MET     -2.5           872.3            94.5        
+
+
+ Data Type     Number of   Weighted RMS    Normalized RMS   Chi Square
+             Observations    Residual         Residual      (precis)
+                 Used
+   Delay    11856             31.778 ps              0.00       1.3965
+   Rate         0                  0 fs/s            0.00       0.0000
+Combined        0                                    0.00       0.0000
+-----------------------------------------------------------------------
+
+
+ Parameter adjustments for 21DEC20XA
+                                        Parameter               Adjustment              a-sigma              m-sigma
+Station positions are for epoch: 2021.12.21-05:03:38
+           AGGO 7641 SOAM  X Comp       2765116703.62 mm         14.538 mm             10.415 mm
+           AGGO 7641 SOAM  Y Comp      -4449233815.33 mm        -15.780 mm             17.329 mm
+           AGGO 7641 SOAM  Z Comp      -3626420565.94 mm        -26.842 mm             16.956 mm
+           AGGO 7641       U comp               33.86 mm         33.856 mm              0.000 mm
+           AGGO 7641       E Comp               -4.63 mm         -4.633 mm              0.000 mm
+           AGGO 7641       N Comp                3.62 mm          3.625 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:04
+         BADARY 7382 EURA  X Comp       -838201314.97 mm         -2.497 mm              1.090 mm
+         BADARY 7382 EURA  Y Comp       3865751563.87 mm         -1.624 mm              2.384 mm
+         BADARY 7382 EURA  Z Comp       4987670855.83 mm         -4.002 mm              3.182 mm
+         BADARY 7382       U comp               -3.31 mm         -3.314 mm              0.000 mm
+         BADARY 7382       E Comp                0.96 mm          0.956 mm              0.000 mm
+         BADARY 7382       N Comp                3.60 mm          3.605 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:57:32
+        HART15M 7378 AFRC  X Comp       5085490783.61 mm         -7.684 mm              4.964 mm
+        HART15M 7378 AFRC  Y Comp       2668161658.00 mm         -6.325 mm              3.961 mm
+        HART15M 7378 AFRC  Z Comp      -2768692461.92 mm         10.452 mm              6.124 mm
+        HART15M 7378       U comp                1.18 mm          1.180 mm              0.000 mm
+        HART15M 7378       E Comp               -9.05 mm         -9.045 mm              0.000 mm
+        HART15M 7378       N Comp               11.18 mm         11.184 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:14
+        ISHIOKA 7369 NOAM  X Comp      -3959636223.12 mm         -1.027 mm              1.914 mm
+        ISHIOKA 7369 NOAM  Y Comp       3296825472.89 mm         12.790 mm              2.602 mm
+        ISHIOKA 7369 NOAM  Z Comp       3747042575.97 mm          8.560 mm              3.059 mm
+        ISHIOKA 7369       U comp                0.31 mm          0.307 mm              0.000 mm
+        ISHIOKA 7369       E Comp               10.93 mm         10.927 mm              0.000 mm
+        ISHIOKA 7369       N Comp              -10.88 mm        -10.883 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:14
+          KOKEE 7298 PCFC  X Comp      -5543837862.46 mm        -12.128 mm              3.933 mm
+          KOKEE 7298 PCFC  Y Comp      -2054566286.96 mm         -3.016 mm              3.315 mm
+          KOKEE 7298 PCFC  Z Comp       2387852739.88 mm         -0.657 mm              3.259 mm
+          KOKEE 7298       U comp               11.83 mm         11.828 mm              0.000 mm
+          KOKEE 7298       E Comp                1.77 mm          1.774 mm              0.000 mm
+          KOKEE 7298       N Comp               -3.68 mm         -3.683 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-05:21:04
+         MATERA 7243 EURA  X Comp       4641938314.02 mm          6.690 mm              2.239 mm
+         MATERA 7243 EURA  Y Comp       1393003497.38 mm          2.423 mm              1.234 mm
+         MATERA 7243 EURA  Z Comp       4133325909.11 mm          3.751 mm              2.265 mm
+         MATERA 7243       U comp                7.45 mm          7.452 mm              0.000 mm
+         MATERA 7243       E Comp               -2.52 mm         -2.520 mm              0.000 mm
+         MATERA 7243       N Comp                1.68 mm          1.680 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-05:02:15
+       NYALE13S 7392 EURA  X Comp       1201070583.45 mm         -0.321 mm              1.785 mm
+       NYALE13S 7392 EURA  Y Comp        252129355.55 mm         -2.198 mm              1.696 mm
+       NYALE13S 7392 EURA  Z Comp       6238022568.50 mm          4.526 mm              6.724 mm
+       NYALE13S 7392       U comp               -1.24 mm         -1.242 mm              0.000 mm
+       NYALE13S 7392       E Comp               -0.11 mm         -0.106 mm              0.000 mm
+       NYALE13S 7392       N Comp                4.88 mm          4.885 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:27
+       ONSALA60 7213 EURA  X Comp       3370605670.71 mm          0.366 mm              1.670 mm
+       ONSALA60 7213 EURA  Y Comp        711917850.69 mm         -0.118 mm              1.130 mm
+       ONSALA60 7213 EURA  Z Comp       5349830987.79 mm         -3.189 mm              2.630 mm
+       ONSALA60 7213       U comp               -0.56 mm         -0.563 mm              0.000 mm
+       ONSALA60 7213       E Comp               -0.37 mm         -0.372 mm              0.000 mm
+       ONSALA60 7213       N Comp               -3.14 mm         -3.141 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:27
+       RAEGSMAR 7390 EURA  X Comp       4618524321.57 mm         31.150 mm              3.072 mm
+       RAEGSMAR 7390 EURA  Y Comp      -2166020673.08 mm        -10.506 mm              1.742 mm
+       RAEGSMAR 7390 EURA  Z Comp       3816270392.08 mm         33.674 mm              3.142 mm
+       RAEGSMAR 7390       U comp                2.51 mm          2.507 mm              0.000 mm
+       RAEGSMAR 7390       E Comp              -27.13 mm        -27.132 mm              0.000 mm
+       RAEGSMAR 7390       N Comp               38.37 mm         38.369 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:14
+         SEJONG 7368 EURA  X Comp      -3110080263.63 mm         -4.426 mm              2.816 mm
+         SEJONG 7368 EURA  Y Comp       4082066573.57 mm          2.952 mm              3.981 mm
+         SEJONG 7368 EURA  Z Comp       3775076727.59 mm         -4.196 mm              3.750 mm
+         SEJONG 7368       U comp               -2.25 mm         -2.247 mm              0.000 mm
+         SEJONG 7368       E Comp                5.01 mm          5.006 mm              0.000 mm
+         SEJONG 7368       N Comp                3.97 mm          3.974 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:04
+       SESHAN25 7227 EURA  X Comp      -2831687676.32 mm         -7.202 mm              1.676 mm
+       SESHAN25 7227 EURA  Y Comp       4675733371.70 mm          1.944 mm              2.837 mm
+       SESHAN25 7227 EURA  Z Comp       3275327402.98 mm          3.006 mm              3.164 mm
+       SESHAN25 7227       U comp                5.25 mm          5.245 mm              0.000 mm
+       SESHAN25 7227       E Comp                5.38 mm          5.385 mm              0.000 mm
+       SESHAN25 7227       N Comp                2.86 mm          2.859 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:10
+        SVETLOE 7380 EURA  X Comp       2730173512.95 mm         12.350 mm              1.886 mm
+        SVETLOE 7380 EURA  Y Comp       1562442925.72 mm         11.924 mm              1.437 mm
+        SVETLOE 7380 EURA  Z Comp       5529969220.42 mm         15.384 mm              3.331 mm
+        SVETLOE 7380       U comp               21.92 mm         21.924 mm              0.000 mm
+        SVETLOE 7380       E Comp               -4.89 mm         -4.886 mm              0.000 mm
+        SVETLOE 7380       N Comp                5.18 mm          5.179 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:27
+       WETTZELL 7224 EURA  X Comp       4075539485.36 mm          0.260 mm              1.869 mm
+       WETTZELL 7224 EURA  Y Comp        931735690.84 mm         -0.301 mm              1.124 mm
+       WETTZELL 7224 EURA  Z Comp       4801629612.33 mm         -3.605 mm              2.398 mm
+       WETTZELL 7224       U comp               -0.86 mm         -0.859 mm              0.000 mm
+       WETTZELL 7224       E Comp               -0.39 mm         -0.394 mm              0.000 mm
+       WETTZELL 7224       N Comp               -3.50 mm         -3.502 mm              0.000 mm
+Station positions are for epoch: 2021.12.21-04:59:10
+       ZELENCHK 7381 EURA  X Comp       3451207344.16 mm          1.079 mm              2.255 mm
+       ZELENCHK 7381 EURA  Y Comp       3060375548.60 mm         -2.672 mm              1.815 mm
+       ZELENCHK 7381 EURA  Z Comp       4391915121.36 mm         -3.186 mm              2.687 mm
+       ZELENCHK 7381       U comp               -2.91 mm         -2.915 mm              0.000 mm
+       ZELENCHK 7381       E Comp               -2.68 mm         -2.675 mm              0.000 mm
+       ZELENCHK 7381       N Comp               -1.67 mm         -1.674 mm              0.000 mm
+        0003-066 RT. ASC.                                0.0248      m-asc     0.1089      m-asec
+                  CORRECTION             0.0246260
+
+        0003-066 DEC.                                    0.9309      m-asc     0.2626      m-asec
+                  CORRECTION             0.9308589
+
+        0035-252 RT. ASC.                                0.0682      m-asc     0.3538      m-asec
+                  CORRECTION             0.0618442
+
+        0035-252 DEC.                                    0.0633      m-asc     0.5437      m-asec
+                  CORRECTION             0.0632982
+
+        0059+581 RT. ASC.                                0.4558      m-asc     0.1436      m-asec
+                  CORRECTION             0.2388047
+
+        0059+581 DEC.                                   -0.0672      m-asc     0.0749      m-asec
+                  CORRECTION            -0.0672097
+
+        0131-522 RT. ASC.                                0.3610      m-asc     0.8043      m-asec
+                  CORRECTION             0.2222728
+
+        0131-522 DEC.                                    0.7262      m-asc     0.7454      m-asec
+                  CORRECTION             0.7261655
+
+        0134+311 RT. ASC.                                0.0752      m-asc     0.2103      m-asec
+                  CORRECTION             0.0642165
+
+        0134+311 DEC.                                    0.5522      m-asc     0.4913      m-asec
+                  CORRECTION             0.5521912
+
+        0151+474 RT. ASC.                                0.5207      m-asc     0.4244      m-asec
+                  CORRECTION             0.3502595
+
+        0151+474 DEC.                                   -0.0010      m-asc     0.3175      m-asec
+                  CORRECTION            -0.0009674
+
+        0229+131 RT. ASC.                               -0.1707      m-asc     0.0976      m-asec
+                  CORRECTION            -0.1661035
+
+        0229+131 DEC.                                   -0.0495      m-asc     0.1445      m-asec
+                  CORRECTION            -0.0495051
+
+        0237-027 RT. ASC.                                0.8732      m-asc     0.3332      m-asec
+                  CORRECTION             0.8723469
+
+        0237-027 DEC.                                    0.4369      m-asc     0.3047      m-asec
+                  CORRECTION             0.4369297
+
+        0307+380 RT. ASC.                                0.3865      m-asc     0.1514      m-asec
+                  CORRECTION             0.3035477
+
+        0307+380 DEC.                                   -0.3041      m-asc     0.1846      m-asec
+                  CORRECTION            -0.3040619
+
+        0322+222 RT. ASC.                                0.4457      m-asc     0.1097      m-asec
+                  CORRECTION             0.4120787
+
+        0322+222 DEC.                                   -0.1970      m-asc     0.1248      m-asec
+                  CORRECTION            -0.1969839
+
+        0332+078 RT. ASC.                               -0.1241      m-asc     0.9396      m-asec
+                  CORRECTION            -0.1229167
+
+        0332+078 DEC.                                    0.7708      m-asc     0.8404      m-asec
+                  CORRECTION             0.7708375
+
+        0332-403 RT. ASC.                               -0.0298      m-asc     0.2913      m-asec
+                  CORRECTION            -0.0227579
+
+        0332-403 DEC.                                    0.5834      m-asc     0.3256      m-asec
+                  CORRECTION             0.5833799
+
+        0346-279 RT. ASC.                               -0.0461      m-asc     0.1512      m-asec
+                  CORRECTION            -0.0407392
+
+        0346-279 DEC.                                    0.3927      m-asc     0.2371      m-asec
+                  CORRECTION             0.3926788
+
+        0418+532 RT. ASC.                               -0.0500      m-asc     0.2548      m-asec
+                  CORRECTION            -0.0297917
+
+        0418+532 DEC.                                   -0.4237      m-asc     0.1942      m-asec
+                  CORRECTION            -0.4236794
+
+        0454-234 RT. ASC.                                0.0479      m-asc     0.1033      m-asec
+                  CORRECTION             0.0439110
+
+        0454-234 DEC.                                    0.3161      m-asc     0.2199      m-asec
+                  CORRECTION             0.3160765
+
+        0458+138 RT. ASC.                                0.2108      m-asc     0.2407      m-asec
+                  CORRECTION             0.2045561
+
+        0458+138 DEC.                                   -0.4726      m-asc     0.5342      m-asec
+                  CORRECTION            -0.4726154
+
+        0458-020 RT. ASC.                                0.2258      m-asc     0.0828      m-asec
+                  CORRECTION             0.2256926
+
+        0458-020 DEC.                                    0.2353      m-asc     0.1541      m-asec
+                  CORRECTION             0.2352836
+
+        0537-441 RT. ASC.                               -0.2153      m-asc     0.4301      m-asec
+                  CORRECTION            -0.1546490
+
+        0537-441 DEC.                                    0.0469      m-asc     0.8411      m-asec
+                  CORRECTION             0.0468631
+
+        0548+378 RT. ASC.                                1.1887      m-asc     0.8672      m-asec
+                  CORRECTION             0.9378635
+
+        0548+378 DEC.                                   -0.6529      m-asc     0.4157      m-asec
+                  CORRECTION            -0.6529348
+
+        0601-172 RT. ASC.                                0.3382      m-asc     0.3228      m-asec
+                  CORRECTION             0.3229116
+
+        0601-172 DEC.                                    0.0648      m-asc     1.5749      m-asec
+                  CORRECTION             0.0648224
+
+        0613+570 RT. ASC.                                0.2137      m-asc     0.1569      m-asec
+                  CORRECTION             0.1163359
+
+        0613+570 DEC.                                   -0.2443      m-asc     0.0806      m-asec
+                  CORRECTION            -0.2443234
+
+        0646-306 RT. ASC.                                0.1730      m-asc     0.3134      m-asec
+                  CORRECTION             0.1486642
+
+        0646-306 DEC.                                    0.6748      m-asc     0.4059      m-asec
+                  CORRECTION             0.6748354
+
+        0718+793 RT. ASC.                                0.9860      m-asc     0.5172      m-asec
+                  CORRECTION             0.1849031
+
+        0718+793 DEC.                                   -0.2193      m-asc     0.0851      m-asec
+                  CORRECTION            -0.2192562
+
+        0723+219 RT. ASC.                                0.0324      m-asc     0.1685      m-asec
+                  CORRECTION             0.0300630
+
+        0723+219 DEC.                                   -0.4478      m-asc     0.2224      m-asec
+                  CORRECTION            -0.4477555
+
+        0727-115 RT. ASC.                                0.2224      m-asc     0.0944      m-asec
+                  CORRECTION             0.2178022
+
+        0727-115 DEC.                                    0.3067      m-asc     0.2014      m-asec
+                  CORRECTION             0.3066938
+
+        0736+017 RT. ASC.                                0.1541      m-asc     0.0954      m-asec
+                  CORRECTION             0.1540359
+
+        0736+017 DEC.                                    0.2570      m-asc     0.1858      m-asec
+                  CORRECTION             0.2570254
+
+        0800+618 RT. ASC.                               -0.1104      m-asc     0.2309      m-asec
+                  CORRECTION            -0.0522535
+
+        0800+618 DEC.                                   -0.2152      m-asc     0.1491      m-asec
+                  CORRECTION            -0.2151562
+
+        0821+394 RT. ASC.                               -0.0215      m-asc     0.1193      m-asec
+                  CORRECTION            -0.0166307
+
+        0821+394 DEC.                                   -0.2471      m-asc     0.1272      m-asec
+                  CORRECTION            -0.2471421
+
+        0912+029 RT. ASC.                               -0.1909      m-asc     0.6038      m-asec
+                  CORRECTION            -0.1907214
+
+        0912+029 DEC.                                   -0.4055      m-asc     1.2744      m-asec
+                  CORRECTION            -0.4055286
+
+        0920-397 RT. ASC.                                0.3064      m-asc     0.8586      m-asec
+                  CORRECTION             0.2347441
+
+        0920-397 DEC.                                    1.6267      m-asc     0.8083      m-asec
+                  CORRECTION             1.6266709
+
+        0933+503 RT. ASC.                                0.1131      m-asc     0.3675      m-asec
+                  CORRECTION             0.0724869
+
+        0933+503 DEC.                                    0.3793      m-asc     0.6069      m-asec
+                  CORRECTION             0.3792644
+
+        1030+074 RT. ASC.                                0.1547      m-asc     0.2588      m-asec
+                  CORRECTION             0.1534769
+
+        1030+074 DEC.                                   -1.5368      m-asc     0.6141      m-asec
+                  CORRECTION            -1.5367533
+
+        1030+415 RT. ASC.                               -0.1564      m-asc     0.1173      m-asec
+                  CORRECTION            -0.1175598
+
+        1030+415 DEC.                                   -0.0113      m-asc     0.1310      m-asec
+                  CORRECTION            -0.0113286
+
+        1034-293 RT. ASC.                                0.0706      m-asc     0.5315      m-asec
+                  CORRECTION             0.0613827
+
+        1034-293 DEC.                                    0.6349      m-asc     0.4577      m-asec
+                  CORRECTION             0.6349100
+
+        1053+704 RT. ASC.                               -0.6838      m-asc     0.2015      m-asec
+                  CORRECTION            -0.2316581
+
+        1053+704 DEC.                                   -0.2627      m-asc     0.0925      m-asec
+                  CORRECTION            -0.2626567
+
+        1057-797 RT. ASC.                               -0.8050      m-asc     1.4767      m-asec
+                  CORRECTION            -0.1388877
+
+        1057-797 DEC.                                    0.1419      m-asc     0.2798      m-asec
+                  CORRECTION             0.1419067
+
+        1104-445 RT. ASC.                                0.6402      m-asc     0.7202      m-asec
+                  CORRECTION             0.4541068
+
+        1104-445 DEC.                                    0.8299      m-asc     0.8204      m-asec
+                  CORRECTION             0.8299038
+
+        1123+264 RT. ASC.                                0.0891      m-asc     0.5691      m-asec
+                  CORRECTION             0.0799750
+
+        1123+264 DEC.                                    0.3508      m-asc     0.4738      m-asec
+                  CORRECTION             0.3508070
+
+        1133-032 RT. ASC.                                0.0167      m-asc     0.1456      m-asec
+                  CORRECTION             0.0166451
+
+        1133-032 DEC.                                   -0.4095      m-asc     0.5477      m-asec
+                  CORRECTION            -0.4095005
+
+        1213-172 RT. ASC.                               -0.3989      m-asc     0.1141      m-asec
+                  CORRECTION            -0.3803572
+
+        1213-172 DEC.                                    0.3769      m-asc     0.2243      m-asec
+                  CORRECTION             0.3769009
+
+        1255-316 RT. ASC.                               -0.0179      m-asc     0.3119      m-asec
+                  CORRECTION            -0.0151576
+
+        1255-316 DEC.                                    0.1955      m-asc     0.3774      m-asec
+                  CORRECTION             0.1954846
+
+        1300+580 RT. ASC.                               -0.5597      m-asc     0.3649      m-asec
+                  CORRECTION            -0.2981427
+
+        1300+580 DEC.                                   -0.1015      m-asc     0.3059      m-asec
+                  CORRECTION            -0.1015076
+
+        1308+328 RT. ASC.                                0.1236      m-asc     0.1559      m-asec
+                  CORRECTION             0.1041870
+
+        1308+328 DEC.                                   -0.2893      m-asc     0.1546      m-asec
+                  CORRECTION            -0.2892841
+
+        1351-018 RT. ASC.                               -0.1700      m-asc     0.1362      m-asec
+                  CORRECTION            -0.1698562
+
+        1351-018 DEC.                                    0.0082      m-asc     0.3287      m-asec
+                  CORRECTION             0.0081532
+
+        1424-418 RT. ASC.                               -0.1044      m-asc     0.2892      m-asec
+                  CORRECTION            -0.0774780
+
+        1424-418 DEC.                                    0.4088      m-asc     0.3600      m-asec
+                  CORRECTION             0.4088080
+
+        1435-218 RT. ASC.                               -0.0612      m-asc     0.2677      m-asec
+                  CORRECTION            -0.0566870
+
+        1435-218 DEC.                                    0.1580      m-asc     0.3405      m-asec
+                  CORRECTION             0.1580343
+
+        1502+036 RT. ASC.                               -0.1505      m-asc     0.1135      m-asec
+                  CORRECTION            -0.1502070
+
+        1502+036 DEC.                                    0.2966      m-asc     0.1561      m-asec
+                  CORRECTION             0.2965949
+
+        1504+377 RT. ASC.                               -0.2794      m-asc     0.1576      m-asec
+                  CORRECTION            -0.2216438
+
+        1504+377 DEC.                                    0.1118      m-asc     0.1594      m-asec
+                  CORRECTION             0.1117976
+
+        1538+149 RT. ASC.                                0.0962      m-asc     0.2316      m-asec
+                  CORRECTION             0.0929676
+
+        1538+149 DEC.                                   -0.1609      m-asc     0.2801      m-asec
+                  CORRECTION            -0.1609168
+
+        1642+690 RT. ASC.                               -0.0736      m-asc     0.2373      m-asec
+                  CORRECTION            -0.0264275
+
+        1642+690 DEC.                                    0.4319      m-asc     0.0782      m-asec
+                  CORRECTION             0.4319129
+
+        1645+224 RT. ASC.                                0.1227      m-asc     0.1866      m-asec
+                  CORRECTION             0.1134649
+
+        1645+224 DEC.                                    0.5620      m-asc     0.2164      m-asec
+                  CORRECTION             0.5619936
+
+        1647-296 RT. ASC.                               -3.2143      m-asc     1.2522      m-asec
+                  CORRECTION            -2.7912361
+
+        1647-296 DEC.                                   -1.2497      m-asc     0.5482      m-asec
+                  CORRECTION            -1.2496968
+
+        1726+455 RT. ASC.                               -0.1082      m-asc     0.1062      m-asec
+                  CORRECTION            -0.0758529
+
+        1726+455 DEC.                                    0.0664      m-asc     0.0839      m-asec
+                  CORRECTION             0.0663780
+
+        1741-038 RT. ASC.                                0.0312      m-asc     0.0825      m-asec
+                  CORRECTION             0.0310862
+
+        1741-038 DEC.                                    0.2492      m-asc     0.1468      m-asec
+                  CORRECTION             0.2492496
+
+        1749+096 RT. ASC.                                0.0973      m-asc     0.0729      m-asec
+                  CORRECTION             0.0958992
+
+        1749+096 DEC.                                    0.0170      m-asc     0.1206      m-asec
+                  CORRECTION             0.0169873
+
+        1846+322 RT. ASC.                               -0.1257      m-asc     0.0845      m-asec
+                  CORRECTION            -0.1062430
+
+        1846+322 DEC.                                    0.1239      m-asc     0.1107      m-asec
+                  CORRECTION             0.1239348
+
+        1851+488 RT. ASC.                                0.2290      m-asc     0.1375      m-asec
+                  CORRECTION             0.1504446
+
+        1851+488 DEC.                                    0.4577      m-asc     0.1224      m-asec
+                  CORRECTION             0.4576810
+
+        1921-293 RT. ASC.                                0.2190      m-asc     0.1459      m-asec
+                  CORRECTION             0.1910893
+
+        1921-293 DEC.                                    0.1491      m-asc     0.3167      m-asec
+                  CORRECTION             0.1491286
+
+        1949-052 RT. ASC.                                0.1412      m-asc     0.1040      m-asec
+                  CORRECTION             0.1406730
+
+        1949-052 DEC.                                    0.0591      m-asc     0.1809      m-asec
+                  CORRECTION             0.0591101
+
+        1958-179 RT. ASC.                                0.1169      m-asc     0.1120      m-asec
+                  CORRECTION             0.1113224
+
+        1958-179 DEC.                                    0.1576      m-asc     0.1894      m-asec
+                  CORRECTION             0.1576447
+
+        2000+148 RT. ASC.                               -0.3335      m-asc     0.5004      m-asec
+                  CORRECTION            -0.3221445
+
+        2000+148 DEC.                                    0.7735      m-asc     0.6010      m-asec
+                  CORRECTION             0.7734941
+
+        2052-474 RT. ASC.                               -1.2593      m-asc     1.2886      m-asec
+                  CORRECTION            -0.8548388
+
+        2052-474 DEC.                                   -0.1556      m-asc     1.2127      m-asec
+                  CORRECTION            -0.1556083
+
+        2059+034 RT. ASC.                                0.1840      m-asc     0.0898      m-asec
+                  CORRECTION             0.1835823
+
+        2059+034 DEC.                                   -0.2193      m-asc     0.1913      m-asec
+                  CORRECTION            -0.2192836
+
+        2113+293 RT. ASC.                                0.2747      m-asc     0.0885      m-asec
+                  CORRECTION             0.2389490
+
+        2113+293 DEC.                                    0.1484      m-asc     0.1176      m-asec
+                  CORRECTION             0.1484333
+
+        2126-158 RT. ASC.                                0.2410      m-asc     0.1305      m-asec
+                  CORRECTION             0.2320497
+
+        2126-158 DEC.                                    0.5889      m-asc     0.2450      m-asec
+                  CORRECTION             0.5889314
+
+        2144+092 RT. ASC.                                0.0292      m-asc     0.1248      m-asec
+                  CORRECTION             0.0288359
+
+        2144+092 DEC.                                    0.0229      m-asc     0.1617      m-asec
+                  CORRECTION             0.0229146
+
+        2214+241 RT. ASC.                                0.0138      m-asc     0.0847      m-asec
+                  CORRECTION             0.0125448
+
+        2214+241 DEC.                                   -0.5937      m-asc     0.1212      m-asec
+                  CORRECTION            -0.5936910
+
+        2227-088 RT. ASC.                                0.0973      m-asc     0.0911      m-asec
+                  CORRECTION             0.0962673
+
+        2227-088 DEC.                                    0.1976      m-asc     0.1641      m-asec
+                  CORRECTION             0.1975891
+
+        2229+695 RT. ASC.                                0.1208      m-asc     0.1750      m-asec
+                  CORRECTION             0.0417629
+
+        2229+695 DEC.                                    0.1761      m-asc     0.0831      m-asec
+                  CORRECTION             0.1760867
+
+        2254+074 RT. ASC.                                0.0189      m-asc     0.1472      m-asec
+                  CORRECTION             0.0187608
+
+        2254+074 DEC.                                   -0.3457      m-asc     0.3401      m-asec
+                  CORRECTION            -0.3456860
+
+        2255-282 RT. ASC.                                0.2202      m-asc     0.2435      m-asec
+                  CORRECTION             0.1944669
+
+        2255-282 DEC.                                   -0.1153      m-asc     1.5778      m-asec
+                  CORRECTION            -0.1152776
+
+        2309+454 RT. ASC.                                0.7502      m-asc     0.2944      m-asec
+                  CORRECTION             0.5236546
+
+        2309+454 DEC.                                   -0.2308      m-asc     0.2120      m-asec
+                  CORRECTION            -0.2308086
+
+        2319+317 RT. ASC.                                0.7290      m-asc     0.2070      m-asec
+                  CORRECTION             0.6177208
+
+        2319+317 DEC.                                   -0.1525      m-asc     0.2663      m-asec
+                  CORRECTION            -0.1524539
+
+        2353+816 RT. ASC.                                0.9997      m-asc     0.5659      m-asec
+                  CORRECTION             0.1411824
+
+        2353+816 DEC.                                   -0.0587      m-asc     0.0886      m-asec
+                  CORRECTION            -0.0587427
+
+        2358+189 RT. ASC.                                1.6177      m-asc     0.7266      m-asec
+                  CORRECTION             1.5273104
+
+        2358+189 DEC.                                    1.1157      m-asc     1.1063      m-asec
+                  CORRECTION             1.1157125
+
+        3C274    RT. ASC.                               -0.0505      m-asc     0.1415      m-asec
+                  CORRECTION            -0.0493535
+
+        3C274    DEC.                                   -0.0465      m-asc     0.1905      m-asec
+                  CORRECTION            -0.0465188
+
+        3C418    RT. ASC.                               -0.0781      m-asc     0.0951      m-asec
+                  CORRECTION            -0.0488122
+
+        3C418    DEC.                                    0.0505      m-asc     0.0849      m-asec
+                  CORRECTION             0.0505076
+
+        NGC6251  RT. ASC.                               -0.1947      m-asc     0.9812      m-asec
+                  CORRECTION            -0.0252841
+
+        NGC6251  DEC.                                    0.2733      m-asc     0.1102      m-asec
+                  CORRECTION             0.2732781
+
+        OJ287    RT. ASC.                                0.0977      m-asc     0.0856      m-asec
+                  CORRECTION             0.0917624
+
+        OJ287    DEC.                                   -0.0988      m-asc     0.1376      m-asec
+                  CORRECTION            -0.0988487
+
+
+       UT1-TAI   0,  21/12/21 04:56     -107.9160 msec       -5.40 microsec         4.48 microsec         0.00 microsec 
+       UT1-TAI   1,  21/12/21 04:56        0.4235 ms/d       12.18 micros/d         3.83 micros/d         0.00 micros/d 
+       X Wobble  0,  21/12/21 04:56       74.9608 masec      25.46 microasec       59.59 microasec        0.00 microasec
+       Y Wobble  0,  21/12/21 04:56      263.6209 masec      -4.04 microasec       79.70 microasec        0.00 microasec
+       X Wobble  1,  21/12/21 04:56       -2.4377 mas/d    -260.95 microas/d      100.63 microas/d        0.00 microas/d
+       Y Wobble  1,  21/12/21 04:56        1.0470 mas/d     229.19 microas/d       92.82 microas/d        0.00 microas/d
+ EOP without included hi-freq variations (a-sigmas)
+                      XWOB          YWOB          UT1-TAI          XSIG         YSIG         USIG
+                       mas           mas            ms           microasec    microasec    microsec
+21/12/21 04:56        74.9608      263.6209      -107.9160         59.59         79.70         4.48
+
+ EOP epoch (TT)   MJD:                   NUT epoch (TT)    MJD:
+       Nutation offset around X-axis       (dX)       0.257 mas       77.7 microasec           0.0 microasec
+       Nutation offset around Y-axis       (dY)      -0.140 mas       67.3 microasec           0.0 microasec
+
+       BADARY  -SEJONG   Clock offset                            282.680 ps              9.120 ps              9.120 ps
+       HART15M -SEJONG   Clock offset                            258.333 ps             15.844 ps             15.844 ps
+       ISHIOKA -SEJONG   Clock offset                            229.371 ps              9.291 ps              9.291 ps
+       KOKEE   -SEJONG   Clock offset                            248.829 ps             10.806 ps             10.806 ps
+       SEJONG  -MATERA   Clock offset                           -214.989 ps             13.947 ps             13.947 ps
+       SEJONG  -RAEGSMAR Clock offset                           -223.208 ps             12.122 ps             12.122 ps
+       SEJONG  -SESHAN25 Clock offset                           -227.636 ps              9.282 ps              9.282 ps
+       SEJONG  -SVETLOE  Clock offset                           -272.730 ps             10.782 ps             10.782 ps
+       SEJONG  -WETTZELL Clock offset                           -206.748 ps             10.304 ps             10.304 ps
+       SEJONG  -ZELENCHK Clock offset                           -270.505 ps             10.598 ps             10.598 ps

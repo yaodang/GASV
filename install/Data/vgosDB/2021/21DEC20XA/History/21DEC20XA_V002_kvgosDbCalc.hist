@@ -1,0 +1,23 @@
+
+TIMETAG 2022/01/07 22:50:15 UTC
+MK3DB_VERSION 2
+CALC11.02 Ver. 2016.12.29  Fri Jan  7 17:50:14 2022gs61av-vlb
+Calc 11 at NASA GSFC  -OP-
+
+TIMETAG 2022/01/07 22:50:26 UTC
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): Library ID: SgLib-0.7.4 (Whiskey Creek (rc2)) released on 25 Aug, 2021
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): Driver  ID: vgosDbCalc-0.4.4 (Tabler Run (rc2)) released on 25 Aug, 2021
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): Host    ID: gs61av-vlbiprd01 (Hw: x86_64; Sw: 5.4.0-77-generic version of Linux)
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): User    ID: Oper <oper@localhost>, NVI, Inc. / NASA Goddard Space Flight Center
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): User command: "/sgpvlbi/progs/nusolve/bin/vgosDbCalc /sgpvlbi/level2/vgosDB/2021/21DEC20XA/21DEC20XA_V001_iMPI_kall.wrp"
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): Input data  : /sgpvlbi/level2/vgosDB/2021/21DEC20XA/21DEC20XA_V001_iMPI_kall.wrp
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): External a priori setup: 
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): SITES    : /sgpvlbi/apriori/calc/blokq.c11.dat
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): Sources  : /sgpvlbi/apriori/calc/blokq.c11.dat
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): Ocean    : /sgpvlbi/apriori/calc/blokq.c11.dat
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): EOPs     : /sgpvlbi/apriori/calc/usno_finals.erp
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): Tilts    : /sgpvlbi/apriori/calc/tilt.dat
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): OPTL     : /sgpvlbi/apriori/calc/blokq.c11.dat
+  vgosDbCalc-0.4.4 (Tabler Run (rc2)): running observations through CALC has been complete
+. putDataIntoVgosDb: no clock break information were added to the vgosDb data tree
+. createWrapperFileName: the organization name has been adjusted: MPI => GSFC

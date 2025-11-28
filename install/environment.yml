@@ -1,13 +1,15 @@
 name: gasv
 channels:
-  - conda-forge
   - defaults
+  - conda-forge
 dependencies:
   - python=3.8
   - scipy
+  - numpy
   - matplotlib
+  - pyqt5
   - netcdf4
-  - jplephem
   - pyinstaller
   - cartopy
-prefix: /home/GeoAS/Software/miniconda3/envs/gasv
+  - pip:
+    - jplephem

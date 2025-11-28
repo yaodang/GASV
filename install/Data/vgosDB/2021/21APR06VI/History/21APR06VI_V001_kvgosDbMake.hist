@@ -1,0 +1,15 @@
+
+TIMETAG 2021/04/16 20:46:23 UTC
+MK3DB_VERSION 1
+. vgosDbMake: Library ID: SgLib-0.7.2 (Yeager) released on 19 Nov, 2020
+. vgosDbMake: Driver  ID: vgosDbMake-0.5.2 (Pinehurst) released on 19 Nov, 2020
+. vgosDbMake: Host    ID: fringe0 (Hw: x86_64; Sw: 3.10.0-1160.24.1.el7.x86_64 version of Linux)
+. vgosDbMake: User    ID: WACO (USNO Correlator) <navobsy_vlbi@navy.mil>, United States Naval Observatory
+. vgosDbMake: User command: "vgosDbMake -argts203s -o/tmp/vgosdb.ez0c43rl/vgosdb -m/correlator/etc/cat-map -t/isan/data1/correlator/run/v/v21096/v21096.rpt /tmp/vgosdb.ez0c43rl/1234"
+. vgosDbMake: Input data  : "/tmp/vgosdb.ez0c43rl/1234"
+. selfCheck: the X-band is set as the primary one
+. selfCheck: the record mode has been set to "NChan:32 Rbw:2048.0 Bps:2"
+. selfCheck: skipping the eccentricities set up: incomplete data set 
+. checkChannelSetup: the session is ok
+. selfCheck: the session selfcheck has been completed
+. vgosDbMake: the session V21096 (21APR06VI) has been imported from fringes files

@@ -1,0 +1,213 @@
+VERSION 1.002   2017Oct02
+!
+!
+!
+!
+Begin History
+!
+Begin Process Correlator
+Version 1
+CreatedBy correlator operator
+Default_dir History
+RunTimeTag 2021/04/16 20:45:20 UTC
+History 21APR06VI_V000_kMk4.hist
+End Process Correlator
+!
+Begin Process SgLib/vgosDbMake
+Version 0.7.2/0.5.2
+CreatedBy WACO (USNO Correlator), United States Naval Observatory
+Default_dir History
+RunTimeTag 2021/04/16 20:46:23 UTC
+History 21APR06VI_V001_kvgosDbMake.hist
+End Process SgLib/vgosDbMake
+!
+Begin Process SgLib/vgosDbCalc
+Version 0.7.2/0.4.2
+CreatedBy WACO (USNO Correlator), Washington Correlator
+Default_dir History
+RunTimeTag 2021/04/16 20:46:28 UTC
+History 21APR06VI_V002_kvgosDbCalc.hist
+InputWrapper 21APR06VI_V001_iWACO_kall.wrp
+End Process SgLib/vgosDbCalc
+!
+Begin Process SgLib/vgosDbProcLogs
+Version 0.7.2/0.5.2
+CreatedBy WACO (USNO Correlator), Washington Correlator
+Default_dir History
+RunTimeTag 2021/04/16 20:46:32 UTC
+History 21APR06VI_V003_kvgosDbProcLogs.hist
+InputWrapper 21APR06VI_V002_iWACO_kall.wrp
+End Process SgLib/vgosDbProcLogs
+!
+End History
+!
+!
+Begin Session
+Session V21096
+AltSessionId 21APR06VI
+!
+Head.nc
+!
+Default_Dir Apriori
+Antenna.nc
+Station.nc
+Source.nc
+!
+Default_Dir CrossReference
+StationCrossRef.nc
+SourceCrossRef.nc
+!
+Default_Dir Session
+LeapSecond.nc
+MiscCable.nc
+MiscFourFit.nc
+!
+End Session
+!
+Begin Station KOKEE12M
+!
+Default_Dir KOKEE12M
+TimeUTC.nc
+Met.nc
+AzEl.nc
+FeedRotation.nc
+Cal-AxisOffset.nc
+Cal-SlantPathTropDry_kNMF.nc
+Cal-SlantPathTropWet_kNMF.nc
+Cal-StationOceanLoad.nc
+Part-AxisOffset.nc
+Part-ZenithPathTropDry_kNMF.nc
+Part-ZenithPathTropWet_kNMF.nc
+Part-HorizonGrad_kNMF.nc
+Dis-OceanLoad.nc
+End Station KOKEE12M
+!
+Begin Station WETTZ13S
+!
+Default_Dir WETTZ13S
+TimeUTC.nc
+Met.nc
+AzEl.nc
+FeedRotation.nc
+Cal-AxisOffset.nc
+Cal-Cable.nc
+Cal-SlantPathTropDry_kNMF.nc
+Cal-SlantPathTropWet_kNMF.nc
+Cal-StationOceanLoad.nc
+Part-AxisOffset.nc
+Part-ZenithPathTropDry_kNMF.nc
+Part-ZenithPathTropWet_kNMF.nc
+Part-HorizonGrad_kNMF.nc
+Dis-OceanLoad.nc
+End Station WETTZ13S
+!
+!
+Begin Scan
+!
+Default_Dir Scan
+TimeUTC.nc
+CorrRootFile.nc
+ERPApriori.nc
+ScanName.nc
+NutationEQX_kWahr.nc
+NutationEQX_kIAU2006.nc
+NutationNRO_kIAU2006.nc
+Ephemeris_kDE421JPL.nc
+Rot-CF2J2K.nc
+!
+End Scan
+!
+!
+Begin Observation
+!
+!
+Default_Dir Observables
+TimeUTC.nc
+Baseline.nc
+Source.nc
+ChannelInfo_bX.nc
+PhaseCalInfo_bX.nc
+CorrInfo-difx_bX.nc
+RefFreq_bX.nc
+AmbigSize_bX.nc
+QualityCode_bX.nc
+SBDelay_bX.nc
+GroupDelay_bX.nc
+GroupRate_bX.nc
+Phase_bX.nc
+DataFlag_bX.nc
+SNR_bX.nc
+Correlation_bX.nc
+!
+!
+!
+!
+!
+Default_Dir CrossReference
+ObsCrossRef.nc
+!
+!
+Default_Dir ObsTheoretical
+DelayTheoretical.nc
+RateTheoretical.nc
+!
+!
+Default_Dir Observables
+DiffTec.nc
+!
+!
+Default_Dir ObsCalTheo
+Cal-BendSunHigher.nc
+Cal-BendSun.nc
+Cal-Bend.nc
+Cal-EarthTide_kIERS2003.nc
+Cal-HiFreqERP_kIERS2003.nc
+Cal-OceanLoad.nc
+Cal-Parallax.nc
+Cal-PoleTideOldRestore.nc
+Cal-PoleTide_kIERS2003.nc
+Cal-TiltRemover.nc
+Cal-Unphase_bX.nc
+Cal-FeedCorrection_bX.nc
+!
+Default_Dir ObsDerived
+UVFperAsec_bX.nc
+!
+Default_Dir ObsCalTheo
+Cal-Wobble.nc
+Cal-OceanLoadOld.nc
+Cal-OceanPoleTideLoad.nc
+Cal-HiFreqLibration_kIERS2010.nc
+!
+!
+Default_Dir ObsPart
+Part-Bend.nc
+Part-Gamma.nc
+Part-ERP.nc
+Part-NutationNRO_kIAU2006.nc
+Part-Parallax.nc
+Part-Poletide_kIERS2006.nc
+Part-RaDec.nc
+Part-XYZ.nc
+!
+End Observation
+!
+!
+Begin Program Solve
+Default_dir Solve
+!
+Begin Session
+CalcInfo.nc
+CalcERP.nc
+End Session
+!
+Begin Scan
+ScanTimeMJD.nc
+End Scan
+!
+Begin Observation
+FractC.nc
+End Observation
+!
+End Program Solve
+!

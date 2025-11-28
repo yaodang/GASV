@@ -1,0 +1,1324 @@
+
+TIMETAG 2022/01/07 22:50:42 UTC
+MK3DB_VERSION 3
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): Library ID: SgLib-0.7.4 (Whiskey Creek (rc2)) released on 25 Aug, 2021
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): Driver  ID: vgosDbProcLogs-0.6.4 (Bush Creek (rc2)) released on 25 Aug, 2021
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): Host    ID: gs61av-vlbiprd01 (Hw: x86_64; Sw: 5.4.0-77-generic version of Linux)
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): User    ID: Oper <oper@localhost>, NVI, Inc. / NASA Goddard Space Flight Center
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): User command: "/sgpvlbi/progs/nusolve/bin/vgosDbProcLogs /sgpvlbi/level2/vgosDB/2021/21DEC20XA/21DEC20XA_V002_iGSFC_kall.wrp"
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): Input data  : /sgpvlbi/level2/vgosDB/2021/21DEC20XA/21DEC20XA_V002_iGSFC_kall.wrp
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): the session R11030 (21DEC20XA) has been imported from vgosDb data set
+w readFile: got a duplicate record " Ca CAMBRIDG --------- ---- Cambridge, UK (VLBA)" for the station name "CAMBRIDG" in the ns-codes file [/sgpvlbi/sessions/control/ns-codes.txt]
+w readFile: got a duplicate record " Cb CAMBRIDG --------- ---- Cambridge, UK (Ryle)" for the station name "CAMBRIDG" in the ns-codes file [/sgpvlbi/sessions/control/ns-codes.txt]
+w readFile: got a duplicate record " Ef EFLSBERG 14209S001 7203 Effelsberg, Germany (originally Mk4, now common EVN usage)" for the station name "EFLSBERG" in the ns-codes file [/sgpvlbi/sessions/control/ns-codes.txt]
+w readFile: got a duplicate record " Jv JODRELL2 --------- ---- VLBA, Jodrell Bank, UK" for the station name "JODRELL2" in the ns-codes file [/sgpvlbi/sessions/control/ns-codes.txt]
+. importDataFromLogFiles: checking [/sgpvlbi/sessions/2021/r11030/] directory for station log files
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030ag.log, a log file for AGGO station
+w readLogFile: station AGGO: procedure has changed: "point" => "r11030ag"; input: "2021.354.17:04:33.42;proc=r11030ag"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #01: 610.99 => 532.99; input: "2021.354.17:04:37.03&bbcsx8/bbc01=532.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #01: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc01=532.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #02: 620.99 => 572.99; input: "2021.354.17:04:37.03&bbcsx8/bbc02=572.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #02: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc02=572.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #03: 650.99 => 672.99; input: "2021.354.17:04:37.03&bbcsx8/bbc03=672.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #03: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc03=672.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #04: 710.99 => 832.99; input: "2021.354.17:04:37.03&bbcsx8/bbc04=832.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #04: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc04=832.99,a,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #05: 820.99 => 652.99; input: "2021.354.17:04:37.03&bbcsx8/bbc05=652.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #05: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc05=652.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #06: 900.99 => 772.99; input: "2021.354.17:04:37.03&bbcsx8/bbc06=772.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #06: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc06=772.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #07: 950.99 => 832.99; input: "2021.354.17:04:37.03&bbcsx8/bbc07=832.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #07: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc07=832.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #08: 970.99 => 852.99; input: "2021.354.17:04:37.03&bbcsx8/bbc08=852.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #08: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc08=852.99,c,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #09: 677.99 => 605.99; input: "2021.354.17:04:37.03&bbcsx8/bbc09=605.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #09: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc09=605.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #10: 682.99 => 625.99; input: "2021.354.17:04:37.03&bbcsx8/bbc10=625.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #10: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc10=625.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #11: 697.99 => 645.99; input: "2021.354.17:04:37.03&bbcsx8/bbc11=645.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #11: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc11=645.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #12: 727.99 => 675.99; input: "2021.354.17:04:37.03&bbcsx8/bbc12=675.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #12: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc12=675.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #13: 752.99 => 725.99; input: "2021.354.17:04:37.03&bbcsx8/bbc13=725.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #13: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc13=725.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF frequency has changed for BBC #14: 762.99 => 745.99; input: "2021.354.17:04:37.03&bbcsx8/bbc14=745.99,b,8.000,8.000"
+w extractBbcReading: station AGGO: IF bandwidth has changed for BBC #14: 2.00 => 8.00; input: "2021.354.17:04:37.03&bbcsx8/bbc14=745.99,b,8.000,8.000"
+. readLogFile: station AGGO: collected operator's comments: 
+. readLogFile: station AGGO: 2021/12/20 17:07:25: All bbc converters locked and phasecal present. Checked with autocorrelation plot
+. readLogFile: station AGGO: 2021/12/20 17:08:24: Session r11030 ready message for AGGO.
+. readLogFile: station AGGO: 2021/12/20 17:08:24: ;"--------------------------------------
+. readLogFile: station AGGO: 2021/12/20 17:08:24: Comments:
+. readLogFile: station AGGO: 2021/12/20 17:08:24: Late Start due to MK5 server energy problem
+. readLogFile: station AGGO: 2021/12/20 17:08:24: First source: 0308-611 at 17:08:13  UT
+. readLogFile: station AGGO: 2021/12/20 17:08:25: FMOUT-GPS: 3.01717E-7 microseconds
+. readLogFile: station AGGO: 2021/12/20 17:08:25: Wx:  Temperature (C): 30.7  Pressure (mBar): 1009.8  Humidity (%): 46.3
+. readLogFile: station AGGO: 2021/12/20 17:08:25: Sky Conditions: clear, no rain, light breeze
+. readLogFile: station AGGO: 2021/12/20 17:08:25: Cable difference is: longer cable makes the reading smaller by
+. readLogFile: station AGGO: 2021/12/20 17:08:25: ;"                     -123 microseconds and is nominal
+. readLogFile: station AGGO: 2021/12/20 17:08:25: Pointing values:
+. readLogFile: station AGGO: 2021/12/20 17:08:25: SEFD  X/S       Source          Az/El      Offset1  Offset2
+. readLogFile: station AGGO: 2021/12/20 17:08:25: 0/0       m17          333.4/69.5    0.31070  -0.12320
+. readLogFile: station AGGO: 2021/12/20 17:08:25: 0/0       sgra         284.6/72.8     0.38422 -0.06868
+. readLogFile: station AGGO: 2021/12/20 17:08:25: Tsys (x1/s/x2):  147.5/131.1/141.1
+. readLogFile: station AGGO: 2021/12/20 17:09:49: Session r11030 start message for AGGO.
+. readLogFile: station AGGO: 2021/12/20 17:09:49: ;"--------------------------------------
+. readLogFile: station AGGO: 2021/12/20 17:09:49: Started recording with source: 0308-611 at: 17:08:13 UT
+. readLogFile: station AGGO: 2021/12/20 23:24:17: sunset"
+. readLogFile: station AGGO: 2021/12/21 08:59:09: sunrise"
+. readLogFile: station AGGO: 85838 strings of the log file (5M) were read (28176 strings were skipped)
+. verifyReadings: station AGGO: cannot find any usable cablelong measurements
+w cleanCableCalibrations: station AGGO: 5 outliers have been removed
+w propagateData: station AGGO: the OnSource record has more than one (2) TSYS record for the scan "354-1708"
+. propagateData: station AGGO: 432 exact matches of cable calibrations were found
+. propagateData: station AGGO: meteo parameters were found
+. propagateData: station AGGO: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030bd.log, a log file for BADARY station
+w extractVciReading: station BADARY: found unused channel #15, attached it to the LO "b"; input: "2021.354.16:52:40.81&setupsx/vci15=345.99,8a"
+w extractVciReading: station BADARY: found unused channel #16, attached it to the LO "b"; input: "2021.354.16:52:40.81&setupsx/vci16=345.99,8a"
+w readLogFile: station BADARY: the scan name "355-0231b" will be replaced with "355-0527d", looks like discontinuity in the log file
+w readLogFile: station BADARY: the source name "3C274" will be replaced with "1123+264", looks like discontinuity in the log file
+w readLogFile: station BADARY: no proc record has been found in the log file
+. readLogFile: station BADARY: 39911 strings of the log file (2M) were read (16 strings were skipped)
+. verifyReadings: station BADARY: insufficient number (0) of cable calibrations; skipped
+w verifyReadings: station BADARY: cannot find any usable cable calibrations
+. propagateData: station BADARY: meteo parameters were found
+. propagateData: station BADARY: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030ht.log, a log file for HART15M station
+w readLogFile: station HART15M: the station name from "location" ("Hart15M") is different
+w readLogFile: station HART15M: cannot determine proper cable sign from cable_diff_is pattern; input: "2021.354.12:22:43.07;"Cable difference is: na"
+w readLogFile: station HART15M: no proc record has been found in the log file
+. readLogFile: station HART15M: collected operator's comments: 
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Session r11030 ready message for Hart15M.
+. readLogFile: station HART15M: 2021/12/20 12:22:43: ;"-----------------------------------------
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Comments:
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Hart15M is ready to start R11030.
+. readLogFile: station HART15M: 2021/12/20 12:22:43: All systems are nominal.
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Session is being operated remotely.
+. readLogFile: station HART15M: 2021/12/20 12:22:43: First source: 2227-088 at 17:00:00  UT
+. readLogFile: station HART15M: 2021/12/20 12:22:43: FMOUT-GPS: +4.7395 microseconds
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Wx:  Temperature (C): 20.9  Pressure (mBar): 865.7  Humidity (%): 70.1
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Sky Conditions: 70-80% cloud cover
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Cable difference is: na
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Pointing values: na
+. readLogFile: station HART15M: 2021/12/20 12:22:43: Tsys (x1/s/x2): 34.7/54.3/45.5
+. readLogFile: station HART15M: 2021/12/20 17:00:02: Session r11030 auto-start message for Hart15M.
+. readLogFile: station HART15M: 2021/12/20 17:00:02: ;"----------------------------------------------
+. readLogFile: station HART15M: 2021/12/20 17:00:02: Started recording with source: 2227-088 at 354.17:00:00 UT
+. readLogFile: station HART15M: 2021/12/20 17:00:15: Weather conditions: 5-10% cloud
+. readLogFile: station HART15M: 2021/12/21 05:24:37: Weather conditions: ~30% light cloud
+. readLogFile: station HART15M: 2021/12/21 07:42:60: Weather conditions: 80-90% cloud
+. readLogFile: station HART15M: 2021/12/21 08:11:04: Weather conditions: `70% cloud
+. readLogFile: station HART15M: 2021/12/21 08:11:15: Weather conditions: ~70% cloud
+. readLogFile: station HART15M: 2021/12/21 09:58:28: Weather conditions: 50-60% cloud
+. readLogFile: station HART15M: 2021/12/21 14:42:46: Weather conditions: 40-50% light cloud
+. readLogFile: station HART15M: 36337 strings of the log file (2M) were read (5090 strings were skipped)
+. verifyReadings: station HART15M: insufficient number (0) of cable calibrations; skipped
+w verifyReadings: station HART15M: cannot find any usable cable calibrations
+. propagateData: station HART15M: meteo parameters were found
+. propagateData: station HART15M: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030is.log, a log file for ISHIOKA station
+w readLogFile: station ISHIOKA: the source name "AZELUNCR" will be replaced with "OJ287", looks like discontinuity in the log file
+w readLogFile: station ISHIOKA: got unexpected `source on' record; string: "2021.354.16:59:50.01:preob"
+w readLogFile: station ISHIOKA: got unexpected `source on' record; string: "2021.354.19:32:15.01#flagr#flagr/antenna,acquired"
+w readLogFile: station ISHIOKA: the source name "AZELUNCR" will be replaced with "1538+149", looks like discontinuity in the log file
+w readLogFile: station ISHIOKA: got unexpected `source on' record; string: "2021.354.19:33:13.01#flagr#flagr/antenna,acquired"
+w readLogFile: station ISHIOKA: got unexpected `source on' record; string: "2021.354.19:45:44.00:preob"
+w readLogFile: station ISHIOKA: no proc record has been found in the log file
+. readLogFile: station ISHIOKA: collected operator's comments: 
+. readLogFile: station ISHIOKA: 2021/12/20 23:45:42: Weather is fine
+. readLogFile: station ISHIOKA: 2021/12/21 04:01:22: Weather is fine
+. readLogFile: station ISHIOKA: 2021/12/21 08:01:35: Weather is fine
+. readLogFile: station ISHIOKA: 13272 strings of the log file (732K) were read (548 strings were skipped)
+. verifyReadings: station ISHIOKA: insufficient number (0) of cable calibrations; skipped
+. verifyReadings: station ISHIOKA: insufficient number (0) of tsys readings; skipped
+w verifyReadings: station ISHIOKA: cannot find any usable cable calibrations
+. propagateData: station ISHIOKA: meteo parameters were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030kk.log, a log file for KOKEE station
+. readLogFile: station KOKEE: collected operator's comments: 
+. readLogFile: station KOKEE: 2021/12/20 16:27:35: kokee park geophysical observatory, r11030, dec 2021, operator-goodrich
+. readLogFile: station KOKEE: 2021/12/20 16:27:39: starting cable cal measurement
+. readLogFile: station KOKEE: 2021/12/20 16:28:23: cable cal measured at -51.2 usec
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: Session r11030 ready message for Kokee Park 20m.
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: ;"------------------------------------------------
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: First source: 0j287 at 354/1700:00  UT
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: FMOUT-GPS: +10.752 microseconds
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: Wx:  Temperature (C): 13.3  Pressure (mBar): 887  Humidity (%): 96.2
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: Sky Conditions: partly cloudy
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: Cable difference is: longer cable makes the reading smaller by
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: 51.2 microseconds and is nominal
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: Pointing values:
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: SEFD  X/S       Source          Az/El      Offset1  Offset2
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: 2002/708     virgoa         129/75      0.006    0.010
+. readLogFile: station KOKEE: 2021/12/20 16:29:34: Tsys (x1/s/x2): 85/38/44
+. readLogFile: station KOKEE: 2021/12/20 17:00:04: Session r11030 auto-start message for Kokee Park 20m.
+. readLogFile: station KOKEE: 2021/12/20 17:00:04: ;"-----------------------------------------------------
+. readLogFile: station KOKEE: 2021/12/20 17:00:04: Started recording with source: oj287 at 354.17:00:00 UT
+. readLogFile: station KOKEE: 2021/12/20 18:02:25: weather-partly cloudy
+. readLogFile: station KOKEE: 2021/12/20 18:57:06: weather-partly cloudy
+. readLogFile: station KOKEE: 2021/12/20 19:56:47: weather-partly cloudy
+. readLogFile: station KOKEE: 2021/12/20 20:04:38: RFI on IFB, Dropped channel
+. readLogFile: station KOKEE: 2021/12/20 20:56:60: weather-mostly cloudy
+. readLogFile: station KOKEE: 2021/12/20 21:56:49: weather-mostly cloudy
+. readLogFile: station KOKEE: 2021/12/20 22:56:51: weather-mostly cloudy
+. readLogFile: station KOKEE: 2021/12/20 23:35:05: RFI on IFB, Dropped channel
+. readLogFile: station KOKEE: 2021/12/20 23:48:52: RFI on IFB
+. readLogFile: station KOKEE: 2021/12/20 23:56:56: weather-mostly cloudy
+. readLogFile: station KOKEE: 2021/12/21 00:57:06: weather-mostly cloudy
+. readLogFile: station KOKEE: 2021/12/21 01:57:15: weather-partly cloudy
+. readLogFile: station KOKEE: 2021/12/21 02:17:53: RFI on IFB
+. readLogFile: station KOKEE: 2021/12/21 02:32:40: RFI on IFB
+. readLogFile: station KOKEE: 2021/12/21 02:56:56: weather-partly cloudy
+. readLogFile: station KOKEE: 2021/12/21 03:14:43: RFI on IFB affecting device #13
+. readLogFile: station KOKEE: 2021/12/21 03:55:56: weather-clear sky
+. readLogFile: station KOKEE: 2021/12/21 04:42:34: RFI on IFB
+. readLogFile: station KOKEE: 2021/12/21 04:57:56: weather-a few stars visible
+. readLogFile: station KOKEE: 2021/12/21 05:57:23: weather-a few stars visible
+. readLogFile: station KOKEE: 2021/12/21 06:57:28: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 07:57:19: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 08:57:04: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 09:57:21: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 11:07:48: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 11:57:07: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 12:57:31: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 13:57:11: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 14:57:08: weather-no stars visible
+. readLogFile: station KOKEE: 2021/12/21 15:57:00: weather-no stars visible
+. readLogFile: station KOKEE: 54657 strings of the log file (3M) were read (1490 strings were skipped)
+w verifyReadings: station KOKEE: cannot determine the cable sign from cablelong measurements
+. propagateData: station KOKEE: no cable cal record found for the scan "354-1700b" in the log file
+. propagateData: station KOKEE: 480 exact (480 are multiple) and 1 closest matches of cable calibrations were found
+. propagateData: station KOKEE: meteo parameters were found
+. propagateData: station KOKEE: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030ma.log, a log file for MATERA station
+w readLogFile: station MATERA: the station name from "location" ("MATERA20") is different
+w readLogFile: station MATERA: got unexpected `source on' record; string: "2021.354.16:59:50.01:preob"
+w readLogFile: station MATERA: the scan name "354-1739b" will be replaced with "354-1742b", looks like discontinuity in the log file
+w readLogFile: station MATERA: the source name "2059+034" will be replaced with "1726+455", looks like discontinuity in the log file
+w readLogFile: station MATERA: no proc record has been found in the log file
+. readLogFile: station MATERA: collected operator's comments: 
+. readLogFile: station MATERA: 2021/12/20 16:22:23: clear sky
+. readLogFile: station MATERA: 2021/12/20 17:47:23: schedule stopped #211 and re-started #228 due to change disk on MKV
+. readLogFile: station MATERA: 54712 strings of the log file (3M) were read (3328 strings were skipped)
+w verifyReadings: station MATERA: cannot determine the cable sign from cablelong measurements
+. propagateData: station MATERA: 462 exact matches of cable calibrations were found
+. propagateData: station MATERA: meteo parameters were found
+. propagateData: station MATERA: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030ns.log, a log file for NYALE13S station
+w readLogFile: station NYALE13S: the station name from "location" ("NYAL13NS") is different
+w readLogFile: station NYALE13S: cannot determine proper cable sign from cable_diff_is pattern; input: "2021.354.16:37:20.40;"Cable difference is: na"
+w readLogFile: station NYALE13S: got unexpected `source on' record; string: "2021.354.17:01:55.00:preob"
+w readLogFile: station NYALE13S: got unexpected `source on' record; string: "2021.354.19:58:02.00:preob"
+w readLogFile: station NYALE13S: got unexpected `source on' record; string: "2021.355.01:04:21.00:preob"
+w readLogFile: station NYALE13S: got unexpected `source on' record; string: "2021.355.02:43:21.00:preob"
+w readLogFile: station NYALE13S: got unexpected `source on' record; string: "2021.355.05:57:19.00:preob"
+w readLogFile: station NYALE13S: got unexpected `source on' record; string: "2021.355.13:32:14.00:preob"
+w readLogFile: station NYALE13S: got unexpected `source on' record; string: "2021.355.16:13:09.00:preob"
+. readLogFile: station NYALE13S: picked up not finished onSource record
+. readLogFile: station NYALE13S: collected operator's comments: 
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: Session r11030 ready message for Ny-Alesund 13m NS.
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: ;"---------------------------------------------------
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: First source: 2144+092 at 17Ø:02:05  UT
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: FMOUT-GPS: 20.145 microseconds
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: Wx:  Temperature (C): -7.2  Pressure (mBar): 1024.6  Humidity (%): 73
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: Sky Conditions: Thin clouds
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: Cable difference is: na
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: Pointing values: na
+. readLogFile: station NYALE13S: 2021/12/20 16:37:20: Tsys values: na
+. readLogFile: station NYALE13S: 2021/12/20 17:02:05: Session r11030 auto-start message for Ny-Alesund 13m NS.
+. readLogFile: station NYALE13S: 2021/12/20 17:02:05: ;"--------------------------------------------------------
+. readLogFile: station NYALE13S: 2021/12/20 17:02:05: Started recording with source: 2144+092 at 354.17:02:05 UT
+. readLogFile: station NYALE13S: 66145 strings of the log file (4M) were read (383 strings were skipped)
+. verifyReadings: station NYALE13S: insufficient number (0) of cable calibrations; skipped
+w verifyReadings: station NYALE13S: cannot find any usable cable calibrations
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1704"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1707a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1711b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1714a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1720a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1725b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1729a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1731"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1732b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1736b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1739c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1742b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1745b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1755a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1759"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1802"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1805b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1809c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1814a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1817a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1821"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1825"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1828"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1832b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1834"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1837a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1841b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1844"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1847"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1851a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1854b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1902"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1908c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1910b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1911"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1916"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1921"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1925a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1927a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1932b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1934b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1937"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1940"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1944"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1958b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-1959"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2006"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2009"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2014a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2019"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2023a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2030a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2032b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2037a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2044"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2050a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2052c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2058a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2101"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2104"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2109a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2114b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2118"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2119"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2126b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2130c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2132a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2138a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2142"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2144b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2146b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2150a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2151"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2155b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2203"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2204"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2206"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2208b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2215"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2219a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2222b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2225"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2229"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2231"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2233b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2236a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2243a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2244"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2247"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2251a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2255"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2257a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2303"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2307b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2313a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2317b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2320b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2323b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2324"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2330"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2333"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2334a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2345"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2349"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2351b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2355"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2357a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "354-2358"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0003c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0008"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0009b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0012"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0016"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0018c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0022a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0025a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0027b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0030b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0031a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0036"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0037b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0041b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0044a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0049a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0051b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0107a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0108"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0110b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0117"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0123a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0128a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0131"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0135a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0136a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0141b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0149b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0153a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0156b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0158b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0202b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0206a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0208b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0215"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0217"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0219b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0225b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0228b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0231b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0243a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0245a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0249b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0253"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0256"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0257c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0303"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0306b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0311"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0313"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0317a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0326"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0331b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0334b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0336"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0340"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0344c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0350b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0351"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0356"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0357"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0403c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0404b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0408a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0412b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0416a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0418"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0422"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0423"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0426a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0430b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0434"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0440"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0443"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0450a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0457a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0502b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0506"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0508"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0509b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0513b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0522"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0525b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0527d"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0530c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0534b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0541b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0542a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0546b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0557"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0603a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0604"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0606c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0612"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0613b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0617b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0620b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0624"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0626"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0629"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0637a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0639"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0643"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0647a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0650b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0656"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0658b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0701"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0704a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0705a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0708a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0709"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0716a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0719"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0721a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0723"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0726"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0728"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0733a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0738b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0743b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0746c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0750a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0757"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0759a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0801b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0805a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0808a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0811"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0813a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0819"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0823a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0828a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0830a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0834"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0835"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0839b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0844"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0846"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0849a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0852b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0855a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0857"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0900"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0904"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0909"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0913b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0916b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0923"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0925b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0927"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0930a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0932b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0937"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0942a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0949a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0950a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0951b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0957"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-0959"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1003"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1009"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1012"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1014a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1020"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1024a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1028"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1032"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1035"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1037"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1041a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1047"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1048c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1053"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1059"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1102a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1104b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1110b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1118"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1123"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1128b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1134b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1138b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1148a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1153a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1156"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1158a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1159"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1205b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1208a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1215"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1221b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1224a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1226b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1232a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1234b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1236a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1243b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1245"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1251b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1254"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1259b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1301a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1303"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1309a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1313a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1316b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1320"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1322b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1332a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1336a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1338c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1345"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1348a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1350a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1355a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1400a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1402"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1408"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1411a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1416"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1419"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1421b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1423b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1430a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1436a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1444a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1446c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1451b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1455b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1458a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1501"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1505a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1510b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1516a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1519b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1522b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1526"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1530b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1534"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1536"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1543a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1545b"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1548a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1552a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1557a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1603"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1613"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1616c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1621a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1624a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1626c"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1631a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1633d"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1636a"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1639"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1649"
+w propagateData: station NYALE13S: the OnSource record has more than one (2) TSYS record for the scan "355-1657b"
+. propagateData: station NYALE13S: meteo parameters were found
+. propagateData: station NYALE13S: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030on.log, a log file for ONSALA60 station
+w readLogFile: station ONSALA60: the station name from "location" ("Onsala") is different
+w readLogFile: station ONSALA60: got unexpected `source on' record; string: "2021.354.14:38:05.23#flagr#flagr/antenna,acquired"
+w readLogFile: station ONSALA60: got unexpected `source on' record; string: "2021.354.14:52:22.94#flagr#flagr/antenna,acquired"
+w readLogFile: station ONSALA60: got unexpected `source on' record; string: "2021.354.16:59:50.00:preob"
+w readLogFile: station ONSALA60: no proc record has been found in the log file
+. readLogFile: station ONSALA60: 69073 strings of the log file (4M) were read
+w verifyReadings: station ONSALA60: cannot determine the cable sign from cablelong measurements
+w propagateData: station ONSALA60: cannot find the scan "354-1700a" in the log file
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "354-1910c"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "354-2035a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "354-2208a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "354-2245b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "354-2324"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "354-2332a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0112"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0136a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0208b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0236c"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0301"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0320a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0347"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0417b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0434"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0457a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0519"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0647a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0738b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0816"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0929"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-0937"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1006b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1044"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1110b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1118"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1158b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1211a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1226b"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1254"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1414"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1441c"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1532a"
+w propagateData: station ONSALA60: the OnSource record has more than one (2) TSYS record for the scan "355-1633c"
+. propagateData: station ONSALA60: 460 exact matches of cable calibrations were found
+. propagateData: station ONSALA60: meteo parameters were found
+. propagateData: station ONSALA60: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030sa.log, a log file for RAEGSMAR station
+w readLogFile: station RAEGSMAR: the station name from "location" ("RAEGSMA") is different
+w readLogFile: station RAEGSMAR: got unexpected `source on' record; string: "2021.354.16:42:12.63#flagr#flagr/antenna,acquired"
+w readLogFile: station RAEGSMAR: got unexpected `source on' record; string: "2021.354.16:45:47.52#flagr#flagr/antenna,acquired"
+w readLogFile: station RAEGSMAR: got unexpected `source on' record; string: "2021.354.16:49:21.08#flagr#flagr/antenna,acquired"
+w readLogFile: station RAEGSMAR: cannot determine proper cable sign from cable_diff_is pattern; input: "2021.354.16:49:32.60;"Cable difference is: na"
+w readLogFile: station RAEGSMAR: got unexpected `source on' record; string: "2021.354.16:59:50.00:preob"
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+w extractCableCalibration: the exctracted value looks suspicious: "+9.91000000000000E+037", skipped
+. readLogFile: station RAEGSMAR: collected operator's comments: 
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:02: DBBC IP: 10.25.100.131
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:02: Mark5B+ IP: 10.25.100.140
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: Session r11030 ready message for RAEGE Santa Maria (Sa).
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: ;"--------------------------------------------------------
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: Comments:
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: ;"- CableCal is disconnected
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: First source: 2227-088 at 17:00:00  UT
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: GPS-FMOUT: 5.8709 microseconds
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: Wx:  Temperature (C): 10.1  Pressure (mBar): 967  Humidity (%): 87
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: Sky Conditions: Rainy and windy day
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: Cable difference is: na
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: Pointing values:
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: SEFD  X/S       Source          Az/El      Offset1  Offset2
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: 1455.8/1354    casa          35.7/57.3    31       4
+. readLogFile: station RAEGSMAR: 2021/12/20 16:49:33: Tsys (x1/s/x2): 55.5/45.7/164.7
+. readLogFile: station RAEGSMAR: 2021/12/20 17:01:10: Session r11030 start message for RAEGE Santa Maria (Sa).
+. readLogFile: station RAEGSMAR: 2021/12/20 17:01:10: ;"--------------------------------------------------------
+. readLogFile: station RAEGSMAR: 2021/12/20 17:01:10: Started recording with source: 2227-088 at: 17:00:00 UT
+. readLogFile: station RAEGSMAR: 73222 strings of the log file (4M) were read (1594 strings were skipped)
+. verifyReadings: station RAEGSMAR: insufficient number (0) of cable calibrations; skipped
+w verifyReadings: station RAEGSMAR: cannot find any usable cable calibrations
+. propagateData: station RAEGSMAR: meteo parameters were found
+. propagateData: station RAEGSMAR: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030kv.log, a log file for SEJONG station
+w readLogFile: station SEJONG: the source name "AZELUNCR" will be replaced with "OJ287", looks like discontinuity in the log file
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.354.15:44:43.01#flagr#flagr/antenna,acquired"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.354.16:59:50.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "93.6 at 16:00:00"
+E extractMeteoReading: failed to extract relative humidity from "93.7 at 16:00:00"
+E extractMeteoReading: failed to extract relative humidity from "94.0 at 16:00:00"
+E extractMeteoReading: failed to extract relative humidity from "94.1 at 16:00:00"
+E extractMeteoReading: failed to extract relative humidity from "95.5 at 17:00:00"
+E extractMeteoReading: failed to extract relative humidity from "95.8 at 17:00:00"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.354.19:03:48.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "96.2 at 18:00:00"
+E extractMeteoReading: failed to extract relative humidity from "96.2 at 18:00:00"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.354.19:40:13.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "95.9 at 19:00:00"
+E extractMeteoReading: failed to extract relative humidity from "96.2 at 19:00:00"
+E extractMeteoReading: failed to extract relative humidity from "96.2 at 20:00:00"
+E extractMeteoReading: failed to extract relative humidity from "96.3 at 20:00:00"
+E extractMeteoReading: failed to extract relative humidity from "97.0 at 21:00:00"
+E extractMeteoReading: failed to extract relative humidity from "97.9 at 22:00:00"
+E extractMeteoReading: failed to extract relative humidity from "97.9 at 22:00:00"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.355.00:14:20.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "92.7 at 00:00:00"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.355.01:28:22.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "85.5 at 01:00:00"
+E extractMeteoReading: failed to extract relative humidity from "84.4 at 01:00:00"
+E extractMeteoReading: failed to extract relative humidity from "83.8 at 01:00:00"
+E extractMeteoReading: failed to extract relative humidity from "74.4 at 02:00:00"
+E extractMeteoReading: failed to extract relative humidity from "72.4 at 03:00:00"
+E extractMeteoReading: failed to extract relative humidity from "70.9 at 03:00:00"
+E extractMeteoReading: failed to extract relative humidity from "53.7 at 04:00:00"
+E extractMeteoReading: failed to extract relative humidity from "52.7 at 04:00:00"
+E extractMeteoReading: failed to extract relative humidity from "52.7 at 04:00:00"
+E extractMeteoReading: failed to extract relative humidity from "44.5 at 05:00:00"
+E extractMeteoReading: failed to extract relative humidity from "43.4 at 05:00:00"
+E extractMeteoReading: failed to extract relative humidity from "45.1 at 05:00:00"
+E extractMeteoReading: failed to extract relative humidity from "59.2 at 06:00:00"
+E extractMeteoReading: failed to extract relative humidity from "68.9 at 06:00:00"
+E extractMeteoReading: failed to extract relative humidity from "73.6 at 06:00:00"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.355.07:33:42.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "83.8 at 07:00:00"
+E extractMeteoReading: failed to extract relative humidity from "83.3 at 07:00:00"
+E extractMeteoReading: failed to extract relative humidity from "83.6 at 07:00:00"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.355.08:52:40.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "81.1 at 08:00:00"
+E extractMeteoReading: failed to extract relative humidity from "80.3 at 08:00:00"
+E extractMeteoReading: failed to extract relative humidity from "62.0 at 09:00:00"
+E extractMeteoReading: failed to extract relative humidity from "61.3 at 09:00:00"
+w readLogFile: station SEJONG: got unexpected `source on' record; string: "2021.355.10:53:09.00:preob"
+E extractMeteoReading: failed to extract relative humidity from "55.5 at 11:00:00"
+E extractMeteoReading: failed to extract relative humidity from "56.3 at 11:00:00"
+E extractMeteoReading: failed to extract relative humidity from "49.3 at 12:00:00"
+E extractMeteoReading: failed to extract relative humidity from "49.1 at 12:00:00"
+E extractMeteoReading: failed to extract relative humidity from "50.2 at 13:00:00"
+E extractMeteoReading: failed to extract relative humidity from "49.8 at 13:00:00"
+E extractMeteoReading: failed to extract relative humidity from "50.2 at 13:00:00"
+E extractMeteoReading: failed to extract relative humidity from "51.2 at 13:00:00"
+E extractMeteoReading: failed to extract relative humidity from "53.5 at 14:00:00"
+E extractMeteoReading: failed to extract relative humidity from "54.3 at 14:00:00"
+E extractMeteoReading: failed to extract relative humidity from "53.6 at 14:00:00"
+E extractMeteoReading: failed to extract relative humidity from "62.0 at 15:00:00"
+E extractMeteoReading: failed to extract relative humidity from "61.6 at 15:00:00"
+E extractMeteoReading: failed to extract relative humidity from "61.5 at 15:00:00"
+w readLogFile: station SEJONG: no proc record has been found in the log file
+. readLogFile: station SEJONG: 12020 strings of the log file (732K) were read (511 strings were skipped)
+. verifyReadings: station SEJONG: insufficient number (0) of cable calibrations; skipped
+. verifyReadings: station SEJONG: insufficient number (0) of tsys readings; skipped
+w verifyReadings: station SEJONG: cannot find any usable cable calibrations
+w propagateData: station SEJONG: cannot find the scan "354-1700b" in the log file
+. propagateData: station SEJONG: meteo parameters were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030sh.log, a log file for SESHAN25 station
+w readLogFile: station SESHAN25: got unexpected `source on' record; string: "2021.354.16:59:50.00:preob"
+w readLogFile: station SESHAN25: no proc record has been found in the log file
+. readLogFile: station SESHAN25: collected operator's comments: 
+. readLogFile: station SESHAN25: 2021/12/20 15:28:08: weather:it's fine!
+. readLogFile: station SESHAN25: 2021/12/20 18:44:11: weather:it's fine!
+. readLogFile: station SESHAN25: 2021/12/20 19:55:58: weather:it's fine!
+. readLogFile: station SESHAN25: 2021/12/20 21:24:51: weather:it's fine!
+. readLogFile: station SESHAN25: 2021/12/20 23:27:51: weather:it's fine!
+. readLogFile: station SESHAN25: 2021/12/21 00:18:25: weather:it's fine!
+. readLogFile: station SESHAN25: 2021/12/21 01:19:19: weather:it's fine!
+. readLogFile: station SESHAN25: 2021/12/21 02:07:37: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 04:46:09: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 05:48:20: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 06:59:49: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 08:13:57: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 09:15:37: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 10:58:35: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 12:52:23: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 13:24:11: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 14:35:15: weather:it's cloudy!
+. readLogFile: station SESHAN25: 2021/12/21 16:32:46: weather:it's cloudy!
+. readLogFile: station SESHAN25: 52387 strings of the log file (3M) were read (1070 strings were skipped)
+. verifyReadings: station SESHAN25: insufficient number (0) of cable calibrations; skipped
+w verifyReadings: station SESHAN25: cannot find any usable cable calibrations
+w propagateData: station SESHAN25: cannot find the scan "354-1700b" in the log file
+. propagateData: station SESHAN25: meteo parameters were found
+. propagateData: station SESHAN25: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030sv.log, a log file for SVETLOE station
+w readLogFile: station SVETLOE: got unexpected `source on' record; string: "2021.354.14:39:36.41#flagr#flagr/antenna,acquired"
+w readLogFile: station SVETLOE: got unexpected `source on' record; string: "2021.354.14:49:15.33#flagr#flagr/antenna,acquired"
+w extractVciReading: station SVETLOE: found unused channel #15, attached it to the LO "b"; input: "2021.354.16:33:22.88&setupsx/vci15=345.99,8a"
+w extractVciReading: station SVETLOE: found unused channel #16, attached it to the LO "b"; input: "2021.354.16:33:22.88&setupsx/vci16=345.99,8a"
+w readLogFile: station SVETLOE: got unexpected `source on' record; string: "2021.354.16:33:59.66#flagr#flagr/antenna,acquired"
+w readLogFile: station SVETLOE: got unexpected `source on' record; string: "2021.354.16:59:50.00:preob"
+w readLogFile: station SVETLOE: no proc record has been found in the log file
+. readLogFile: station SVETLOE: collected operator's comments: 
+. readLogFile: station SVETLOE: 2021/12/20 14:59:04: sleet
+. readLogFile: station SVETLOE: 2021/12/20 16:33:27: cloudy
+. readLogFile: station SVETLOE: 2021/12/20 19:10:07: operator Baykova
+. readLogFile: station SVETLOE: 2021/12/20 19:10:09: cloudy
+. readLogFile: station SVETLOE: 2021/12/21 04:34:17: operator Slobojaninova
+. readLogFile: station SVETLOE: 2021/12/21 04:34:38: cloudy
+. readLogFile: station SVETLOE: 31287 strings of the log file (2M) were read (16 strings were skipped)
+. verifyReadings: station SVETLOE: insufficient number (0) of cable calibrations; skipped
+w verifyReadings: station SVETLOE: cannot find any usable cable calibrations
+w propagateData: station SVETLOE: cannot find the scan "354-1700a" in the log file
+. propagateData: station SVETLOE: meteo parameters were found
+. propagateData: station SVETLOE: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030wz.log, a log file for WETTZELL station
+w readLogFile: station WETTZELL: got unexpected `source on' record; string: "2021.354.16:59:50.00:preob"
+w readLogFile: station WETTZELL: got unexpected `source on' record; string: "2021.354.19:42:02.77#flagr#flagr/antenna,acquired"
+w readLogFile: station WETTZELL: got unexpected `source on' record; string: "2021.354.19:46:04.00:preob"
+w readLogFile: station WETTZELL: no proc record has been found in the log file
+. readLogFile: station WETTZELL: 86621 strings of the log file (5M) were read (13586 strings were skipped)
+. verifyReadings: station WETTZELL: cannot find any usable cablelong measurements
+w verifyReadings: station WETTZELL: cannot determine the cable calibration sign
+. verifyReadings: station WETTZELL: the cable sign was set to "+" according to the list of default cable signs
+. propagateData: station WETTZELL: no cable cal record found for the scan "354-1700a" in the log file
+. propagateData: station WETTZELL: 481 exact and 1 closest matches of cable calibrations were found
+. propagateData: station WETTZELL: meteo parameters were found
+. propagateData: station WETTZELL: tsys data were found
+. importDataFromLogFiles: processing /sgpvlbi/sessions/2021/r11030/r11030zc.log, a log file for ZELENCHK station
+w extractVciReading: station ZELENCHK: found unused channel #15, attached it to the LO "b"; input: "2021.354.16:51:20.74&setupsx/vci15=345.99,8a"
+w extractVciReading: station ZELENCHK: found unused channel #16, attached it to the LO "b"; input: "2021.354.16:51:20.74&setupsx/vci16=345.99,8a"
+w readLogFile: station ZELENCHK: got unexpected `source on' record; string: "2021.354.16:59:50.00:preob"
+w readLogFile: station ZELENCHK: no proc record has been found in the log file
+. readLogFile: station ZELENCHK: 46265 strings of the log file (3M) were read (2978 strings were skipped)
+. verifyReadings: station ZELENCHK: insufficient number (0) of cable calibrations; skipped
+w verifyReadings: station ZELENCHK: cannot find any usable cable calibrations
+. propagateData: station ZELENCHK: meteo parameters were found
+. propagateData: station ZELENCHK: tsys data were found
+  vgosDbProcLogs-0.6.4 (Bush Creek (rc2)): import of data from station log files has been complete

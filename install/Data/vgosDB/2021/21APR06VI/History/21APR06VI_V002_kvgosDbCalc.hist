@@ -1,0 +1,20 @@
+
+TIMETAG 2021/04/16 20:46:28 UTC
+MK3DB_VERSION 2
+CALC11.02 Ver. 2016.12.29  Fri Apr 16 16:46:27 2021   fringe0
+Calc 11 at WACO  -WACO-
+. vgosDbCalc: Library ID: SgLib-0.7.2 (Yeager) released on 19 Nov, 2020
+. vgosDbCalc: Driver  ID: vgosDbCalc-0.4.2 (Aspen) released on 19 Nov, 2020
+. vgosDbCalc: Host    ID: fringe0 (Hw: x86_64; Sw: 3.10.0-1160.24.1.el7.x86_64 version of Linux)
+. vgosDbCalc: User    ID: WACO (USNO Correlator) <navobsy_vlbi@navy.mil>, Washington Correlator
+. vgosDbCalc: User command: "vgosDbCalc -awb1vqtbd /tmp/vgosdb.ez0c43rl/vgosdb/2021/21APR06VI/21APR06VI_V001_iWACO_kall.wrp"
+. vgosDbCalc: Input data  : /tmp/vgosdb.ez0c43rl/vgosdb/2021/21APR06VI/21APR06VI_V001_iWACO_kall.wrp
+. vgosDbCalc: External a priori setup: 
+. vgosDbCalc: SITES    : /correlator/etc/apriori_files/blokq.c11.dat
+. vgosDbCalc: Sources  : /correlator/etc/apriori_files/blokq.c11.dat
+. vgosDbCalc: Ocean    : /correlator/etc/apriori_files/blokq.c11.dat
+. vgosDbCalc: EOPs     : /correlator/etc/apriori_files/usno_finals.erp
+. vgosDbCalc: Tilts    : /correlator/etc/apriori_files/tilt.dat
+. vgosDbCalc: OPTL     : /correlator/etc/apriori_files/blokq.c11.dat
+. vgosDbCalc: running observations through CALC has been complete
+. putDataIntoVgosDb: no clock break information were added to the vgosDb data tree

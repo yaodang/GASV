@@ -1,0 +1,17 @@
+
+TIMETAG 2022/01/07 22:47:40 UTC
+MK3DB_VERSION 1
+. vgosDbMake: Library ID: SgLib-0.7.3 (New Market) released on 22 Jun, 2021
+. vgosDbMake: Driver  ID: vgosDbMake-0.5.3 (Monrovia) released on 08 Jun, 2021
+. vgosDbMake: Host    ID: frontend (Hw: x86_64; Sw: 3.10.0-1062.4.3.el7.x86_64 version of Linux)
+. vgosDbMake: User    ID: oper <oper@frontend>, MPIFR correlator
+. vgosDbMake: User command: "vgosDbMake /Exps/r11030/v1/5249/ -t /Exps/r11030/v1/5249/r11030.corr -o /Exps/r11030/EXPORT/"
+. vgosDbMake: Input data  : "/Exps/r11030/v1/5249"
+w getDataFromFringeFiles: the observations do not have correct experiment serial number (==16383)
+. selfCheck: the X-band is set as the primary one
+. selfCheck: the record mode has been set to "NChan:14 Rbw:224.0 Bps:2"
+. selfCheck: skipping the eccentricities set up: incomplete data set 
+. checkChannelSetup: the session is ok
+. selfCheck: the session selfcheck has been completed
+E getDataFromFringeFiles: cannot get the experiment serial number
+. vgosDbMake: the session R11030 (21DEC20XA) has been imported from fringes files

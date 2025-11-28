@@ -1,0 +1,46 @@
+1Run
+ Analysis center: 
+ Analyst:         yaodang ( yaodang@ntsc.ac.cn )
+ Machine:         Linux
+ Executables:     .
+ Solve initials:  yd
+ Spool format:    SgLib-0.7.3 (New Market)
+ Local time:      2025.11.25-11:56:35
+ Data base $21APR06VI
+
+
+  Flyby Station Cals:    DB Station Cals:              | DB Non-station Cals: | Atmosphere Partial:
+ --------------------------------------------------------------------------------------------------
+    KOKEE12M:NMFDRFLY             GION                 | Pol Tide             | GMFWTFLY              
+    WETTZ13S:NMFDRFLY             GION                 | WobXCont             |                       
+                                                       | WobYCont             |                       
+                                                       | EarthTid             |                       
+                                                       | Ocean                |                       
+                                                       | UT1Ortho             |                       
+                                                       | XpYpOrth             |                       
+ --------------------------------------------------------------------------------------------------
+
+
+  Met Statistics:
+                    Temperature      Pressure        Humidity
+   Station         average   rms   average   rms   average   rms
+   KOKEE12M  MET     11.5           890.7            90.0        
+   WETTZ13S  MET     -1.5           937.1            99.8        
+
+
+ Data Type     Number of   Weighted RMS    Normalized RMS   Chi Square
+             Observations    Residual         Residual      (precis)
+                 Used
+   Delay       36             20.400 ps              0.00       1.3460
+   Rate         0                  0 fs/s            0.00       0.0000
+Combined        0                                    0.00       0.0000
+-----------------------------------------------------------------------
+
+
+ Parameter adjustments for 21APR06VI
+                                        Parameter               Adjustment              a-sigma              m-sigma
+       UT1-TAI   0,  21/04/06 19:01     -174.5398 msec       31.47 microsec         7.19 microsec         0.00 microsec 
+ EOP without included hi-freq variations (a-sigmas)
+                      XWOB          YWOB          UT1-TAI          XSIG         YSIG         USIG
+                       mas           mas            ms           microasec    microasec    microsec
+21/04/06 19:01         0.0000        0.0000      -174.5398          0.00          0.00         7.19
