@@ -272,7 +272,7 @@ class MyForm(QMainWindow):
         
         self.Param = PARAMETER()
         self.Param.Setup.vgosdbPath = self.dirpath[0]
-        self.Param.Map.stationFile = self.dirpath[2]+'station.txt'
+        self.Param.Map.stationFile = self.dirpath[2]
         self.Param.Out.snxPath = ['NO',self.dirpath[9]]
 
         #self.checkBox_setDataStaRemove()
