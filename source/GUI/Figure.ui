@@ -290,6 +290,57 @@ p, li { white-space: pre-wrap; }
       <widget class="QWidget" name="page_file_preference">
        <layout class="QVBoxLayout" name="verticalLayout_10">
         <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_62">
+          <item>
+           <widget class="QLabel" name="label_38">
+            <property name="text">
+             <string>iniFile:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEdit_path_ini">
+            <property name="focusPolicy">
+             <enum>Qt::StrongFocus</enum>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="readOnly">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_browse_inifile">
+            <property name="focusPolicy">
+             <enum>Qt::ClickFocus</enum>
+            </property>
+            <property name="text">
+             <string>Load</string>
+            </property>
+            <property name="icon">
+             <iconset resource="mysource.qrc">
+              <normaloff>:/icons/icons/browse.png</normaloff>:/icons/icons/browse.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="horizontalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
+        <item>
          <widget class="QGroupBox" name="groupBox_3">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
@@ -327,13 +378,22 @@ p, li { white-space: pre-wrap; }
                  </item>
                  <item>
                   <widget class="QLineEdit" name="lineEdit_path_vgosDb">
+                   <property name="tabletTracking">
+                    <bool>false</bool>
+                   </property>
                    <property name="focusPolicy">
-                    <enum>Qt::ClickFocus</enum>
+                    <enum>Qt::StrongFocus</enum>
+                   </property>
+                   <property name="text">
+                    <string/>
                    </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QComboBox" name="comboBox_dataType">
+                   <property name="focusPolicy">
+                    <enum>Qt::ClickFocus</enum>
+                   </property>
                    <item>
                     <property name="text">
                      <string>vgosDB</string>
@@ -348,6 +408,9 @@ p, li { white-space: pre-wrap; }
                  </item>
                  <item>
                   <widget class="QPushButton" name="pushButton_browse_vgosdb">
+                   <property name="focusPolicy">
+                    <enum>Qt::ClickFocus</enum>
+                   </property>
                    <property name="text">
                     <string/>
                    </property>
@@ -379,10 +442,16 @@ p, li { white-space: pre-wrap; }
                    <property name="focusPolicy">
                     <enum>Qt::StrongFocus</enum>
                    </property>
+                   <property name="text">
+                    <string/>
+                   </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QPushButton" name="pushButton_browse_master">
+                   <property name="focusPolicy">
+                    <enum>Qt::ClickFocus</enum>
+                   </property>
                    <property name="text">
                     <string/>
                    </property>
@@ -414,10 +483,16 @@ p, li { white-space: pre-wrap; }
                    <property name="focusPolicy">
                     <enum>Qt::StrongFocus</enum>
                    </property>
+                   <property name="text">
+                    <string/>
+                   </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QPushButton" name="pushButton_browse_apriori">
+                   <property name="focusPolicy">
+                    <enum>Qt::ClickFocus</enum>
+                   </property>
                    <property name="text">
                     <string/>
                    </property>
@@ -474,6 +549,9 @@ p, li { white-space: pre-wrap; }
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButton_browse_station">
+                     <property name="focusPolicy">
+                      <enum>Qt::ClickFocus</enum>
+                     </property>
                      <property name="text">
                       <string/>
                      </property>
@@ -509,6 +587,9 @@ p, li { white-space: pre-wrap; }
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButton_browse_source">
+                     <property name="focusPolicy">
+                      <enum>Qt::ClickFocus</enum>
+                     </property>
                      <property name="text">
                       <string/>
                      </property>
@@ -547,6 +628,9 @@ p, li { white-space: pre-wrap; }
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButton_browse_eop">
+                     <property name="focusPolicy">
+                      <enum>Qt::ClickFocus</enum>
+                     </property>
                      <property name="text">
                       <string/>
                      </property>
@@ -582,6 +666,9 @@ p, li { white-space: pre-wrap; }
                    </item>
                    <item>
                     <widget class="QPushButton" name="pushButton_browse_ephem">
+                     <property name="focusPolicy">
+                      <enum>Qt::ClickFocus</enum>
+                     </property>
                      <property name="text">
                       <string/>
                      </property>
@@ -622,6 +709,9 @@ p, li { white-space: pre-wrap; }
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_param_questions">
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -678,10 +768,17 @@ p, li { white-space: pre-wrap; }
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_path_Residual"/>
+              <widget class="QLineEdit" name="lineEdit_path_Residual">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_browse_residual">
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -712,10 +809,17 @@ p, li { white-space: pre-wrap; }
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_path_Report"/>
+              <widget class="QLineEdit" name="lineEdit_path_Report">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_browse_report">
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -746,10 +850,17 @@ p, li { white-space: pre-wrap; }
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_path_SNX"/>
+              <widget class="QLineEdit" name="lineEdit_path_SNX">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_browse_snx">
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -780,10 +891,17 @@ p, li { white-space: pre-wrap; }
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_path_EOPO"/>
+              <widget class="QLineEdit" name="lineEdit_path_EOPO">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_browse_eopo">
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -811,10 +929,17 @@ p, li { white-space: pre-wrap; }
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_path_arcpath"/>
+              <widget class="QLineEdit" name="lineEdit_path_arcpath">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_browse_arcpath">
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
+               </property>
                <property name="text">
                 <string/>
                </property>
@@ -852,6 +977,9 @@ p, li { white-space: pre-wrap; }
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="text">
+                <string>NTSC</string>
+               </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
                </property>
@@ -871,12 +999,15 @@ p, li { white-space: pre-wrap; }
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_file_save">
+              <widget class="QPushButton" name="pushButton_param_save">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="focusPolicy">
+                <enum>Qt::ClickFocus</enum>
                </property>
                <property name="toolTip">
                 <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;(ctrl+s)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

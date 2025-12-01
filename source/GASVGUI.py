@@ -27,9 +27,12 @@ class MyForm(QMainWindow):
         self.ui = Ui_GASV()
         self.ui.setupUi(self)
         
-        self.name,self.dirpath = read_initdir()
+        self.param_settings = QSettings("iniPath", "GASV")
+        self.dirpath = self.param_settings.value('dirpath',[])
+        self.iniFile = self.param_settings.value('iniFile','')
+        if len(self.dirpath) == 0:
+            self.dirpath = ['','','','','','','','','','','','','','0']
         self.updatePreference()
-        
         
         # the class of plot
         self.plot_mapsta = PlotMapSta(50,50)
@@ -113,13 +116,13 @@ class MyForm(QMainWindow):
         self.ui.menu_plot_glob.triggered.connect(self.menuAction_showPlotGlob)
         
         ############### pushbutton action ############
-        self.ui.pushButton_file_save.clicked.connect(self.onBottonClick_savePath)
         self.ui.pushButton_file_typesub.clicked.connect(self.onBottonClick_dataTypeSub)
         self.ui.pushButton_file_typeadd.clicked.connect(self.onBottonClick_dataTypeAdd)
         self.ui.listWidget_datatype.itemSelectionChanged.connect(self.signal_localFileShow)
         self.ui.pushButton_file_makearc.clicked.connect(self.onBottonClick_produceARC)
         self.ui.pushButton_file_refresh.clicked.connect(self.signal_localFileShow)
         self.ui.pushButton_param_questions.clicked.connect(self.onBottonClick_showHelp)
+        self.ui.pushButton_param_save.clicked.connect(self.onBottonClick_savePath)
         self.ui.pushButton_browse_vgosdb.clicked.connect(lambda:self.onBottonClick_browsePath(0))
         self.ui.pushButton_browse_master.clicked.connect(lambda: self.onBottonClick_browsePath(1))
         self.ui.pushButton_browse_apriori.clicked.connect(lambda:self.onBottonClick_browsePath(2))
@@ -132,6 +135,7 @@ class MyForm(QMainWindow):
         self.ui.pushButton_browse_snx.clicked.connect(lambda:self.onBottonClick_browsePath(9))
         self.ui.pushButton_browse_eopo.clicked.connect(lambda:self.onBottonClick_browsePath(10))
         self.ui.pushButton_browse_arcpath.clicked.connect(lambda:self.onBottonClick_browsePath(11))
+        self.ui.pushButton_browse_inifile.clicked.connect(self.onBottonClick_browseINIFile)
         self.ui.pushButton_est_clearblclk.clicked.connect(self.onBottonClick_clearBlClk)
         self.ui.pushButton_autoset_source.clicked.connect(self.onBottonClick_setSouEst)
         self.ui.pushButton_autoset_station.clicked.connect(self.onBottonClick_setStaEst)
@@ -145,7 +149,6 @@ class MyForm(QMainWindow):
         self.ui.pushButton_glob_run.clicked.connect(self.onBottonClick_globrun)
         self.ui.pushButton_plot_save.clicked.connect(self.onBottonClick_saveOut)
         self.ui.pushButton_plot_reload.clicked.connect(lambda:self.signal_showLoadData('plot',''))
-        #self.ui.pushButton_plot_reload.clicked.connect(self.onBottonClick_reLoad)
         self.ui.pushButton_plot_home.clicked.connect(self.onBottonClick_rePlot)
         self.ui.pushButton_plot_S.clicked.connect(lambda:self.onBottonClick_bandChoice(0))
         self.ui.pushButton_plot_X.clicked.connect(lambda:self.onBottonClick_bandChoice(1))
@@ -282,6 +285,7 @@ class MyForm(QMainWindow):
         self.globModifyFile = ''
 
     def updatePreference(self):
+        self.ui.lineEdit_path_ini.setText(self.iniFile)
         self.ui.lineEdit_path_vgosDb.setText(self.dirpath[0])
         self.ui.lineEdit_path_master.setText(self.dirpath[1])
         self.ui.lineEdit_path_Apriori.setText(self.dirpath[2])
@@ -580,10 +584,10 @@ class MyForm(QMainWindow):
 
 
     def getParam(self):
-        self.Param.Map.stationFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_Station.text()
-        self.Param.Map.sourceFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_Source.text()
-        self.Param.Map.eopFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_EOP.text()
-        self.Param.Map.ephemFile = self.ui.lineEdit_path_Apriori.text()+self.ui.lineEdit_param_EPHEM.text()
+        self.Param.Map.stationFile = os.path.join(self.ui.lineEdit_path_Apriori.text(), self.ui.lineEdit_param_Station.text())
+        self.Param.Map.sourceFile = os.path.join(self.ui.lineEdit_path_Apriori.text(), self.ui.lineEdit_param_Source.text())
+        self.Param.Map.eopFile = os.path.join(self.ui.lineEdit_path_Apriori.text(), self.ui.lineEdit_param_EOP.text())
+        self.Param.Map.ephemFile = os.path.join(self.ui.lineEdit_path_Apriori.text(), self.ui.lineEdit_param_EPHEM.text())
         
         ######################## parameter to estimate #########################
         self.Param.Setup.qcodeLim = self.ui.spinBox_param_quality.value()
@@ -932,6 +936,20 @@ class MyForm(QMainWindow):
             elif flag == 11:
                 self.ui.lineEdit_path_arcpath.setText(selectPath+'/')
 
+    def onBottonClick_browseINIFile(self):
+        if len(self.dirpath[2]):
+            path = self.dirpath[2]
+        else:
+            path = os.path.dirname(os.path.abspath(__file__))
+
+        iniFile, fileType = QFileDialog.getOpenFileName(self,'INI File Select',path,"iniFile (*.ini)")
+
+        if len(iniFile):
+            self.iniFile = iniFile
+            name,dirpath = np.loadtxt(iniFile,comments='*',dtype='str',usecols=[0,1],unpack=True)
+            self.dirpath = dirpath.tolist()
+            self.updatePreference()
+
     def onBottonClick_clearBlClk(self):
         if self.runFlag == 1:
             self.scanInfo.blClkList = []
@@ -1113,6 +1131,15 @@ class MyForm(QMainWindow):
             self.ionFlag = 0
             self.onBottonClick_process()
             # self.signal_plotChange()
+
+    def onBottonClick_loadINI(self):
+        iniFIle = self.ui.lineEdit_path_ini.text()
+        self.name,self.dirpath = np.loadtxt(dirFile,comments='*',dtype='str',usecols=[0,1],unpack=True)
+        self.updatepreference()
+
+
+        
+
 
     def onBottonClick_modify_nnrt_trf(self):
         '''
@@ -1372,9 +1399,37 @@ class MyForm(QMainWindow):
             QMessageBox.warning(self,'Waring','The session not loaded or processed,\nCan not save!',QMessageBox.Ok)
         
     def onBottonClick_savePath(self):
-        dirPath = os.path.dirname(os.path.abspath(__file__))
-        dirFile = os.path.join(dirPath, 'directory.ini')
-        fid = open(dirFile,'w')
+        iniFile = self.ui.lineEdit_path_ini.text()
+        if len(iniFile) == 0:
+            if len(self.dirpath[2]) == 0:
+                QMessageBox.information(self,'Warning','Please set all input path!',QMessageBox.Ok)
+                return
+            else:
+                iniFile = os.path.join(self.dirpath[2], 'paramPath.ini')
+        
+        flag = 0
+        if not os.path.exists(self.ui.lineEdit_path_vgosDb.text()):
+            flag += 1
+        if not os.path.exists(self.ui.lineEdit_path_master.text()):
+            flag += 1
+        if not os.path.exists(os.path.join(self.ui.lineEdit_path_Apriori.text(),\
+                                           self.ui.lineEdit_param_Station.text())):
+            flag += 1
+        if not os.path.exists(os.path.join(self.ui.lineEdit_path_Apriori.text(),\
+                                           self.ui.lineEdit_param_Source.text())):
+            flag += 1
+        if not os.path.exists(os.path.join(self.ui.lineEdit_path_Apriori.text(),\
+                                           self.ui.lineEdit_param_EOP.text())):
+            flag += 1
+        if not os.path.exists(os.path.join(self.ui.lineEdit_path_Apriori.text(),\
+                                           self.ui.lineEdit_param_EPHEM.text())):
+            flag += 1
+
+        if flag > 0:
+            QMessageBox.critical(self,'Directory Error','Some of input path not exists!\nPlease check and save!',QMessageBox.Ok)
+            return
+
+        fid = open(iniFile,'w')
         fid.writelines('*input dir\n')
         fid.writelines('vgosDb %s\n'%self.ui.lineEdit_path_vgosDb.text())
         fid.writelines('Master %s\n'%self.ui.lineEdit_path_master.text())
@@ -1396,12 +1451,17 @@ class MyForm(QMainWindow):
         fid.writelines('DT %d\n' % self.ui.comboBox_dataType.currentIndex())
         fid.close()
 
-        self.dirpath = [self.ui.lineEdit_path_vgosDb.text(),self.ui.lineEdit_path_master.text(),\
+        self.dirpath = [self.ui.lineEdit_path_vgosDb.text(), self.ui.lineEdit_path_master.text(),\
                         self.ui.lineEdit_path_Apriori.text(),self.ui.lineEdit_param_Station.text(),\
                         self.ui.lineEdit_param_Source.text(),self.ui.lineEdit_param_EOP.text(),\
-                        self.ui.lineEdit_param_EPHEM.text(),self.ui.lineEdit_path_Residual.text(),\
-                        self.ui.lineEdit_path_Report.text(),self.ui.lineEdit_path_SNX.text(),\
-                        self.ui.lineEdit_path_EOPO.text(),self.ui.lineEdit_path_arcpath.text()]
+                        self.ui.lineEdit_param_EPHEM.text(), self.ui.lineEdit_path_Residual.text(),\
+                        self.ui.lineEdit_path_Report.text(), self.ui.lineEdit_path_SNX.text(),\
+                        self.ui.lineEdit_path_EOPO.text(),   self.ui.lineEdit_path_arcpath.text(),\
+                        self.ui.lineEdit_param_ac.text(),    str(self.ui.comboBox_dataType.currentIndex())]
+
+        self.param_settings.setValue('dirpath',self.dirpath)
+        self.param_settings.setValue('iniFile',self.ui.lineEdit_path_ini.text())
+        self.param_settings.sync()
 
         self.init_param()
         self.ui.statusBar.showMessage('The path in Preference has been saved!')
@@ -1528,17 +1588,25 @@ class MyForm(QMainWindow):
         layout = QVBoxLayout()
         label = QLabel()
         label.setText("""<style>span {white-space:pre;}</style>
-                         <span style='color:red;'><p>Station:</p></span>
-                         <span style='color:red;'><p>%Name            X(m)                 Y(m)             Z(m)        Vx(m/yr)   Vy(m/yr)  Vz(m/yr)   startMJD   notes</p></span>
-                         <span style='color:red;'><p>GRASSE 4581697.4036 556126.1061 4389351.6728 -0.01390  0.01906  0.01100    57023  ITRF2020</p></span>
-                         <span style='color:blue;'><p>Source:</p></span>
-                         <span style='color:blue;'><p>%IERS_name  ICRF_Designation  J2000_name IVS_name    d_o    Right Ascension          Declination</p></span>
-                         <span style='color:blue;'><p>%if IVS_name is equal to IERS_name, then is X, define is defining source</p></span>
-                         <span style='color:blue;'><p>0005+114  J000800.8+114400  J0008+1144            X    other  00 08 00.83826352     11 44 00.7748326</p></span>
-                         <span style='color:blue;'><p>0007+106  J001031.0+105829  J0010+1058   IIIZW2  define  00 10 31.00590413     10 58 29.5042981</p></span>
-                         <span style='color:green;'><p>EOP: can be usno_finals, C04, for IERS finals.daily format</p></span>
-                         <span style='color:black;'><p>SNX: the path is also used for menu File->DBList</p></span>""")
-        label.setFont(QFont("Arial",10))
+                         <span style='color:red;'><p>Station File:</p></span>
+                         <span style='color:red;'><p># name       X(m)          Y(m)           Z(m)        VX(m/y)   VY(m/y)   VZ(m/y)   epoch     flag</p></span>
+                         <span style='color:red;'><p>GRASSE   4581697.4036   556126.1061   4389351.6728   -0.01390   0.01906   0.01100   57023   ITRF2020</p></span>
+                         <span style='color:blue;'><p>Source File:</p></span>
+                         <span style='color:blue;'><p>comment flag: %. For example:</p></span>
+                         <span style='color:blue;'><p>% IERS       ICRF name       IAU name    IVS      Inf.   Right Ascension      Declination</p></span>
+                         <span style='color:blue;'><p>0001-120  J000404.9-114858  J0004-1148 0001-121   other  00 04 04.91500103    -11 48 58.3862126</p></span>
+                         <span style='color:blue;'><p>0001+459  J000416.1+461517  J0004+4615        X   other  00 04 16.12764697     46 15 17.9706652</p></span>
+                         <span style='color:blue;'><p>0002-478  J000435.6-473619  J0004-4736        X  define  00 04 35.65548526    -47 36 19.6040054</p></span>
+                         <span style='color:purple;'><p>EOP File:</p></span>
+                         <span style='color:purple;'><p>can be one of standard format: IERS C04 14/20, IERS finals.all/daily, usno_finals</p></span>
+                         <span style='color:purple;'><p>or specific format:</p></span>
+                         <span style='color:purple;'><p>#   MJD       X(")      Y(")     UT1-UTC(s)    DX(")   DY(")</p></span>
+                         <span style='color:purple;'><p>60770.00   0.060917   0.382875   0.0372828   0.000395  -0.000036</p></span>
+                         <span style='color:purple;'><p>60770.00   0.060917   0.382875   0.0372828   0.000395  -0.000036</p></span>
+                         <span style='color:purple;'><p>60770.00   0.060917   0.382875   0.0372828   0.000395  -0.000036</p></span>
+                         <span style='color:black;'><p>EPHEM File:</p></span>
+                         <span style='color:black;'><p>Download froam https://ssd.jpl.nasa.gov/ftp/eph/planets/bsp/</p></span>""")
+        label.setFont(QFont("Noto Sans Mono",10))
         layout.addWidget(label)
 
         dialog.setLayout(layout)
@@ -2424,13 +2492,6 @@ def pickRmObs(obsScan, obsBl, posit, flag):
         out[obsPosit[0][posit]] += 1
         
     return out
-        
-def read_initdir():
-    dirPath = os.path.dirname(os.path.abspath(__file__))
-    dirFile = os.path.join(dirPath,'directory.ini')
-    name,dirpath = np.loadtxt(dirFile,comments='*',dtype='str',usecols=[0,1],unpack=True)
-
-    return name.tolist(), dirpath.tolist()
             
         
 if __name__ == "__main__":
