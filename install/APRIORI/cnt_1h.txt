@@ -201,7 +201,7 @@ $GLOBAL
  SOURCE               NO
  STATION              YES EXCEPT D:/software/VIPS/VIPS_WORK/APRIORI/GLOB_rm.txt
 $MAPPING
- STATIONS             /home/GeoAS/Software/GeoAS-1.0.2/install/APRIORI/station1.txt
+ STATIONS             /home/GeoAS/Software/GeoAS-1.0.2/install/APRIORI/station.txt
  SOURCES              /home/GeoAS/Software/GeoAS-1.0.2/install/APRIORI/source.txt
  EARTH_ORIENTATION    /home/GeoAS/Software/GeoAS-1.0.2/install/APRIORI/usno_finals.erp
  EPHEM                /home/GeoAS/Software/GeoAS-1.0.2/install/APRIORI/de421.bsp
